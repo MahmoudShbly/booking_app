@@ -7,15 +7,17 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        TopBannerSection(), 
-        SizedBox(
-          height: 12,
-        ),
-        HomeBodySection(),
-        ],
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          TopBannerSection(), 
+          SizedBox(
+            height: 12,
+          ),
+          Expanded(child: HomeBodySection()),
+          ],
+      ),
     );
   }
 }

@@ -8,25 +8,22 @@ class CategorySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    final size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text('الفئات :', style: Styles.textStyle26),
-          SizedBox(
-            height: 12,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text('الفئات :', style: Styles.textStyle26),
+        SizedBox(
+          height: 12,
+        ),
+        SizedBox(
+          height: size.height * 0.13,
+          child: ListView.builder(
+            itemBuilder: (context, index) => CustomCategoryCard(),
+            scrollDirection: Axis.horizontal,
+            itemCount: 5,
           ),
-          SizedBox(
-            height: size.height * 0.13,
-            child: ListView.builder(
-              itemBuilder: (context, index) => CustomCategoryCard(),
-              scrollDirection: Axis.horizontal,
-              itemCount: 5,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
   }
