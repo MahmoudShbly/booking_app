@@ -9,5 +9,13 @@ class Styles {
     fontSize: 16,
     fontWeight: FontWeight.normal,
   );
+  static const textStyle20 = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+  static const textStyle26 = TextStyle(
+    fontSize: 26,
+    fontWeight: FontWeight.bold,
+  );
   
 }
