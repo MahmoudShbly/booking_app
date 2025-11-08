@@ -7,18 +7,20 @@ class SuggestionSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text('اقتراحات قد تعجبك :', style: Styles.textStyle26),
-        const SizedBox(height: 18),
-        ListView.builder(
-          itemBuilder: (context, index) => const ServiceCardComponent(),
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: 5,
-          shrinkWrap: true,
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text('اقتراحات قد تعجبك :', style: Styles.textStyle26),
+          ListView.builder(
+            itemBuilder: (context, index) => const ServiceCardComponent(),
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: 5,
+            shrinkWrap: true,
+          ),
+        ],
+      ),
     );
   }
 }

@@ -11,12 +11,15 @@ class CategorySection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text('الفئات :', style: Styles.textStyle26),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text('الفئات :', style: Styles.textStyle26),
+        ),
         SizedBox(
           height: 12,
         ),
         SizedBox(
-          height: size.height * 0.13,
+          height: size.height * 0.11,
           child: ListView.builder(
             itemBuilder: (context, index) => CustomCategoryCard(),
             scrollDirection: Axis.horizontal,
@@ -27,4 +30,3 @@ class CategorySection extends StatelessWidget {
     );
   }
   }
-
