@@ -8,19 +8,23 @@ class CustomAppBarComponent extends StatelessWidget {
   final Widget myWidget;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: kBlue,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(40),
-          bottomRight: Radius.circular(40),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(40.0),
-        child: myWidget,
-      ),
-    );
+    return SliverAppBar(
+            automaticallyImplyLeading: false,
+
+            backgroundColor: kBlue,
+            expandedHeight: 100, 
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(40),
+                bottomRight: Radius.circular(40),
+              ),
+            ),
+            flexibleSpace: FlexibleSpaceBar(
+              background: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40),
+                child: myWidget,
+              ),
+            ),
+          );
   }
 }

@@ -1,5 +1,5 @@
+import 'package:booking_app/core/utlis/constant.dart';
 import 'package:booking_app/core/utlis/styles.dart';
-import 'package:booking_app/core/widgets/custom_app_bar_component.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/custom_search_bar.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/home_body_section.dart';
 import 'package:flutter/material.dart';
@@ -10,25 +10,37 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          CustomAppBarComponent(
-            myWidget: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'حـجـوزاتي',
-              style: Styles.textStyle40.copyWith(color: Colors.white),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            backgroundColor: kBlue,
+            expandedHeight: 180, // الارتفاع أثناء التمدد
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(40),
+                bottomRight: Radius.circular(40),
+              ),
             ),
-            SizedBox(
-              height: 26,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const <Widget>[
+                    Text(
+                      'حجوزاتي',
+                      style: Styles.textStyle40,
+                    ),
+                    SizedBox(height: 20),
+                    CustomSearchBar(),
+                  ],
+                ),
+              ),
             ),
-            CustomSearchBar(),
-          ],
-        ),),
-          SizedBox(height: 12),
-          Expanded(child: HomeBodySection()),
+          ),
+          SliverToBoxAdapter(
+            child: const HomeBodySection(),
+          ),
         ],
       ),
     );

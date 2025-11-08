@@ -3,7 +3,7 @@ import 'package:booking_app/core/widgets/custom_app_bar_component.dart';
 import 'package:booking_app/core/widgets/service_card_component.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
-import 'package:go_router/go_router.dart'; 
+import 'package:go_router/go_router.dart';
 
 class CategoriesView extends StatelessWidget {
   const CategoriesView({super.key});
@@ -11,8 +11,8 @@ class CategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[
+      body: CustomScrollView(
+        slivers: [
           CustomAppBarComponent(
             myWidget: Row(
               children: <Widget>[
@@ -27,12 +27,14 @@ class CategoriesView extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(
+          SliverToBoxAdapter(
+            
             child: ListView.builder(
-              padding: const EdgeInsets.all(16.0), 
+              padding: EdgeInsets.all(16),
               itemBuilder: (context, index) => const ServiceCardComponent(),
-              itemCount: 15,
-        
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 10,
+              shrinkWrap: true,
             ),
           ),
         ],

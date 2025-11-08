@@ -8,15 +8,13 @@ class HomeBodySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const CategorySection(),
-          const SizedBox(height: 24),
-          const SuggestionSection(),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        const CategorySection(),
+        const SizedBox(height: 24),
+        const SuggestionSection(),
+      ],
     );
   }
 }

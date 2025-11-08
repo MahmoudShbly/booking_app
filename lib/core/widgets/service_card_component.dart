@@ -1,7 +1,8 @@
 import 'package:booking_app/core/utlis/styles.dart';
+import 'package:booking_app/core/utlis/temp.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:booking_app/core/utlis/constant.dart';
+import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 
 class ServiceCardComponent extends StatelessWidget {
   const ServiceCardComponent({super.key});
@@ -25,19 +26,7 @@ class ServiceCardComponent extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
-            width: 90,
-            height: 90,
-            decoration: BoxDecoration(
-              color: kBlue,
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: const Icon(
-              FontAwesomeIcons.image,
-              color: Colors.white,
-              size: 32,
-            ),
-          ),
+          Image.asset(Temp.tempImage,fit: BoxFit.cover,),
           const SizedBox(width: 16),
 
           Expanded(
