@@ -14,7 +14,7 @@ class HomeView extends StatelessWidget {
         slivers: <Widget>[
           SliverAppBar(
             backgroundColor: kBlue,
-            expandedHeight: 180, // الارتفاع أثناء التمدد
+            expandedHeight: 180, 
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(40),

@@ -10,7 +10,7 @@ class CustomAppBar extends StatelessWidget {
           padding: const EdgeInsets.only(top: 42.0,right: 10.0,left: 10.0,bottom: 16),
           child: Row(
             children: <Widget>[
-              Icon(Icons.arrow_back,size: 32,),
+              InkWell(child: Icon(Icons.arrow_back,size: 32,),onTap: ()=>Navigator.pop(context),),
               Spacer(),
               Text('عيادة الرضوان',style: Styles.textStyle26,),
               Spacer(),
