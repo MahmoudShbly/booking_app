@@ -19,8 +19,8 @@ class ApiServices {
 
   }
  
-  Future<dynamic> get({required String endPoin}) async {
-    Response response = await dio.get(endPoin);
+  Future<dynamic> get({required String endPoint}) async {
+    Response response = await dio.get(endPoint);
     return response.data;
   }
 
