@@ -12,26 +12,36 @@ class CategorySection extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return BlocBuilder<FetchCategoriesCubit, FetchCategoriesState>(
       builder: (context, state) {
-        return state is FetchCategoriesLoading
-            ? CircularProgressIndicator()
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text('الفئات :', style: Styles.textStyle26),
-                  ),
-                  SizedBox(height: 12),
-                  SizedBox(
-                    height: size.height * 0.11,
-                    child: ListView.builder(
-                      itemBuilder: (context, index) => CustomCategoryCard(category: context.read<FetchCategoriesCubit>().allCategories[index]),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 5,
+        if (state is FetchCategoriesFailure) {
+          return Center(child: Text(state.errorMessage));
+        }
+        
+        if (state is FetchCategoriesSuccess) {
+          return state.categories.isEmpty
+              ? Center(child: const Text('no data available'))
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text('الفئات :', style: Styles.textStyle26),
                     ),
-                  ),
-                ],
-              );
+                    SizedBox(height: 12),
+                    SizedBox(
+                      height: size.height * 0.11,
+                      child: ListView.builder(
+                        itemBuilder: (context, index) => CustomCategoryCard(
+                          category: state.categories[index],
+                              
+                        ),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 5,
+                      ),
+                    ),
+                  ],
+                );
+        }
+        return Center(child: CircularProgressIndicator());
       },
     );
   }

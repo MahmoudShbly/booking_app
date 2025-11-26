@@ -1,4 +1,5 @@
 import 'package:booking_app/core/utlis/app_router.dart';
+import 'package:booking_app/core/utlis/bloc_observer.dart';
 import 'package:booking_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:booking_app/features/home/presentation/manager/fetch%20categories/fetch_categories_cubit.dart';
 import 'package:booking_app/features/home/presentation/manager/fetch%20services/fetch_services_cubit.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
+  Bloc.observer = MyBlocObserver();
   runApp(
     const MyApp(),
   );

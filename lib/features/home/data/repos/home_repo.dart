@@ -5,4 +5,5 @@ import 'package:dartz/dartz.dart';
 abstract class HomeRepo {
   Future<Either<Failure,List <CategoriesModel>>> fetchCategories();
   Future<Either<Failure,List <ServiceModel>>> fetchServices();
+  Future<Either<Failure,ServiceModel>> fetchServicesById(int id);
 }

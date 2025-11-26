@@ -8,7 +8,6 @@ part 'fetch_categories_state.dart';
 class FetchCategoriesCubit extends Cubit<FetchCategoriesState> {
   final HomeRepoImpl homeRepoImpl;
   FetchCategoriesCubit(this.homeRepoImpl) : super(FetchCategoriesInitial());
-  List<CategoriesModel> allCategories = [];
   Future<void> fetchCategories() async {
     emit(FetchCategoriesLoading());
     var result = await homeRepoImpl.fetchCategories();
@@ -17,8 +16,8 @@ class FetchCategoriesCubit extends Cubit<FetchCategoriesState> {
         emit(FetchCategoriesFailure(failure.errorMessage));
       },
       (categories) {
-        allCategories = categories;
-        emit(FetchCategoriesSuccess());
+
+        emit(FetchCategoriesSuccess(categories: categories));
       },
     );
   }

@@ -29,7 +29,7 @@ class HomeRepoImpl implements HomeRepo {
     }
   }
 
-  
+
   @override
   Future<Either<Failure, List<CategoriesModel>>> fetchCategories() async{
 
@@ -49,5 +49,19 @@ class HomeRepoImpl implements HomeRepo {
       return left (ServerFailure(e.toString()));
     }
   }
+  @override
+  Future<Either<Failure, ServiceModel>> fetchServicesById(int id) async{
+    try{
+     
+      var result = await ApiServices().get(endPoint: '${ApiEndPoints.services}/$id');
+      return right(ServiceModel.fromJson(result)) ;
+    }catch(e){
+      if (e is DioException){
+        
+        return left (ServerFailure.fromDioError(e));
+      }
+      return left (ServerFailure(e.toString()));
+    }
+  }
+  }
 
-}
