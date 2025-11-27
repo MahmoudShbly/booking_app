@@ -1,7 +1,7 @@
 import 'package:booking_app/core/utlis/api_keys.dart';
 
 class CategoriesModel {
-  final String id;
+  final int id;
   final String name;
 
 

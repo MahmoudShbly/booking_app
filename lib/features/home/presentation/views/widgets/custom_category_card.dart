@@ -1,4 +1,5 @@
 import 'package:booking_app/core/utlis/app_router.dart';
+import 'package:booking_app/core/utlis/styles.dart';
 import 'package:booking_app/core/utlis/temp.dart';
 import 'package:booking_app/features/home/data/models/categories_model.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class CustomCategoryCard extends StatelessWidget {
                 child: Image.asset(Temp.tempImage2, fit: BoxFit.cover),
               ),
             ),
-             Positioned(top: 0,child: Text(category.name),)
+             Positioned(top: 50,right: 50,child: Text(category.name,style: Styles.textStyle24.copyWith(color: Colors.white),),)
           ],
         ),
       ),

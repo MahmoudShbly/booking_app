@@ -10,6 +10,10 @@ class Styles {
     fontSize: 26,
     fontWeight: FontWeight.bold,
   );
+  static const textStyle24 = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w400,
+  );
   static const textStyle20 = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,

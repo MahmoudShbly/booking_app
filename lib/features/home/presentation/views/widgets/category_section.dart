@@ -1,6 +1,6 @@
 import 'package:booking_app/core/utlis/styles.dart';
 import 'package:booking_app/features/home/presentation/manager/fetch%20categories/fetch_categories_cubit.dart';
-import 'package:booking_app/features/home/presentation/views/widgets/custom_category_crard.dart';
+import 'package:booking_app/features/home/presentation/views/widgets/custom_category_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,12 +30,13 @@ class CategorySection extends StatelessWidget {
                     SizedBox(
                       height: size.height * 0.11,
                       child: ListView.builder(
+                        
                         itemBuilder: (context, index) => CustomCategoryCard(
                           category: state.categories[index],
-                              
+
                         ),
                         scrollDirection: Axis.horizontal,
-                        itemCount: 5,
+                        itemCount: state.categories.length,
                       ),
                     ),
                   ],
