@@ -1,6 +1,6 @@
-import 'package:booking_app/core/utlis/app_router.dart';
-import 'package:booking_app/core/utlis/styles.dart';
-import 'package:booking_app/core/utlis/temp.dart';
+import 'package:booking_app/core/utils/app_router.dart';
+import 'package:booking_app/core/utils/styles.dart';
+import 'package:booking_app/core/utils/temp.dart';
 import 'package:booking_app/features/home/data/models/categories_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

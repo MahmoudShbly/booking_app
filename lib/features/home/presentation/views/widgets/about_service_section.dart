@@ -1,4 +1,4 @@
-import 'package:booking_app/core/utlis/styles.dart';
+import 'package:booking_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class AboutServiceSection extends StatelessWidget {

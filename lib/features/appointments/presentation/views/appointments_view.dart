@@ -1,3 +1,5 @@
+
+import 'package:booking_app/features/appointments/presentation/views/widgets/appointments_view_body.dart';
 import 'package:flutter/material.dart';
 
 class AppointmentsView extends StatelessWidget {
@@ -5,6 +7,9 @@ class AppointmentsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: AppointmentsViewBody(),
+      
+    );
   }
 }

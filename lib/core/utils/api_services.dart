@@ -1,6 +1,6 @@
 
 
-import 'package:booking_app/core/utlis/api_end_points.dart';
+import 'package:booking_app/core/utils/api_end_points.dart';
 import 'package:dio/dio.dart';
 
 class ApiServices {

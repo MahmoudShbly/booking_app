@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:booking_app/core/utlis/constant.dart';
+import 'package:booking_app/core/utils/constant.dart';
 
 
 

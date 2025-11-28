@@ -1,5 +1,5 @@
-import 'package:booking_app/core/utlis/constant.dart';
-import 'package:booking_app/core/utlis/styles.dart';
+import 'package:booking_app/core/utils/constant.dart';
+import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/custom_search_bar.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/home_body_section.dart';
 import 'package:flutter/material.dart';

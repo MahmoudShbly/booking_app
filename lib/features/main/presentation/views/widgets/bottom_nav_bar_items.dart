@@ -1,4 +1,4 @@
-import 'package:booking_app/core/utlis/constant.dart';
+import 'package:booking_app/core/utils/constant.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
@@ -48,16 +48,15 @@ Widget _buildServicesIcon() {
     shape: BoxShape.circle,    
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.3),
+          color: Colors.black.withValues(alpha: 0.3),
           blurRadius: 6,
           offset: const Offset(0, 6),
         ),
       ],
     ),
     child: CircleAvatar(
-
       radius: 40,
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.transparent,
       child: const Icon(
         FontAwesomeIcons.gears,
         size: 45,

@@ -1,4 +1,4 @@
-import 'package:booking_app/core/utlis/styles.dart';
+import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/features/home/presentation/manager/fetch%20categories/fetch_categories_cubit.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/custom_category_card.dart';
 import 'package:flutter/material.dart';

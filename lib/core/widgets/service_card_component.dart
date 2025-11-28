@@ -1,8 +1,8 @@
-import 'package:booking_app/core/utlis/app_router.dart';
-import 'package:booking_app/core/utlis/styles.dart';
-import 'package:booking_app/core/utlis/temp.dart';
+import 'package:booking_app/core/utils/app_router.dart';
+import 'package:booking_app/core/utils/styles.dart';
+import 'package:booking_app/core/utils/temp.dart';
 import 'package:flutter/material.dart';
-import 'package:booking_app/core/utlis/constant.dart';
+import 'package:booking_app/core/utils/constant.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:go_router/go_router.dart';
 

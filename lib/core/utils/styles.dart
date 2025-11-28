@@ -16,7 +16,7 @@ class Styles {
   );
   static const textStyle20 = TextStyle(
     fontSize: 20,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.normal,
   );
   
   static const textStyle16 = TextStyle(

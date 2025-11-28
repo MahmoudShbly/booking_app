@@ -1,4 +1,4 @@
-import 'package:booking_app/core/utlis/constant.dart';
+import 'package:booking_app/core/utils/constant.dart';
 import 'package:flutter/material.dart';
 
 class CustomButtonComponent extends StatelessWidget {

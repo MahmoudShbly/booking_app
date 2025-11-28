@@ -1,5 +1,5 @@
-import 'package:booking_app/core/utlis/styles.dart';
-import 'package:booking_app/core/utlis/temp.dart';
+import 'package:booking_app/core/utils/styles.dart';
+import 'package:booking_app/core/utils/temp.dart';
 import 'package:booking_app/core/widgets/custom_button_component.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/about_service_section.dart';
 

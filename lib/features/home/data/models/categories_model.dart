@@ -1,4 +1,4 @@
-import 'package:booking_app/core/utlis/api_keys.dart';
+import 'package:booking_app/core/utils/api_keys.dart';
 
 class CategoriesModel {
   final int id;

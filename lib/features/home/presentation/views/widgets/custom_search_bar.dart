@@ -1,5 +1,5 @@
-import 'package:booking_app/core/utlis/constant.dart';
-import 'package:booking_app/core/utlis/styles.dart';
+import 'package:booking_app/core/utils/constant.dart';
+import 'package:booking_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 

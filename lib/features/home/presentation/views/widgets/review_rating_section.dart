@@ -1,4 +1,4 @@
-import 'package:booking_app/core/utlis/styles.dart';
+import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/custom_review_card.dart';
 import 'package:flutter/material.dart';
 

@@ -1,3 +1,4 @@
+import 'package:booking_app/features/appointments/presentation/views/appointments_view.dart';
 import 'package:booking_app/features/home/presentation/views/home_view.dart';
 import 'package:booking_app/features/main/presentation/views/widgets/bottom_nav_bar_items.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class MainView extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> screens = [
       HomeView(),
-      Container(color: Colors.green),
+      AppointmentsView(),
       Container(color: Colors.blue),
       Container(color: Colors.yellow),
       Container(color: Colors.red),
