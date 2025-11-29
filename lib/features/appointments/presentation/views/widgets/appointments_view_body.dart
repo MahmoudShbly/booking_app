@@ -12,30 +12,23 @@ class AppointmentsViewBody extends StatefulWidget {
 
 class _AppointmentsViewBodyState extends State<AppointmentsViewBody>
     with SingleTickerProviderStateMixin {
-
-
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        CustomAppBarComponent(
-          myWidget: Text('مواعيدي', style: Styles.textStyle40),
-        ),
-
-        SliverToBoxAdapter(
-          child: Column(
-            children: <Widget>[
-              const SizedBox(height: 30),
-              TabBarSection(),
-              
-
-            
-            ],
+    return NestedScrollView(
+      headerSliverBuilder: (context, innerBoxIsScrolled) {
+        return [
+          CustomAppBarComponent(
+            myWidget: Text(
+              'مواعيدي',
+              style: Styles.textStyle40.copyWith(color: Colors.white),
+            ),
           ),
-        ),
-      ],
+        ];
+      },
+      body: Padding(
+        padding: const EdgeInsets.only(top: 30.0),
+        child: TabBarSection(),
+      ),
     );
   }
-
-
 }
