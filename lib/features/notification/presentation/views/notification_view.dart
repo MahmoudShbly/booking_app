@@ -1,4 +1,4 @@
-import 'package:booking_app/features/notification/presnetation/views/widgets/notfication_view_body.dart';
+import 'package:booking_app/features/notification/presentation/views/widgets/notification_view_body.dart';
 import 'package:flutter/material.dart';
 
 class NotificationView extends StatelessWidget {

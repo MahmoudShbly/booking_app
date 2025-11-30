@@ -8,12 +8,8 @@ class CustomNotificationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16.0),
       padding: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: kLightBlue,
-        borderRadius: BorderRadius.circular(12),
-      ),
+      color: kLightBlue,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

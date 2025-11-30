@@ -1,6 +1,6 @@
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_app_bar_component.dart';
-import 'package:booking_app/features/notification/presnetation/views/widgets/custom_notification_card.dart';
+import 'package:booking_app/features/notification/presentation/views/widgets/custom_notification_card.dart';
 import 'package:flutter/material.dart';
 
 class NotificationViewBody extends StatelessWidget {
@@ -34,10 +34,7 @@ class NotificationViewBody extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return const Padding(
-                  padding: EdgeInsets.only(bottom: 10.0),
-                  child: CustomNotificationCard(),
-                );
+                return CustomNotificationCard();
               },
               childCount: 10, 
             ),
