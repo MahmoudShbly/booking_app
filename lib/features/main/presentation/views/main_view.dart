@@ -1,6 +1,7 @@
 import 'package:booking_app/features/appointments/presentation/views/appointments_view.dart';
 import 'package:booking_app/features/home/presentation/views/home_view.dart';
 import 'package:booking_app/features/main/presentation/views/widgets/bottom_nav_bar_items.dart';
+import 'package:booking_app/features/notification/presnetation/views/notfication_view.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
@@ -14,8 +15,8 @@ class MainView extends StatelessWidget {
     List<Widget> screens = [
       HomeView(),
       AppointmentsView(),
-      Container(color: Colors.blue),
       Container(color: Colors.yellow),
+      NotificationView(),
       Container(color: Colors.red),
     ];
 
