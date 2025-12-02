@@ -10,6 +10,8 @@ class CustomButtonComponent extends StatelessWidget {
      this.height=50,
      this.titleStyle,
      this.color = kBlue,
+     this.onTap,
+     this.border,
   });
   final double borderRadius;
   final double width;
@@ -17,15 +19,18 @@ class CustomButtonComponent extends StatelessWidget {
   final String title;
   final TextStyle? titleStyle;
   final Color color;
+  final void Function()?onTap;
+  final BoxBorder? border;
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: onTap,
       child: Container(
         
         width: width,
         height: height,
         decoration: BoxDecoration(
+          border: border,
           color: color,
           borderRadius: BorderRadius.circular(borderRadius),
         ),

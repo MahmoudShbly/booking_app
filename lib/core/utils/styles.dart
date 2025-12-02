@@ -9,10 +9,11 @@ class Styles {
   static const textStyle26 = TextStyle(
     fontSize: 26,
     fontWeight: FontWeight.bold,
+    
   );
   static const textStyle24 = TextStyle(
     fontSize: 24,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w400,color: Colors.black
   );
   static const textStyle20 = TextStyle(
     fontSize: 20,

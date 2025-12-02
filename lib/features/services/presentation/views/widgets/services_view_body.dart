@@ -1,9 +1,10 @@
-import 'package:booking_app/core/utils/constant.dart';
+import 'package:booking_app/core/utils/app_router.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/utils/temp.dart';
 import 'package:booking_app/core/widgets/custom_app_bar_component.dart';
 import 'package:booking_app/core/widgets/custom_button_component.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ServicesViewBody extends StatelessWidget {
   const ServicesViewBody({super.key});
@@ -30,6 +31,8 @@ class ServicesViewBody extends StatelessWidget {
                 height: 40,
                 width: 140,
                 borderRadius: 10,
+                onTap: () => GoRouter.of(context).push(AppRouter.kChooseCategoryView),
+                
               ),
             ],
           ),
