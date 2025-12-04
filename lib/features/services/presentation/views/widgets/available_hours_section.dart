@@ -10,7 +10,7 @@ class AvailableHoursSection extends StatelessWidget {
       children: [
         SizedBox(
           width: 150,
-          height: 30,
+          height: 75,
           child: CustomTextFormFieldComponent(
             
             isReadOnly: true,
@@ -22,6 +22,7 @@ class AvailableHoursSection extends StatelessWidget {
         const Spacer(),
         SizedBox(
           width: 150,
+          height: 75,
           child: CustomTextFormFieldComponent(
             isReadOnly: true,
             hint: 'الى',

@@ -3,6 +3,7 @@ import 'package:booking_app/core/widgets/custom_text_form_field_component.dart';
 import 'package:booking_app/features/services/presentation/manager/cubit/be_provider_cubit.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/available_days_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/available_hours_section.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/price_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/time_picker_box_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/title_section.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 
 class AboutYourServiceView extends StatelessWidget {
   const AboutYourServiceView({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BeProviderCubit, BeProviderState>(
@@ -48,7 +49,10 @@ class AboutYourServiceView extends StatelessWidget {
                   AvailableDaysSection(),
                   SizedBox(height: 30),
                   TitleSection(title: 'ساعات الخدمة المتاحة'),
-                  AvailableHoursSection()
+                  AvailableHoursSection(),
+                  SizedBox(height: 20),
+                  PriceSection(),
+                  SizedBox(height: 60),
                 ],
               ),
             ),
@@ -58,3 +62,4 @@ class AboutYourServiceView extends StatelessWidget {
     );
   }
 }
+
