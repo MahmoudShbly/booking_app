@@ -14,6 +14,7 @@ class DaysDropdownSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 40,
       width: 100,
       padding: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(

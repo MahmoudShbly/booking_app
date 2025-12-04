@@ -40,4 +40,16 @@ class BeProviderCubit extends Cubit<BeProviderState> {
     toDay = day;
     emit(BeProviderToDayChanged());
   }
+
+  String fromHour='8ص';
+  void changeFromHour(String hour) {
+    fromHour = hour;
+    emit(BeProviderToDayChanged());
+  }
+
+  String toHour='8ص';
+  void changeToHour(String hour) {
+    toHour = hour;
+    emit(BeProviderToDayChanged());
+  }
 }

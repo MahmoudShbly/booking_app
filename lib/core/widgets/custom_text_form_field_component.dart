@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFormFieldComponent extends StatelessWidget {
-  const CustomTextFormFieldComponent({super.key,required this.hint});
+  const CustomTextFormFieldComponent({super.key,required this.hint,this.onTap,this.isReadOnly,this.controller});
   final String hint;
+  final VoidCallback? onTap;
+  final bool ? isReadOnly;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -10,7 +13,9 @@ class CustomTextFormFieldComponent extends StatelessWidget {
       child: SizedBox(
         height: 50,
         child: TextFormField(
-          
+          readOnly: isReadOnly??false,
+          controller: controller,
+          onTap: onTap,
         textDirection: TextDirection.rtl,
         decoration: InputDecoration(
           hintText: hint,
