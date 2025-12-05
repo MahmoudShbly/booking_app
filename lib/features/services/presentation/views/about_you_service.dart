@@ -3,6 +3,7 @@ import 'package:booking_app/core/widgets/custom_text_form_field_component.dart';
 import 'package:booking_app/features/services/presentation/manager/cubit/be_provider_cubit.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/available_days_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/available_hours_section.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/buttons_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/price_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/time_picker_box_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/title_section.dart';
@@ -18,22 +19,19 @@ class AboutYourServiceView extends StatelessWidget {
     return BlocBuilder<BeProviderCubit, BeProviderState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(FontAwesomeIcons.arrowRight),
-              color: kBlue,
-            ),
-          ),
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  SizedBox(
+                    height: 30,
+                  ),
+                  CustomAppBar(),
+                  SizedBox(
+                    height: 30,
+                  ),
                   TitleSection(title: 'اسم الخدمة'),
                   CustomTextFormFieldComponent(
                     hint: 'اسم الخدمة الذي سيظهر عند المستخدم',
@@ -53,6 +51,10 @@ class AboutYourServiceView extends StatelessWidget {
                   SizedBox(height: 20),
                   PriceSection(),
                   SizedBox(height: 60),
+                  ButtonsSection(),
+                  SizedBox(
+                    height: 20,
+                  )
                 ],
               ),
             ),
@@ -63,3 +65,24 @@ class AboutYourServiceView extends StatelessWidget {
   }
 }
 
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 50.0,
+      child: Align(
+        alignment: AlignmentGeometry.topRight,
+        child: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(FontAwesomeIcons.arrowRight),
+          color: kBlue,
+        ),
+      ),
+    );
+  }
+}

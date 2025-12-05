@@ -6,7 +6,7 @@ class CustomButtonComponent extends StatelessWidget {
     super.key,
      this.borderRadius=0,
     required this.title,
-     this.width=double.infinity,
+     this.width,
      this.height=50,
      this.titleStyle,
      this.color = kBlue,
@@ -14,7 +14,7 @@ class CustomButtonComponent extends StatelessWidget {
      this.border,
   });
   final double borderRadius;
-  final double width;
+  final double? width;
   final double height;
   final String title;
   final TextStyle? titleStyle;
