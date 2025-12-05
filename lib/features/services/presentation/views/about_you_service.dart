@@ -11,8 +11,44 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 
-class AboutYourServiceView extends StatelessWidget {
+class AboutYourServiceView extends StatefulWidget {
   const AboutYourServiceView({super.key});
+
+  @override
+  State<AboutYourServiceView> createState() => _AboutYourServiceViewState();
+}
+
+class _AboutYourServiceViewState extends State<AboutYourServiceView> {
+  late TextEditingController serviceName;
+  late TextEditingController serviceLocation;
+  late TextEditingController timeToComplete;
+  late TextEditingController firstTime;
+  late TextEditingController lastTime;
+  late TextEditingController bookPrice;
+  late TextEditingController fullPrice;
+  @override
+  void initState() {
+    serviceName = TextEditingController();
+    serviceLocation = TextEditingController();
+    timeToComplete = TextEditingController();
+    bookPrice = TextEditingController();
+    fullPrice = TextEditingController();
+    firstTime = TextEditingController();
+    lastTime = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    serviceName.dispose();
+    serviceLocation.dispose();
+    timeToComplete.dispose();
+    bookPrice.dispose();
+    fullPrice.dispose();
+    firstTime.dispose();
+    lastTime.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +61,9 @@ class AboutYourServiceView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SizedBox(
-                    height: 30,
-                  ),
+                  SizedBox(height: 30),
                   CustomAppBar(),
-                  SizedBox(
-                    height: 30,
-                  ),
+                  SizedBox(height: 30),
                   TitleSection(title: 'اسم الخدمة'),
                   CustomTextFormFieldComponent(
                     hint: 'اسم الخدمة الذي سيظهر عند المستخدم',
@@ -47,14 +79,15 @@ class AboutYourServiceView extends StatelessWidget {
                   AvailableDaysSection(),
                   SizedBox(height: 30),
                   TitleSection(title: 'ساعات الخدمة المتاحة'),
-                  AvailableHoursSection(),
+                  AvailableHoursSection(
+                    firstTime: firstTime,
+                    lastTime: lastTime,
+                  ),
                   SizedBox(height: 20),
                   PriceSection(),
                   SizedBox(height: 60),
                   ButtonsSection(),
-                  SizedBox(
-                    height: 20,
-                  )
+                  SizedBox(height: 20),
                 ],
               ),
             ),
