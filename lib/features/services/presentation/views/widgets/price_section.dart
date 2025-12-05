@@ -14,7 +14,7 @@ class PriceSection extends StatelessWidget {
       children: <Widget>[
         TitleSection(title: 'عدد النقاط المطلوب لتثبيت الحجز'),
         CustomTextFormFieldComponent(hint: 'كل نقطة تساوي 1000 ل.س'),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Text(
           'سعر الخدمة كاملا بالنجوم :',
           style: Styles.textStyle26.copyWith(color: kBlue),

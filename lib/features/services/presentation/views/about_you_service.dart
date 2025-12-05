@@ -24,12 +24,13 @@ class _AboutYourServiceViewState extends State<AboutYourServiceView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   CustomAppBar(),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   CustomFormData(),
+                  const SizedBox(height: 30),
                   ButtonsSection(),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),

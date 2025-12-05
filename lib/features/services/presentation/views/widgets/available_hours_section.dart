@@ -29,7 +29,7 @@ class AvailableHoursSection extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        SizedBox(
+         SizedBox(
           width: 150,
           height: 75,
           child: CustomTextFormFieldComponent(
