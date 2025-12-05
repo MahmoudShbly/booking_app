@@ -26,6 +26,19 @@ class _AboutYourServiceViewState extends State<AboutYourServiceView> {
   late TextEditingController lastTime;
   late TextEditingController bookPrice;
   late TextEditingController fullPrice;
+  Future<void> selectTime(TextEditingController controller) async {
+  final TimeOfDay? selectedTime = await showTimePicker(
+    context: context,
+    initialTime: TimeOfDay.now(),
+  );
+
+  if (!mounted) return;
+
+  if (selectedTime != null) {
+    controller.text = selectedTime.format(context);
+  }
+}
+
   @override
   void initState() {
     serviceName = TextEditingController();
@@ -82,6 +95,7 @@ class _AboutYourServiceViewState extends State<AboutYourServiceView> {
                   AvailableHoursSection(
                     firstTime: firstTime,
                     lastTime: lastTime,
+                    onSelect: selectTime,
                   ),
                   SizedBox(height: 20),
                   PriceSection(),

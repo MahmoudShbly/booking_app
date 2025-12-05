@@ -6,10 +6,12 @@ class AvailableHoursSection extends StatelessWidget {
     super.key,
     required this.firstTime,
     required this.lastTime,
+    required this.onSelect,
   });
 
   final TextEditingController firstTime;
   final TextEditingController lastTime;
+  final Future<void>Function(TextEditingController) onSelect;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class AvailableHoursSection extends StatelessWidget {
             controller: firstTime,
             isReadOnly: true,
             hint: 'من',
-            onTap: () => selectTime(context, firstTime),
+            onTap: () => onSelect(firstTime),
           ),
         ),
         const Spacer(),
@@ -34,7 +36,7 @@ class AvailableHoursSection extends StatelessWidget {
             controller: lastTime,
             isReadOnly: true,
             hint: 'الى',
-            onTap: () => selectTime(context, lastTime),
+            onTap: () => onSelect(lastTime),
           ),
         ),
       ],
@@ -47,6 +49,7 @@ class AvailableHoursSection extends StatelessWidget {
       context: context,
       initialTime: TimeOfDay.now(),
     );
+    
     if (selectedTime != null) {
       controller.text = selectedTime.format(context);
     }
