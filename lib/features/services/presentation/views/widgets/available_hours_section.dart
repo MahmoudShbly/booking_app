@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 class AvailableHoursSection extends StatelessWidget {
   const AvailableHoursSection({
     super.key,
-    required this.firstTime,
-    required this.lastTime,
+    required this.firstTimeController,
+    required this.lastTimeController,
     required this.onSelect,
   });
 
-  final TextEditingController firstTime;
-  final TextEditingController lastTime;
+  final TextEditingController firstTimeController;
+  final TextEditingController lastTimeController;
   final Future<void>Function(TextEditingController) onSelect;
 
   @override
@@ -20,23 +20,23 @@ class AvailableHoursSection extends StatelessWidget {
         
         SizedBox(
           width: 150,
-          height: 75,
+          height: 90,
           child: CustomTextFormFieldComponent(
-            controller: firstTime,
+            controller: firstTimeController,
             isReadOnly: true,
             hint: 'من',
-            onTap: () => onSelect(firstTime),
+            onTap: () => onSelect(firstTimeController),
           ),
         ),
         const Spacer(),
          SizedBox(
           width: 150,
-          height: 75,
+          height: 90,
           child: CustomTextFormFieldComponent(
-            controller: lastTime,
+            controller: lastTimeController,
             isReadOnly: true,
             hint: 'الى',
-            onTap: () => onSelect(lastTime),
+            onTap: () => onSelect(lastTimeController),
           ),
         ),
       ],

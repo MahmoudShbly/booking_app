@@ -1,7 +1,6 @@
 import 'package:booking_app/features/services/presentation/manager/cubit/be_provider_cubit.dart';
-import 'package:booking_app/features/services/presentation/views/widgets/buttons_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/custom_app_bar.dart';
-import 'package:booking_app/features/services/presentation/views/widgets/custom_form_data.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/form_data_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,10 +26,8 @@ class _AboutYourServiceViewState extends State<AboutYourServiceView> {
                   const SizedBox(height: 30),
                   CustomAppBar(),
                   const SizedBox(height: 30),
-                  CustomFormData(),
-                  const SizedBox(height: 30),
-                  ButtonsSection(),
-                  const SizedBox(height: 20),
+                  FormDataSection(),
+
                 ],
               ),
             ),

@@ -2,10 +2,11 @@ import 'package:booking_app/core/utils/constant.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_button_component.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ButtonsSection extends StatelessWidget {
-  const ButtonsSection({super.key});
-
+  const ButtonsSection({super.key, required this.formKey});
+  final GlobalKey<FormState> formKey;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -17,6 +18,7 @@ class ButtonsSection extends StatelessWidget {
             color: Colors.white,
             border: Border.all(color: kBlue),
             borderRadius: 10,
+            onTap: () => GoRouter.of(context).pop(),
           ),
         ),
         Expanded(
@@ -24,6 +26,11 @@ class ButtonsSection extends StatelessWidget {
             title: 'متابعة',
             titleStyle: Styles.textStyle20.copyWith(color: Colors.white),
             borderRadius: 10,
+            onTap: () {
+              if (formKey.currentState!.validate()) {
+                print('validator work correctly');
+              }
+            },
           ),
         ),
       ],

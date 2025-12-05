@@ -5,8 +5,9 @@ import 'package:booking_app/features/services/presentation/views/widgets/title_s
 import 'package:flutter/material.dart';
 
 class PriceSection extends StatelessWidget {
-  const PriceSection({super.key});
-
+  const PriceSection({super.key, required this.bookPriceController, required this.fullPriceController});
+  final TextEditingController bookPriceController;
+  final TextEditingController fullPriceController;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,6 +22,8 @@ class PriceSection extends StatelessWidget {
         ),
         CustomTextFormFieldComponent(
           hint: 'يمكنك تركه فارغا في حال عدم وجود سعر ثابت للخدمة',
+          controller: fullPriceController,
+          isRequired: false,
         ),
       ],
     );
