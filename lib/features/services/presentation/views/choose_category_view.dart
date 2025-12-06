@@ -15,15 +15,15 @@ class ChooseCategoryView extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           CustomAppBar(),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           TitleSection(title: 'اختر نوع الخدمة التي تود تقديمها'),
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
           CategorySelectionSection(),
           CustomButtonComponent(
             title: "التالي",

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class DaysDropdownSection extends StatelessWidget {
+class DropdownMenueComponent extends StatelessWidget {
   final String value;
   final List<String> items;
   final Function(String) onChanged;
 
-  const DaysDropdownSection({super.key, 
+  const DropdownMenueComponent({super.key, 
     required this.value,
     required this.items,
     required this.onChanged,

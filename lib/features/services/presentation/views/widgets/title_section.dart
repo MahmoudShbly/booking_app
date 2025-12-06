@@ -11,11 +11,11 @@ class TitleSection extends StatelessWidget {
     return Text.rich(
   TextSpan(
     text: title, 
-    style: Styles.textStyle26.copyWith(color: kBlue), // الخط الأصلي
+    style: Styles.textStyle26.copyWith(color: kBlue), 
     children: [
       TextSpan(
         text: '*',
-        style: Styles.textStyle26.copyWith(color: Colors.orange),
+        style: Styles.textStyle26.copyWith(color: Color(0xffCD1111)),
       ),
       TextSpan(
         text: ':',

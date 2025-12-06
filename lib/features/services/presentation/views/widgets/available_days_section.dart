@@ -17,14 +17,14 @@ class AvailableDaysSection extends StatelessWidget {
           child: Row(
             children: [
               const Text('من : '),
-              DaysDropdownSection(
+              DropdownMenueComponent(
                 items: cubit.days,
                 onChanged: (day) => cubit.changeFromDay(day),
                 value: cubit.fromDay,
               ),
               const Spacer(),
               const Text('الى : '),
-              DaysDropdownSection(
+              DropdownMenueComponent(
                 items: cubit.days,
                 onChanged: (day) => cubit.changeToDay(day),
                 value: cubit.toDay,

@@ -5,7 +5,11 @@ import 'package:booking_app/features/services/presentation/views/widgets/title_s
 import 'package:flutter/material.dart';
 
 class PriceSection extends StatelessWidget {
-  const PriceSection({super.key, required this.bookPriceController, required this.fullPriceController});
+  const PriceSection({
+    super.key,
+    required this.bookPriceController,
+    required this.fullPriceController,
+  });
   final TextEditingController bookPriceController;
   final TextEditingController fullPriceController;
   @override
@@ -14,7 +18,11 @@ class PriceSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         TitleSection(title: 'عدد النقاط المطلوب لتثبيت الحجز'),
-        CustomTextFormFieldComponent(hint: 'كل نقطة تساوي 1000 ل.س'),
+        CustomTextFormFieldComponent(
+          hint: 'كل نقطة تساوي 1000 ل.س',
+          controller: bookPriceController,
+          type: TextInputType.number,
+        ),
         const SizedBox(height: 20),
         Text(
           'سعر الخدمة كاملا بالنجوم :',
@@ -24,6 +32,7 @@ class PriceSection extends StatelessWidget {
           hint: 'يمكنك تركه فارغا في حال عدم وجود سعر ثابت للخدمة',
           controller: fullPriceController,
           isRequired: false,
+          type: TextInputType.number,          
         ),
       ],
     );

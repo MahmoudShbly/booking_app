@@ -19,6 +19,13 @@ class BeProviderCubit extends Cubit<BeProviderState> {
   }
 
   //about your service view
+    List<String> cities = ['الرقة', 'دمشق', 'حلب', 'حمص', 'اللاذقية', 'دير الزور', 'طرطوس','ادلب', 'حماة', 'القنيطرة', 'ريف دمشق', 'السويداء', 'الحسكة','درعا'];
+    String city = 'الرقة';
+  void changeCity(String newCity) {
+    city = newCity;
+    emit(BeProviderCityChanged());
+  }
+
   List<String> days = [
     'الاحد',
     'الاتنين',
@@ -41,15 +48,19 @@ class BeProviderCubit extends Cubit<BeProviderState> {
     emit(BeProviderToDayChanged());
   }
 
-  String fromHour='8ص';
-  void changeFromHour(String hour) {
-    fromHour = hour;
-    emit(BeProviderToDayChanged());
+
+
+  int hour =0;
+  int minute =15;
+
+  void changeHour (int newHour){
+    hour = newHour;
+    emit(BeProviderHourChanged());
+  }
+  void changeMinute (int newMinute){
+    minute = newMinute;
+    emit(BeProviderMinuteChanged());
   }
 
-  String toHour='8ص';
-  void changeToHour(String hour) {
-    toHour = hour;
-    emit(BeProviderToDayChanged());
-  }
+
 }

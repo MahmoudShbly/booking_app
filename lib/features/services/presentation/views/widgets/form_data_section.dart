@@ -2,6 +2,7 @@ import 'package:booking_app/core/widgets/custom_text_form_field_component.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/available_days_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/available_hours_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/buttons_section.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/choose_city_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/price_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/time_picker_box_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/title_section.dart';
@@ -68,6 +69,9 @@ class _FormDataSectionState extends State<FormDataSection> {
             hint: 'اسم الخدمة الذي سيظهر عند المستخدم',
             controller: serviceName,
           ),
+          const SizedBox(height: 20),
+          TitleSection(title: 'المدينة'),
+          ChooseCitySection(),
           const SizedBox(height: 20),
           TitleSection(title: 'الموقع'),
           CustomTextFormFieldComponent(
