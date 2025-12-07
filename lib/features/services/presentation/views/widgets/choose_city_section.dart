@@ -13,7 +13,7 @@ class ChooseCitySection extends StatelessWidget {
         var cubit = context.read<BeProviderCubit>();
         return Row(
           children: <Widget>[
-            const Text('اختر المحافظة:'),
+            const Text('اختر المدينة:'),
             const SizedBox(width: 10),
             DropdownMenueComponent(
               items:cubit.cities ,

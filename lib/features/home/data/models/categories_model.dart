@@ -1,4 +1,3 @@
-import 'package:booking_app/core/utils/api_keys.dart';
 
 class CategoriesModel {
   final int id;
@@ -12,13 +11,13 @@ class CategoriesModel {
   });
 
   factory CategoriesModel.fromJson(dynamic json) {
-   return CategoriesModel(id: json[ApiKeys.id], name: json[ApiKeys.name] );
+   return CategoriesModel(id: json['id'], name: json['name'] );
   }
 
 Map<String, dynamic> toJson(CategoriesModel model) {
   return {
-    ApiKeys.id: model.id,
-    ApiKeys.name: model.name,
+    'id': model.id,
+    'name': model.name,
   };
 }
 }
