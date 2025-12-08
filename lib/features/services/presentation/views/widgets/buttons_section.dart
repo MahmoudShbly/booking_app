@@ -1,11 +1,7 @@
-
+import 'package:booking_app/core/utils/app_router.dart';
 import 'package:booking_app/core/utils/constant.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_button_component.dart';
-import 'package:booking_app/features/services/data/models/form_model.dart';
-import 'package:booking_app/features/services/data/models/service_days_model.dart';
-import 'package:booking_app/features/services/data/models/service_hours_model.dart';
-import 'package:booking_app/features/services/data/models/service_time_model.dart';
 import 'package:booking_app/features/services/presentation/manager/cubit/be_provider_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,33 +50,34 @@ class ButtonsSection extends StatelessWidget {
                 titleStyle: Styles.textStyle20.copyWith(color: Colors.white),
                 borderRadius: 10,
                 onTap: () {
-                  if (formKey.currentState!.validate()) {
-                    print('validator work correctly');
-                    FormModel test = FormModel(
-                      category: cubit.category,
-                      name: serviceName.text,
-                      description: serviceDescription.text,
-                      city: cubit.city,
-                      location: serviceLocation.text,
-                      time: ServiceTimeModel(
-                        hour: cubit.hour.toString() ,
-                        minute: cubit.minute.toString(),
-                      ),
-                      days: ServiceDaysModel(
-                        fromDay: cubit.fromDay,
-                        toDay: cubit.toDay,
-                      ),
-                      hours: ServiceHoursModel(
-                        fromHour: firstTime.text,
-                        toHour: lastTime.text,
-                      ),
-                      bookPrice: bookPrice.text,
-                      fullPrice: fullPrice.text,
-                    );
-                    print(
-                      'category :${test.category}\n name :${test.name} \n des :${test.description} \n city :${test.city} \n location :${test.location} \n time :  ${test.time.hour}:${test.time.minute} \n days : from ${test.days.fromDay} to ${test.days.toDay} \n hours: from ${test.hours.fromHour} to ${test.hours.toHour} \n book price :${test.bookPrice}  full price :${test.fullPrice}',
-                    );
-                  }
+                  // if (formKey.currentState!.validate()) {
+                  //   print('validator work correctly');
+                  //   FormModel test = FormModel(
+                  //     category: cubit.category,
+                  //     name: serviceName.text,
+                  //     description: serviceDescription.text,
+                  //     city: cubit.city,
+                  //     location: serviceLocation.text,
+                  //     time: ServiceTimeModel(
+                  //       hour: cubit.hour.toString() ,
+                  //       minute: cubit.minute.toString(),
+                  //     ),
+                  //     days: ServiceDaysModel(
+                  //       fromDay: cubit.fromDay,
+                  //       toDay: cubit.toDay,
+                  //     ),
+                  //     hours: ServiceHoursModel(
+                  //       fromHour: firstTime.text,
+                  //       toHour: lastTime.text,
+                  //     ),
+                  //     bookPrice: bookPrice.text,
+                  //     fullPrice: fullPrice.text,
+                  //   );
+                  //   print(
+                  //     'category :${test.category}\n name :${test.name} \n des :${test.description} \n city :${test.city} \n location :${test.location} \n time :  ${test.time.hour}:${test.time.minute} \n days : from ${test.days.fromDay} to ${test.days.toDay} \n hours: from ${test.hours.fromHour} to ${test.hours.toHour} \n book price :${test.bookPrice}  full price :${test.fullPrice}',
+                  //   );
+                  // }
+                  GoRouter.of(context).push(AppRouter.kUploadImagesView);
                 },
               ),
             ),

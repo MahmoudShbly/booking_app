@@ -1,8 +1,6 @@
-import 'package:booking_app/features/services/presentation/manager/cubit/be_provider_cubit.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/custom_app_bar.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/form_data_section.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AboutYourServiceView extends StatefulWidget {
   const AboutYourServiceView({super.key});
@@ -14,26 +12,22 @@ class AboutYourServiceView extends StatefulWidget {
 class _AboutYourServiceViewState extends State<AboutYourServiceView> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BeProviderCubit, BeProviderState>(
-      builder: (context, state) {
-        return Scaffold(
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const SizedBox(height: 30),
-                  CustomAppBar(),
-                  const SizedBox(height: 30),
-                  FormDataSection(),
-
-                ],
-              ),
-            ),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const SizedBox(height: 30),
+              CustomAppBar(),
+              const SizedBox(height: 30),
+              FormDataSection(),
+    
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
