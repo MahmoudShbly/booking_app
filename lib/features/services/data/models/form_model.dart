@@ -11,7 +11,8 @@ class FormModel {
   final ServiceTimeModel time;
   final ServiceDaysModel days;
   final ServiceHoursModel hours;
-  final double price;
+  final String bookPrice;
+  final String? fullPrice;
 
   FormModel({
     required this.category,
@@ -22,7 +23,8 @@ class FormModel {
     required this.time,
     required this.days,
     required this.hours,
-    required this.price,
+    required this.bookPrice,
+    required this.fullPrice,
   });
 
   factory FormModel.fromJson(json) {
@@ -35,7 +37,9 @@ class FormModel {
       time: ServiceTimeModel.fromJson(json['time']),
       days: ServiceDaysModel.fromJson(json['days']),
       hours: ServiceHoursModel.fromJson(json['hours']),
-      price: json['price'],
+      bookPrice: json['bookPrice'],
+      fullPrice: json['fullPrice'],
+      
     );
   }
   Map<String,dynamic> toJson (){
@@ -48,7 +52,8 @@ class FormModel {
       'time':time.toJson(),
       'days':days.toJson(),
       'hours':hours.toJson(),
-      'price':price,
+      'bookPrice':bookPrice,
+      'fullPrice':fullPrice
 
     };
   }

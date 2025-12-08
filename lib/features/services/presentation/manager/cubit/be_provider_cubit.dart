@@ -10,7 +10,7 @@ class BeProviderCubit extends Cubit<BeProviderState> {
   int selectedIndex = -1;
   late String category;
 
-  List<String> categories = ["ملعب", "مسبح", "حلاقة", "سفر", "عيادة"];
+  List<String> categories = ["ملعب", "مسبح", "حلاقة", "عيادة"];
 
   void selectCategory(int index) {
     selectedIndex = index;

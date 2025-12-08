@@ -16,12 +16,13 @@ class FormDataSection extends StatefulWidget {
 
 class _FormDataSectionState extends State<FormDataSection> {
   late TextEditingController serviceName;
+  late TextEditingController serviceDescription;
   late TextEditingController serviceLocation;
   late TextEditingController firstTime;
   late TextEditingController lastTime;
   late TextEditingController bookPrice;
   late TextEditingController fullPrice;
-  final   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Future<void> selectTime(TextEditingController controller) async {
     final TimeOfDay? selectedTime = await showTimePicker(
       context: context,
@@ -38,6 +39,7 @@ class _FormDataSectionState extends State<FormDataSection> {
   @override
   void initState() {
     serviceName = TextEditingController();
+    serviceDescription = TextEditingController();
     serviceLocation = TextEditingController();
     bookPrice = TextEditingController();
     fullPrice = TextEditingController();
@@ -70,7 +72,14 @@ class _FormDataSectionState extends State<FormDataSection> {
             controller: serviceName,
           ),
           const SizedBox(height: 20),
+          TitleSection(title: 'الوصف'),
+          CustomTextFormFieldComponent(
+            hint: 'وصف الخدمة التي تقدمها',
+            controller: serviceDescription,
+          ),
+          const SizedBox(height: 20),
           TitleSection(title: 'المدينة'),
+          const SizedBox(height: 20),
           ChooseCitySection(),
           const SizedBox(height: 20),
           TitleSection(title: 'الموقع'),
@@ -97,7 +106,16 @@ class _FormDataSectionState extends State<FormDataSection> {
             fullPriceController: fullPrice,
           ),
           const SizedBox(height: 30),
-          ButtonsSection(formKey: formKey,),
+          ButtonsSection(
+            formKey: formKey,
+            serviceName: serviceName,
+            serviceDescription: serviceDescription,
+            serviceLocation: serviceLocation,
+            firstTime: firstTime,
+            lastTime: lastTime,
+            bookPrice: bookPrice,
+            fullPrice: fullPrice,
+          ),
           const SizedBox(height: 20),
         ],
       ),
