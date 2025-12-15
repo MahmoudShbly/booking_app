@@ -10,17 +10,32 @@ class UploadMultiImageSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-                    Text(
-              'اختر صور اضافية للخدمة :',
-              style: Styles.textStyle26.copyWith(color: kBlue),
+        Text(
+          'اختر صور اضافية للخدمة :',
+          style: Styles.textStyle26.copyWith(color: kBlue),
+        ),
+        SizedBox(height: 24),
+        Stack(
+          clipBehavior: Clip.none,
+          children: <Widget>[
+            
+            Positioned(
+              top: 20,
+              right: 20,
+              child: Container(
+                width: 160,
+                height: 160,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: BoxBorder.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+
             ),
-            SizedBox(height: 24),
-            Stack(clipBehavior: Clip.none,
-              children: <Widget>[
-                UploadImageBox(),
-                Positioned(top: 20,right: 20, child: UploadImageBox()),
-              ],
-            ),
+            UploadImageBox(onTap: () {}),
+          ],
+        ),
       ],
     );
   }

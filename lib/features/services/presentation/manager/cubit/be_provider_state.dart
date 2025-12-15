@@ -11,3 +11,7 @@ final class BeProviderFromDayChanged extends BeProviderState {}
 final class BeProviderToDayChanged extends BeProviderState {}
 final class BeProviderHourChanged extends BeProviderState {}
 final class BeProviderMinuteChanged extends BeProviderState {}
+final class BeProviderMainImageUploaded extends BeProviderState{
+  final XFile image;
+  BeProviderMainImageUploaded({required this.image});
+}

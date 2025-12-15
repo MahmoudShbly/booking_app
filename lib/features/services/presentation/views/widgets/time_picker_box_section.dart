@@ -24,6 +24,7 @@ class TimePickerBoxSection extends StatelessWidget {
               itemHeight: 40,
               onChanged: (value) => cubit.changeMinute(value),
               decoration: BoxDecoration(
+                
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(),
               ),

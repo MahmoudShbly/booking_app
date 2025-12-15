@@ -2,14 +2,9 @@ import 'package:booking_app/features/services/presentation/views/widgets/custom_
 import 'package:booking_app/features/services/presentation/views/widgets/form_data_section.dart';
 import 'package:flutter/material.dart';
 
-class AboutYourServiceView extends StatefulWidget {
+class AboutYourServiceView extends StatelessWidget {
   const AboutYourServiceView({super.key});
 
-  @override
-  State<AboutYourServiceView> createState() => _AboutYourServiceViewState();
-}
-
-class _AboutYourServiceViewState extends State<AboutYourServiceView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

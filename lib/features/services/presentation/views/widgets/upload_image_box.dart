@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 
 class UploadImageBox extends StatelessWidget {
-  const UploadImageBox({super.key, });
+  const UploadImageBox({super.key, required this.onTap});
+  final Function onTap;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,7 +15,10 @@ class UploadImageBox extends StatelessWidget {
         border: BoxBorder.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Icon(FontAwesomeIcons.fileArrowUp, color: kBlue, size: 40),
+      child: IconButton(
+        onPressed: () {},
+        icon: Icon(FontAwesomeIcons.fileArrowUp, color: kBlue, size: 40),
+      ),
     );
   }
 }

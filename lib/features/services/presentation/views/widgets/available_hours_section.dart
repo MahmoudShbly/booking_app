@@ -1,57 +1,44 @@
 import 'package:booking_app/core/widgets/custom_text_form_field_component.dart';
+import 'package:booking_app/features/services/presentation/manager/cubit/be_provider_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AvailableHoursSection extends StatelessWidget {
-  const AvailableHoursSection({
-    super.key,
-    required this.firstTimeController,
-    required this.lastTimeController,
-    required this.onSelect,
-  });
-
-  final TextEditingController firstTimeController;
-  final TextEditingController lastTimeController;
-  final Future<void>Function(TextEditingController) onSelect;
+  const AvailableHoursSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        
-        SizedBox(
-          width: 150,
-          height: 90,
-          child: CustomTextFormFieldComponent(
-            controller: firstTimeController,
-            isReadOnly: true,
-            hint: 'من',
-            onTap: () => onSelect(firstTimeController),
-          ),
-        ),
-        const Spacer(),
-         SizedBox(
-          width: 150,
-          height: 90,
-          child: CustomTextFormFieldComponent(
-            controller: lastTimeController,
-            isReadOnly: true,
-            hint: 'الى',
-            onTap: () => onSelect(lastTimeController),
-          ),
-        ),
-      ],
+    return BlocBuilder<BeProviderCubit, BeProviderState>(
+      builder: (context, state) {
+        BeProviderCubit cubit = context.read<BeProviderCubit>();
+        return Row(
+          children: [
+            SizedBox(
+              width: 150,
+              height: 90,
+              child: CustomTextFormFieldComponent(
+                controller: cubit.firstTime,
+                isReadOnly: true,
+                hint: 'من',
+                onTap: () => cubit.selectTime(cubit.firstTime,context),
+              ),
+            ),
+            const Spacer(),
+            SizedBox(
+              width: 150,
+              height: 90,
+              child: CustomTextFormFieldComponent(
+                controller: cubit.lastTime,
+                isReadOnly: true,
+                hint: 'الى',
+                onTap: () => cubit.selectTime(cubit.lastTime,context),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 
-  Future<void> selectTime(
-      BuildContext context, TextEditingController controller) async {
-    final TimeOfDay? selectedTime = await showTimePicker(
-      context: context,
-      initialTime: TimeOfDay.now(),
-    );
-    
-    if (selectedTime != null) {
-      controller.text = selectedTime.format(context);
-    }
-  }
+
 }
