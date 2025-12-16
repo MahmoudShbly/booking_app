@@ -1,3 +1,5 @@
+
+
 import 'package:booking_app/core/utils/constant.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/features/services/presentation/manager/cubit/be_provider_cubit.dart';
@@ -13,18 +15,21 @@ class UploadMainImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BeProviderCubit, BeProviderState>(
       builder: (context, state) {
-        BeProviderCubit cubit = context.read<BeProviderCubit>();
+        final cubit = context.read<BeProviderCubit>();
+       
         return Column(
           children: <Widget>[
             Text(
               'اختر صورة رئيسية للخدمة :',
               style: Styles.textStyle26.copyWith(color: kBlue),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
+
             UploadImageBox(
-              onTap: (){   ImagePicker()
+              onTap: () => ImagePicker()
                   .pickImage(source: ImageSource.gallery)
-                  .then((onValue) => cubit.setMainImage(onValue!));}
+                  .then((onValue) => cubit.setMainImage(onValue!)),
+                  image: cubit.mainImage,
             ),
           ],
         );

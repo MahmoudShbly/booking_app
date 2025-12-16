@@ -38,31 +38,31 @@ class ButtonsSection extends StatelessWidget {
                 borderRadius: 10,
                 onTap: () {
                   if (cubit.formKey.currentState!.validate()) {
-                    print('validator work correctly');
-                    FormModel test = FormModel(
-                      category: cubit.category,
-                      name: cubit.serviceName.text,
-                      description: cubit.serviceDescription.text,
-                      city: cubit.city,
-                      location:cubit.serviceLocation.text,
-                      time: ServiceTimeModel(
-                        hour: cubit.hour.toString() ,
-                        minute: cubit.minute.toString(),
-                      ),
-                      days: ServiceDaysModel(
-                        fromDay: cubit.fromDay,
-                        toDay: cubit.toDay,
-                      ),
-                      hours: ServiceHoursModel(
-                        fromHour:cubit.firstTime.text,
-                        toHour:cubit.lastTime.text,
-                      ),
-                      bookPrice:cubit.bookPrice.text,
-                      fullPrice: cubit.fullPrice.text,
-                    );
-                    print(
-                      'category :${test.category}\n name :${test.name} \n des :${test.description} \n city :${test.city} \n location :${test.location} \n time :  ${test.time.hour}:${test.time.minute} \n days : from ${test.days.fromDay} to ${test.days.toDay} \n hours: from ${test.hours.fromHour} to ${test.hours.toHour} \n book price :${test.bookPrice}  full price :${test.fullPrice}',
-                    );
+                    // print('validator work correctly');
+                    // FormModel test = FormModel(
+                    //   category: cubit.category,
+                    //   name: cubit.serviceName.text,
+                    //   description: cubit.serviceDescription.text,
+                    //   city: cubit.city,
+                    //   location:cubit.serviceLocation.text,
+                    //   time: ServiceTimeModel(
+                    //     hour: cubit.hour.toString() ,
+                    //     minute: cubit.minute.toString(),
+                    //   ),
+                    //   days: ServiceDaysModel(
+                    //     fromDay: cubit.fromDay,
+                    //     toDay: cubit.toDay,
+                    //   ),
+                    //   hours: ServiceHoursModel(
+                    //     fromHour:cubit.firstTime.text,
+                    //     toHour:cubit.lastTime.text,
+                    //   ),
+                    //   bookPrice:cubit.bookPrice.text,
+                    //   fullPrice: cubit.fullPrice.text,
+                    // );
+                    // print(
+                    //   'category :${test.category}\n name :${test.name} \n des :${test.description} \n city :${test.city} \n location :${test.location} \n time :  ${test.time.hour}:${test.time.minute} \n days : from ${test.days.fromDay} to ${test.days.toDay} \n hours: from ${test.hours.fromHour} to ${test.hours.toHour} \n book price :${test.bookPrice}  full price :${test.fullPrice}',
+                    // );
                   GoRouter.of(context).push(AppRouter.kUploadImagesView);
                   }
                 },
