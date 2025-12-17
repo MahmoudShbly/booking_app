@@ -21,7 +21,7 @@ class DetailsViewBody extends StatelessWidget {
           child: ListView.builder(
             itemBuilder: (context, index) =>
                 Padding(
-                  padding: const EdgeInsets.only(right: 5.0),
+                  padding: const EdgeInsets.only(left: 5.0),
                   child: Image.asset(Temp.tempImage3,width: size.width*1,fit: BoxFit.cover,),
                 ),
             itemCount: 3,

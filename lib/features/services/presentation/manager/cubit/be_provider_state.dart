@@ -15,3 +15,7 @@ final class BeProviderMainImageUploaded extends BeProviderState{
   final XFile image;
   BeProviderMainImageUploaded({required this.image});
 }
+final class BeProviderMultiImageUploaded extends BeProviderState{
+  final List<XFile> image;
+  BeProviderMultiImageUploaded({required this.image});
+}

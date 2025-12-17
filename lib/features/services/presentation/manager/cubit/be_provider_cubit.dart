@@ -87,7 +87,7 @@ class BeProviderCubit extends Cubit<BeProviderState> {
   final TextEditingController firstTime = TextEditingController();
   final TextEditingController lastTime = TextEditingController();
   XFile? mainImage;
-  XFile? images;
+  List<XFile>? images;
 
   Future<void> selectTime(
     TextEditingController controller,
@@ -116,5 +116,11 @@ class BeProviderCubit extends Cubit<BeProviderState> {
   void setMainImage(XFile image) {
     mainImage = image;
     emit(BeProviderMainImageUploaded(image: image));
+
   }
+  void setImages(List<XFile> imageList) {
+    images = imageList;
+    emit(BeProviderMultiImageUploaded(image: imageList));
+  }
+  
 }

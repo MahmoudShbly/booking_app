@@ -1,3 +1,4 @@
+import 'package:booking_app/core/utils/app_router.dart';
 import 'package:booking_app/core/widgets/custom_text_form_field_component.dart';
 import 'package:booking_app/features/services/presentation/manager/cubit/be_provider_cubit.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/available_days_section.dart';
@@ -9,6 +10,7 @@ import 'package:booking_app/features/services/presentation/views/widgets/time_pi
 import 'package:booking_app/features/services/presentation/views/widgets/title_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class FormDataSection extends StatelessWidget {
   const FormDataSection({super.key});
@@ -59,7 +61,7 @@ class FormDataSection extends StatelessWidget {
                 fullPriceController: cubit.fullPrice,
               ),
               const SizedBox(height: 30),
-              ButtonsSection(),
+              ButtonsSection(next: () => GoRouter.of(context).push(AppRouter.kUploadImagesView),),
               const SizedBox(height: 20),
             ],
           ),
