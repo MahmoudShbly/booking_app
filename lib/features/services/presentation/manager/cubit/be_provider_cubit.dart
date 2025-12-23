@@ -88,6 +88,7 @@ class BeProviderCubit extends Cubit<BeProviderState> {
   final TextEditingController lastTime = TextEditingController();
   XFile? mainImage;
   List<XFile>? images;
+  bool isTermsAccepted = false;
 
   Future<void> selectTime(
     TextEditingController controller,
@@ -121,6 +122,11 @@ class BeProviderCubit extends Cubit<BeProviderState> {
   void setImages(List<XFile> imageList) {
     images = imageList;
     emit(BeProviderMultiImageUploaded(image: imageList));
+  }
+
+  void toggleTermsAccepted(bool? value) {
+    isTermsAccepted = value ?? false;
+    emit(BeProviderTermsAcceptedToggled());
   }
   
 }

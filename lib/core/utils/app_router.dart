@@ -3,6 +3,7 @@ import 'package:booking_app/features/home/presentation/views/categories_view.dar
 import 'package:booking_app/features/main/presentation/views/main_view.dart';
 import 'package:booking_app/features/services/presentation/views/about_you_service.dart';
 import 'package:booking_app/features/services/presentation/views/choose_category_view.dart';
+import 'package:booking_app/features/services/presentation/views/terms_and_conditions_view.dart';
 import 'package:booking_app/features/services/presentation/views/upload_images_view.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,6 +13,7 @@ abstract class AppRouter {
   static final kChooseCategoryView = '/kChooseCategoryView';
   static final kAboutYourServiceView = '/kAboutYourServiceView';
   static final kUploadImagesView = '/kUploadImagesView';
+  static final kTermsAndConditionsView = '/TermsAndConditionsView';
   static final router = GoRouter(
     routes: [
       GoRoute(path: '/', builder: (context, state) => const MainView()),
@@ -34,6 +36,10 @@ abstract class AppRouter {
       GoRoute(
         path: kUploadImagesView,
         builder: (context, state) => const UploadImagesView(),
+      ),
+      GoRoute(
+        path: kTermsAndConditionsView,
+        builder: (context, state) => const TermsAndConditionsView(),
       ),
     ],
   );

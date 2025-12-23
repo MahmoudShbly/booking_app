@@ -19,3 +19,5 @@ final class BeProviderMultiImageUploaded extends BeProviderState{
   final List<XFile> image;
   BeProviderMultiImageUploaded({required this.image});
 }
+
+final class BeProviderTermsAcceptedToggled extends BeProviderState {}
