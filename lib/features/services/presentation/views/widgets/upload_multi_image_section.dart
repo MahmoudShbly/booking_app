@@ -23,10 +23,15 @@ class UploadMultiImageSection extends StatelessWidget {
             ),
             SizedBox(height: 24),
             UploadMultiImageBox(
-              onTap: () => ImagePicker().pickMultiImage().then(
-                (onValue) => cubit.setImages(onValue),
-              ),
+              onTap: () async {
+                final ImagePicker picker = ImagePicker();
+                final List<XFile> images = await picker.pickMultiImage(limit: 3);
+                if (images.isNotEmpty) {
+                  cubit.setImages(images);
+                }
+              },
               images: cubit.images,
+
             ),
           ],
         );

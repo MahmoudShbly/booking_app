@@ -6,9 +6,15 @@ import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UploadMultiImageBox extends StatelessWidget {
-  const UploadMultiImageBox({super.key, this.images, required this.onTap});
+  const UploadMultiImageBox({
+    super.key,
+     this.images,
+    required this.onTap,
+  });
+
   final List<XFile>? images;
   final VoidCallback onTap;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -16,45 +22,53 @@ class UploadMultiImageBox extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: <Widget>[
-          Positioned(
-            top: 20,
-            right: 20,
-            child: Container(
-              width: 160,
-              height: 160,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: BoxBorder.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: images == null
-                  ? null
-                  : ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: Image.file(
-                        File(images![1].path),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+          // الصورة الثانية (إن وجدت)
+          if (images != null && images!.length > 1)
+            Positioned(
+              top: 20,
+              right: 20,
+              child: _imageBox(images![1]),
             ),
-          ),
-          Container(
-            width: 160,
-            height: 160,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.grey),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: images == null
-                ? Icon(FontAwesomeIcons.fileArrowUp, color: kBlue, size: 40)
-                : ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
 
-                    child: Image.file(File(images![0].path), fit: BoxFit.cover),
-                  ),
-          ),
+          // الصورة الأولى أو أيقونة الرفع
+          images == null || images!.isEmpty
+              ? _emptyBox()
+              : _imageBox(images![0]),
         ],
+      ),
+    );
+  }
+
+  Widget _imageBox(XFile image) {
+    return Container(
+      width: 160,
+      height: 160,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Image.file(
+          File(image.path),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Widget _emptyBox() {
+    return Container(
+      width: 160,
+      height: 160,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: const Icon(
+        FontAwesomeIcons.fileArrowUp,
+        color: kBlue,
+        size: 40,
       ),
     );
   }

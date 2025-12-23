@@ -28,8 +28,8 @@ class FormModel {
     required this.hours,
     required this.bookPrice,
     required this.fullPrice,
-    this.mainImage,
-    this.images,
+    required this.mainImage,
+    required this.images,
   });
 
   factory FormModel.fromJson(json) {
