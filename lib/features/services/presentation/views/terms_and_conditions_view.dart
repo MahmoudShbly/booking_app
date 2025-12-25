@@ -1,3 +1,4 @@
+import 'package:booking_app/core/utils/app_dialog.dart';
 import 'package:booking_app/core/utils/constant.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_button_component.dart';
@@ -57,6 +58,15 @@ class TermsAndConditionsView extends StatelessWidget {
                   borderRadius: 16,
                   height: 60,
                   width: 250,
+                  onTap:cubit.isTermsAccepted? () {
+                    showAppDialog(
+                      context: context,
+                      title: Text('تم تقديم الطلب',style: Styles.textStyle26,),
+                      message: 'ستصلك الموافقة بمجرد التاكد من صحة البيانات .',
+                      onConfirm: () {Navigator.pop(context);},
+                      confirmText: 'تأكيد',
+                    );
+                  }:null,
                 ),
                 SizedBox(height: 48),
               ],

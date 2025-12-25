@@ -1,18 +1,19 @@
 import 'package:booking_app/core/utils/constant.dart';
 import 'package:booking_app/core/utils/styles.dart';
+import 'package:booking_app/features/appointments/presentation/views/widgets/text_button_section.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 
 class AppointmentCard extends StatelessWidget {
-  const AppointmentCard({super.key});
-
+  const AppointmentCard({super.key,  this.isDone = false});
+  final bool isDone;
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 6),
       decoration: BoxDecoration(
         border: Border.all(color: kBlue, width: 1),
-        color: kLightBlue,
+        color:isDone? Colors.white: kLightBlue,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
@@ -47,24 +48,8 @@ class AppointmentCard extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            TextButton(
-              onPressed: () {},
-              child: Container(
-                width: 80,
-                height: 35,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.red),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'الغاء',
-                    style: Styles.textStyle18.copyWith(color: Colors.red),
-                  ),
-                ),
-              ),
-            ),
+          TextButtonSection(isDone: isDone)
+           
           ],
         ),
       ),

@@ -62,7 +62,7 @@ class _TabBarSectionState extends State<TabBarSection>
                 padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                 itemBuilder: (context, index) => Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
-                  child: AppointmentCard(),
+                  child: AppointmentCard(isDone: true,),
                 ),
                 itemCount: 10,
               ),
@@ -74,11 +74,13 @@ class _TabBarSectionState extends State<TabBarSection>
                 ),
                 itemCount: 5,
               ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Text('لا توجد مواعيد قيد الانتظار'),
+             ListView.builder(
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                itemBuilder: (context, index) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: AppointmentCard(),
                 ),
+                itemCount: 5,
               ),
             ],
           ),

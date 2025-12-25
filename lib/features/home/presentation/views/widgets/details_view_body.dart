@@ -1,3 +1,4 @@
+import 'package:booking_app/core/utils/app_dialog.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/utils/temp.dart';
 import 'package:booking_app/core/widgets/custom_button_component.dart';
@@ -5,29 +6,30 @@ import 'package:booking_app/features/home/presentation/views/widgets/about_servi
 
 import 'package:booking_app/features/home/presentation/views/widgets/review_rating_section.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class DetailsViewBody extends StatelessWidget {
   const DetailsViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
     return Column(
       children: [
-        
         SizedBox(
-          height: size.height*.4,
+          height: size.height * .4,
           child: ListView.builder(
-            itemBuilder: (context, index) =>
-                Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
-                  child: Image.asset(Temp.tempImage3,width: size.width*1,fit: BoxFit.cover,),
-                ),
+            itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.only(left: 5.0),
+              child: Image.asset(
+                Temp.tempImage3,
+                width: size.width * 1,
+                fit: BoxFit.cover,
+              ),
+            ),
             itemCount: 3,
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
-            
           ),
         ),
         Padding(
@@ -42,7 +44,17 @@ class DetailsViewBody extends StatelessWidget {
                 titleStyle: Styles.textStyle26.copyWith(color: Colors.white),
                 height: 55,
                 width: 200,
-              ),
+                onTap: () {
+                  showAppDialog(
+                    context: context,
+                    title: Text('تم تقديم الطلب ',style: Styles.textStyle26,),
+                    message: 'تم تقديم طلب الحجز بنجاح! سيصلك اشعار لتأكيد الحجز عند موافقة عليه',
+                    onConfirm: (){
+                      Navigator.of(context).pop(); 
+             
+                    },
+                  );
+                },              ),
               SizedBox(height: 26),
               ReviewRatingSection(),
             ],
@@ -52,4 +64,3 @@ class DetailsViewBody extends StatelessWidget {
     );
   }
 }
-
