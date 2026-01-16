@@ -1,5 +1,6 @@
 import 'package:booking_app/core/utils/app_dialog.dart';
 import 'package:booking_app/core/utils/styles.dart';
+import 'package:booking_app/features/appointments/presentation/views/widgets/comment_rating_section.dart';
 import 'package:flutter/material.dart';
 
 class TextButtonSection extends StatelessWidget {
@@ -12,14 +13,25 @@ class TextButtonSection extends StatelessWidget {
         if (!isDone) {
           showAppDialog(
             context: context,
-            title: Text('تأكيد',style: Styles.textStyle26,),
-            message: 'هل انت متاكد من رغبتك في الغاء مواعدك مع عيادة الرضوان في الساعة 10م علما انه لا يمكنك استرجاع رسوم الحجز في حال تاكيده من قبل صاحب الخدمة',
-            onConfirm: (){},
+            title: Text('تأكيد', style: Styles.textStyle26),
+            message:
+                'هل انت متاكد من رغبتك في الغاء مواعدك مع عيادة الرضوان في الساعة 10م علما انه لا يمكنك استرجاع رسوم الحجز في حال تاكيده من قبل صاحب الخدمة',
+            onConfirm: () {},
             cancelText: 'رجوع',
             confirmText: 'نعم',
             confirmBorder: Border.all(color: Colors.red),
-            confirmColor:Colors.red,
-
+            confirmColor: Colors.red,
+          );
+        }
+        if (isDone) {
+          showAppDialog(
+            context: context,
+            title: Text('تقييم الخدمة', style: Styles.textStyle26),
+            message: 'يرجى تقييم خدمتك المقدمة من عيادة الرضوان',
+            content: const CommentRatingSection(),
+            cancelText: 'رجوع',
+            confirmText: 'تقييم',
+            onConfirm: () {},
           );
         }
       },

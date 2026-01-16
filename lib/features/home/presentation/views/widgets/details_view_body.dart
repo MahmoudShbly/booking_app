@@ -6,7 +6,6 @@ import 'package:booking_app/features/home/presentation/views/widgets/about_servi
 
 import 'package:booking_app/features/home/presentation/views/widgets/review_rating_section.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class DetailsViewBody extends StatelessWidget {
   const DetailsViewBody({super.key});
@@ -47,14 +46,15 @@ class DetailsViewBody extends StatelessWidget {
                 onTap: () {
                   showAppDialog(
                     context: context,
-                    title: Text('تم تقديم الطلب ',style: Styles.textStyle26,),
-                    message: 'تم تقديم طلب الحجز بنجاح! سيصلك اشعار لتأكيد الحجز عند موافقة عليه',
-                    onConfirm: (){
-                      Navigator.of(context).pop(); 
-             
+                    title: Text('تم تقديم الطلب ', style: Styles.textStyle26),
+                    message:
+                        'تم تقديم طلب الحجز بنجاح! سيصلك اشعار لتأكيد الحجز عند موافقة عليه',
+                    onConfirm: () {
+                      Navigator.of(context).pop();
                     },
                   );
-                },              ),
+                },
+              ),
               SizedBox(height: 26),
               ReviewRatingSection(),
             ],
