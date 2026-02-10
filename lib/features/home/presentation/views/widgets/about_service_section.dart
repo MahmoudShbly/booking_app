@@ -1,4 +1,6 @@
 import 'package:booking_app/core/utils/styles.dart';
+import 'package:booking_app/core/widgets/custom_location_component.dart';
+import 'package:booking_app/features/home/presentation/views/widgets/cost_section.dart';
 import 'package:flutter/material.dart';
 
 class AboutServiceSection extends StatelessWidget {
@@ -11,28 +13,25 @@ class AboutServiceSection extends StatelessWidget {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Text(
-              'عيادة',
-              style: Styles.textStyle20.copyWith(color: Colors.grey),
-            ),
+            Text('عيادة الرضوان', style: Styles.textStyle26),
             Spacer(),
             Icon(Icons.star, color: Colors.amber),
             Text('4.5', style: Styles.textStyle20),
           ],
         ),
         const SizedBox(height: 15),
-        Text('معالجة امراض الفم واللثة', style: Styles.textStyle26),
+        CustomLocationComponent(location: 'حمص - الكراج الشمالي'),
+        const SizedBox(height: 20),
+        CostSection(),
+        const SizedBox(height: 15),
+        Text(' الوصف', style: Styles.textStyle26),
         const SizedBox(height: 15),
         Text(
-          'تفاصيل العيادة',
-          style: Styles.textStyle20.copyWith(color: Colors.grey),
-        ),
-        const SizedBox(height: 15),
-        Text(
-          'طبيب خريج جامعة دمشق و حاصل على دبلوم  في طب الاسنان وجراحتها',
-          style: Styles.textStyle20,
+          'عيادة سنية مختصة في معالجة امراض الفم واللثة',
+          style: Styles.textStyle18,
         ),
       ],
     );
   }
 }
+

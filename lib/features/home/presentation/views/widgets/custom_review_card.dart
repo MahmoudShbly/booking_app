@@ -16,7 +16,7 @@ class CustomReviewCard extends StatelessWidget {
             children: <Widget>[
               CircleAvatar(child: Image.asset(Temp.tempImage)),
               SizedBox(width: 12),
-              const Text('محمود الشلبي', style: Styles.textStyle20),
+               Text('محمود الشلبي', style: Styles.textStyle20.copyWith(fontWeight: FontWeight.bold)),
               Spacer(),
               Rating(starCount: 4),
             ],

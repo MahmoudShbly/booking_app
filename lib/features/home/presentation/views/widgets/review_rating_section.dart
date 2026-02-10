@@ -12,7 +12,7 @@ class ReviewRatingSection extends StatelessWidget {
       children: <Widget>[
         Text(
           'التعليقات',
-          style: Styles.textStyle20.copyWith(color: Colors.grey),
+          style: Styles.textStyle26.copyWith(fontWeight: FontWeight.bold),
         ),
         SizedBox(height: 12),
         ListView.separated(

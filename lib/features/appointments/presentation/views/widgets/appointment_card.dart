@@ -1,8 +1,8 @@
 import 'package:booking_app/core/utils/constant.dart';
 import 'package:booking_app/core/utils/styles.dart';
+import 'package:booking_app/core/widgets/custom_location_component.dart';
 import 'package:booking_app/features/appointments/presentation/views/widgets/text_button_section.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 
 class AppointmentCard extends StatelessWidget {
   const AppointmentCard({super.key,  this.isDone = false});
@@ -38,13 +38,7 @@ class AppointmentCard extends StatelessWidget {
             SizedBox(height: 20),
             Text('المبلغ المدفوع :10,000\nالمبلغ المتبقي : 90,000'),
             SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Icon(FontAwesomeIcons.locationDot, size: 15, color: Colors.red),
-                Text('حمص - باب هود - بالقرب من معرض زيني'),
-              ],
-            ),
+            CustomLocationComponent(location: 'حمص - باب هود - بالقرب من معرض زيني',alignment: MainAxisAlignment.center,),
             SizedBox(
               height: 20,
             ),

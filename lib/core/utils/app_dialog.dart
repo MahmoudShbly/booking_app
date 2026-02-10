@@ -64,7 +64,6 @@ Future<T?> showAppDialog<T>({
                       title: confirmText,
                       onTap: (){
                         onConfirm();
-                        GoRouter.of(context).pop();
                       },
                       width: size.width * 0.25,
                       borderRadius: 10,
