@@ -1,9 +1,5 @@
-import 'package:booking_app/core/utils/app_dialog.dart';
-import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/utils/temp.dart';
-import 'package:booking_app/core/widgets/custom_button_component.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/about_service_section.dart';
-
 import 'package:booking_app/features/home/presentation/views/widgets/review_rating_section.dart';
 import 'package:flutter/material.dart';
 
@@ -35,28 +31,11 @@ class DetailsViewBody extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              AboutServiceSection(),
-              SizedBox(height: 50),
-              CustomButtonComponent(
-                borderRadius: 16,
-                title: 'احجز الان',
-                titleStyle: Styles.textStyle26.copyWith(color: Colors.white),
-                height: 55,
-                width: 200,
-                onTap: () {
-                  showAppDialog(
-                    context: context,
-                    title: Text('تم تقديم الطلب ', style: Styles.textStyle26),
-                    message:
-                        'تم تقديم طلب الحجز بنجاح! سيصلك اشعار لتأكيد الحجز عند موافقة عليه',
-                    onConfirm: () {
-                      Navigator.of(context).pop();
-                    },
-                  );
-                },
-              ),
-              SizedBox(height: 26),
+              AboutServiceSection(),              
+              const SizedBox(height: 26),
               ReviewRatingSection(),
+              const SizedBox(height: 70),
+             
             ],
           ),
         ),
