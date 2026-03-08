@@ -1,3 +1,4 @@
+import 'package:booking_app/features/home/data/models/service_model.dart';
 import 'package:booking_app/features/home/presentation/views/details_view.dart';
 import 'package:booking_app/features/home/presentation/views/categories_view.dart';
 import 'package:booking_app/features/main/presentation/views/main_view.dart';
@@ -23,7 +24,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kDetailsView,
-        builder: (context, state) => const DetailsView(),
+        builder: (context, state) => DetailsView(service: state.extra as ServiceModel),
       ),
       GoRoute(
         path: kChooseCategoryView,

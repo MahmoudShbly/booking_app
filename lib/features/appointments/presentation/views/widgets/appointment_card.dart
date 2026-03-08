@@ -38,7 +38,7 @@ class AppointmentCard extends StatelessWidget {
             SizedBox(height: 20),
             Text('المبلغ المدفوع :10,000\nالمبلغ المتبقي : 90,000'),
             SizedBox(height: 20),
-            CustomLocationComponent(location: 'حمص - باب هود - بالقرب من معرض زيني',alignment: MainAxisAlignment.center,),
+            CustomLocationComponent(location: '  باب هود - بالقرب من معرض زيني', city: 'حمص', alignment: MainAxisAlignment.center),
             SizedBox(
               height: 20,
             ),

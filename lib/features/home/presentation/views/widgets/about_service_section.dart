@@ -1,10 +1,12 @@
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_location_component.dart';
+import 'package:booking_app/features/home/data/models/service_model.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/cost_section.dart';
 import 'package:flutter/material.dart';
 
 class AboutServiceSection extends StatelessWidget {
-  const AboutServiceSection({super.key});
+  const AboutServiceSection({super.key, required this.service});
+  final ServiceModel service;
 
   @override
   Widget build(BuildContext context) {
@@ -13,21 +15,21 @@ class AboutServiceSection extends StatelessWidget {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Text('عيادة الرضوان', style: Styles.textStyle26),
+            Text(service.name, style: Styles.textStyle26),
             Spacer(),
             Icon(Icons.star, color: Colors.amber),
             Text('4.5', style: Styles.textStyle20),
           ],
         ),
         const SizedBox(height: 15),
-        CustomLocationComponent(location: 'حمص - الكراج الشمالي'),
+        CustomLocationComponent(location: service.location, city: service.city),
         const SizedBox(height: 20),
-        CostSection(),
+        CostSection(bookingPrice: service.bookPrice, price: service.fullPrice),
         const SizedBox(height: 15),
         Text(' الوصف', style: Styles.textStyle26),
         const SizedBox(height: 15),
         Text(
-          'عيادة سنية مختصة في معالجة امراض الفم واللثة',
+          service.description,
           style: Styles.textStyle18,
         ),
       ],

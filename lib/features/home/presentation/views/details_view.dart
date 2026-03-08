@@ -1,14 +1,17 @@
 import 'package:booking_app/core/utils/app_dialog.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_button_component.dart';
+import 'package:booking_app/features/home/data/models/service_model.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/details_view_body.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:ui';
 
-class DetailsView extends StatelessWidget {
-  const DetailsView({super.key});
+import 'package:go_router/go_router.dart';
 
+class DetailsView extends StatelessWidget {
+  const DetailsView({super.key, required this.service});
+  final ServiceModel service;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +19,7 @@ class DetailsView extends StatelessWidget {
         children: [
           Column(
             children: [
-              Expanded(child: SingleChildScrollView(child: DetailsViewBody())),
+              Expanded(child: SingleChildScrollView(child: DetailsViewBody(service: service,))),
             ],
           ),
           Positioned(
@@ -48,7 +51,7 @@ class DetailsView extends StatelessWidget {
                           message:
                               'تم تقديم طلب الحجز بنجاح! سيصلك اشعار لتأكيد الحجز عند موافقة عليه',
                           onConfirm: () {
-                            Navigator.of(context).pop();
+                            GoRouter.of(context).pop();
                           },
                         );
                       },

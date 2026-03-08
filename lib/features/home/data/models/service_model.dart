@@ -2,32 +2,38 @@ import 'package:booking_app/features/home/data/models/comment_model.dart';
 
 class ServiceModel {
   final String name;
-
-  final String title;
+  final String bookPrice;
+  final String fullPrice;
   final String description;
-  final List<String> images;
+  final List<dynamic> images;
+  final String city;
   final String location;
   final String category;
   final List<CommentModel> comments;
 
+
   ServiceModel({
     required this.name,
-    required this.title,
+    required this.bookPrice,
+    required this.fullPrice,
     required this.description,
     required this.images,
+    required this.city,
     required this.location,
     required this.category,
     required this.comments,
   });
 
   factory ServiceModel.fromJson(json) => ServiceModel(
-    name: json['name'],
-    title: json['title'],
-    description: json['title'],
-    images: json['images'],
-    location: json['location'],
-    category: json['category'],
-    comments: json['comments'],
+    name: json['name']??'',
+    bookPrice: json['book_price']??'',
+    fullPrice: json ['fullPrice']??'',
+    description: json['description']??'',
+    images: json['otherImages']??[],
+    city: json['city']??'',
+    location: json['location']??'',
+    category: json['category']??'',
+    comments: json['comments']??[],
   );
   
 }

@@ -2,18 +2,19 @@ import 'package:booking_app/features/home/presentation/views/widgets/cost_box.da
 import 'package:flutter/material.dart';
 
 class CostSection extends StatelessWidget {
-  const CostSection({super.key});
-
+  const CostSection({super.key, required this.price, required this.bookingPrice});
+  final String price;
+  final String bookingPrice;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        CostBox(title: 'تكلفة الحجز :', price: '3'),
+        CostBox(title: 'تكلفة الحجز :', price: bookingPrice),
         SizedBox(
           width: 15,
         ),
-        CostBox(title: 'تكلفة الخدمة :', price: '23'),
+        CostBox(title: 'تكلفة الخدمة :', price: price),
       ],
     );
   }

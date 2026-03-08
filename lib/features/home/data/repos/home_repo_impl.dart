@@ -13,9 +13,9 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<Failure, List<ServiceModel>>> fetchServices() async {
     try{
-      var result =await ApiServices().get(endPoint: ApiEndPoints.services);
+      Map<String, dynamic> result =await ApiServices().get(endPoint: ApiEndPoints.services);
       List<ServiceModel> services = [];
-      for(var item in  result)
+      for(var item in  result['data'])
         {services.add(ServiceModel.fromJson(item));}
       return right(services);
 
