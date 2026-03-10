@@ -32,7 +32,7 @@ class ServiceCardComponent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             ClipOval(
-              child: Image.network(service.images[0], width: 100, height: 100, fit: BoxFit.cover),
+              child: Image.network(service.mainImage, width: 100, height: 100, fit: BoxFit.cover),
             ),
             const SizedBox(width: 16),
 

@@ -13,7 +13,7 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<Failure, List<ServiceModel>>> fetchServices() async {
     try{
-      Map<String, dynamic> result =await ApiServices().get(endPoint: ApiEndPoints.services);
+      Map<String, dynamic> result =await ApiServices().get(endPoint: ApiEndPoints.acceptServices);
       List<ServiceModel> services = [];
       for(var item in  result['data'])
         {services.add(ServiceModel.fromJson(item));}

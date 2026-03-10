@@ -5,6 +5,7 @@ class ServiceModel {
   final String bookPrice;
   final String fullPrice;
   final String description;
+  final String mainImage;
   final List<dynamic> images;
   final String city;
   final String location;
@@ -21,7 +22,7 @@ class ServiceModel {
     required this.city,
     required this.location,
     required this.category,
-    required this.comments,
+    required this.comments, required this.mainImage,
   });
 
   factory ServiceModel.fromJson(json) => ServiceModel(
@@ -33,7 +34,7 @@ class ServiceModel {
     city: json['city']??'',
     location: json['location']??'',
     category: json['category']??'',
-    comments: json['comments']??[],
+    comments: json['comments']??[], mainImage: '${json['mainImage']??''}',
   );
   
 }

@@ -1,3 +1,5 @@
+import 'package:booking_app/features/services/data/repos/services_repo_impl.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -5,7 +7,28 @@ import 'package:image_picker/image_picker.dart';
 part 'be_provider_state.dart';
 
 class BeProviderCubit extends Cubit<BeProviderState> {
-  BeProviderCubit() : super(BeProviderInitial());
+  BeProviderCubit(this.servicesRepo) : super(BeProviderInitial());
+  final ServicesRepoImpl servicesRepo;
+  Future<void> addService() async {
+    FormData formData = FormData.fromMap({
+      "category_id": 1,
+      "name": serviceName.text,
+      "description": serviceDescription.text,
+      "city": city,
+      "location": serviceLocation.text,
+      "book_price": bookPrice.text,
+      "fullPrice": fullPrice.text,
+      "time_to_complete": "$hour : $minute",
+      "available_days[]": [fromDay, toDay],
+      "available_hours[]": [firstTime.text, lastTime.text],
+      "mainImage": await MultipartFile.fromFile(mainImage!.path),
+    });
+    var result = await servicesRepo.addServices(formData);
+    result.fold(
+      (failure) => emit(BeProviderFailure(failure.errorMessage)),
+      (message) => emit(BeProviderSuccess(message)),
+    );
+  }
 
   //category selection view
   int selectedIndex = -1;
@@ -117,8 +140,8 @@ class BeProviderCubit extends Cubit<BeProviderState> {
   void setMainImage(XFile image) {
     mainImage = image;
     emit(BeProviderMainImageUploaded(image: image));
-
   }
+
   void setImages(List<XFile> imageList) {
     images = imageList;
     emit(BeProviderMultiImageUploaded(image: imageList));
@@ -128,5 +151,4 @@ class BeProviderCubit extends Cubit<BeProviderState> {
     isTermsAccepted = value ?? false;
     emit(BeProviderTermsAcceptedToggled());
   }
-  
 }

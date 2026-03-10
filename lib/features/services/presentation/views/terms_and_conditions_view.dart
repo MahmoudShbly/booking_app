@@ -6,6 +6,7 @@ import 'package:booking_app/features/services/presentation/manager/cubit/be_prov
 import 'package:booking_app/features/services/presentation/views/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class TermsAndConditionsView extends StatelessWidget {
   const TermsAndConditionsView({super.key});
@@ -58,15 +59,25 @@ class TermsAndConditionsView extends StatelessWidget {
                   borderRadius: 16,
                   height: 60,
                   width: 250,
-                  onTap:cubit.isTermsAccepted? () {
-                    showAppDialog(
-                      context: context,
-                      title: Text('تم تقديم الطلب',style: Styles.textStyle26,),
-                      message: 'ستصلك الموافقة بمجرد التاكد من صحة البيانات .',
-                      onConfirm: () {Navigator.pop(context);},
-                      confirmText: 'تأكيد',
-                    );
-                  }:null,
+                  onTap: cubit.isTermsAccepted
+                      ? () {
+                          showAppDialog(
+                            context: context,
+                            title: Text(
+                              'تم تقديم الطلب',
+                              style: Styles.textStyle26,
+                            ),
+                            message:
+                                'ستصلك الموافقة بمجرد التاكد من صحة البيانات .',
+                            onConfirm: () {
+                              cubit.addService();
+                              GoRouter.of(context).pushReplacement('/');
+                           
+                            },
+                            confirmText: 'تأكيد',
+                          );
+                        }
+                      : null,
                 ),
                 SizedBox(height: 48),
               ],

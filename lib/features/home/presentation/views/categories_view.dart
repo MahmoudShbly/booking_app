@@ -41,7 +41,7 @@ class CategoriesView extends StatelessWidget {
                   city: 'City',
                   location: 'Location',
                   category: 'Category',
-                  comments: [],
+                  comments: [], mainImage: '',
                 ),
               ),
               physics: const NeverScrollableScrollPhysics(),
