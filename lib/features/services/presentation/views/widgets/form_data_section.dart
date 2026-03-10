@@ -12,8 +12,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class FormDataSection extends StatelessWidget {
+class FormDataSection extends StatefulWidget {
   const FormDataSection({super.key});
+
+  @override
+  State<FormDataSection> createState() => _FormDataSectionState();
+}
+
+class _FormDataSectionState extends State<FormDataSection> {
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +28,7 @@ class FormDataSection extends StatelessWidget {
       builder: (context, state) {
         BeProviderCubit cubit = context.read<BeProviderCubit>();
         return Form(
-          key: cubit.formKey,
+          key: formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -61,7 +68,7 @@ class FormDataSection extends StatelessWidget {
                 fullPriceController: cubit.fullPrice,
               ),
               const SizedBox(height: 30),
-              ButtonsSection(next: () => GoRouter.of(context).push(AppRouter.kUploadImagesView),),
+              ButtonsSection(next: () =>formKey.currentState!.validate() ? GoRouter.of(context).push(AppRouter.kUploadImagesView) : null,),
               const SizedBox(height: 20),
             ],
           ),

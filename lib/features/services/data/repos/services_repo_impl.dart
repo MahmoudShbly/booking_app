@@ -15,7 +15,7 @@ class ServicesRepoImpl implements ServicesRepo {
       var result = await ApiServices().post(
         endPoint: ApiEndPoints.services,
         data: services,
-        headers: {'Authorization': 'Bearer ${Temp.adminToken}'},
+        headers: {'Authorization': 'Bearer ${Temp.providerToken}',"Accept": "application/json",},
       );
       return right(result["message"]);
     } catch (e) {

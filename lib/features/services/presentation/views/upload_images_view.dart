@@ -16,7 +16,7 @@ class UploadImagesView extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<BeProviderCubit, BeProviderState>(
         builder: (context, state) {
-          // final cubit = context.read<BeProviderCubit>();
+          final cubit = context.read<BeProviderCubit>();
           return SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -31,6 +31,13 @@ class UploadImagesView extends StatelessWidget {
 
                   ButtonsSection(
                     next: () {
+                      if(cubit.mainImage == null){
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('الرجاء رفع صورة رئيسية للخدمة'), backgroundColor: Colors.red,),
+                        );
+                        return;
+                      }
+                   
                      GoRouter.of(context).push(AppRouter.kTermsAndConditionsView);
                     },
                   ),

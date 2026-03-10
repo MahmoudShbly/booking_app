@@ -16,7 +16,41 @@ class TermsAndConditionsView extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: BlocBuilder<BeProviderCubit, BeProviderState>(
+        child: BlocConsumer<BeProviderCubit, BeProviderState>(
+          listener: (context, state) {
+            final cubit = context.read<BeProviderCubit>();
+
+            if (state is BeProviderFailure) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.errorMessage),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
+            if (state is BeProviderSuccess) {
+              showAppDialog(
+                context: context,
+                title: Text('تم تقديم الطلب', style: Styles.textStyle26),
+                message: 'ستصلك الموافقة بمجرد التاكد من صحة البيانات .',
+                onConfirm: () {
+                  cubit.clearData();
+                  GoRouter.of(context).pushReplacement('/');
+                },
+                confirmText: 'تأكيد',
+              );
+            }
+            if (state is BeProviderLoading) {
+              showAppDialog(
+                isLoading: true ,
+                context: context,
+                title: Text('جاري تقديم الطلب', style: Styles.textStyle26),
+                message: 'يرجى الانتظار بينما نقوم بمعالجة طلبك.',
+                onConfirm: () { },
+                content: Center(child: CircularProgressIndicator())
+              );
+            }
+          },
           builder: (context, state) {
             final cubit = context.read<BeProviderCubit>();
             return Column(
@@ -61,21 +95,7 @@ class TermsAndConditionsView extends StatelessWidget {
                   width: 250,
                   onTap: cubit.isTermsAccepted
                       ? () {
-                          showAppDialog(
-                            context: context,
-                            title: Text(
-                              'تم تقديم الطلب',
-                              style: Styles.textStyle26,
-                            ),
-                            message:
-                                'ستصلك الموافقة بمجرد التاكد من صحة البيانات .',
-                            onConfirm: () {
-                              cubit.addService();
-                              GoRouter.of(context).pushReplacement('/');
-                           
-                            },
-                            confirmText: 'تأكيد',
-                          );
+                          cubit.addService();
                         }
                       : null,
                 ),

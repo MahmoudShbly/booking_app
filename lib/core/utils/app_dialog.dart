@@ -8,6 +8,7 @@ Future<T?> showAppDialog<T>({
   required BuildContext context,
   required Widget title,
   required String message,
+  bool isLoading = false,
   Widget? content,
   String confirmText = 'موافق',
   String? cancelText,
@@ -58,7 +59,7 @@ Future<T?> showAppDialog<T>({
                         border: cancelBorder,
                       ),
                     if (cancelText != null) const SizedBox(width: 10),
-            
+                    if(!isLoading)
                     CustomButtonComponent(
                       titleStyle: Styles.textStyle20.copyWith(color: Colors.white),
                       title: confirmText,

@@ -28,6 +28,8 @@ class ApiServices {
   }
   Future<dynamic> post({required String endPoint,Map <String,dynamic>? headers, dynamic data}) async {
     Response response = await dio.post(endPoint,options: Options(headers: headers), data: data);
+    
+  
     return response.data;
   }
 

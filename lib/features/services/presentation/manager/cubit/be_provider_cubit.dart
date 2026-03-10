@@ -10,6 +10,7 @@ class BeProviderCubit extends Cubit<BeProviderState> {
   BeProviderCubit(this.servicesRepo) : super(BeProviderInitial());
   final ServicesRepoImpl servicesRepo;
   Future<void> addService() async {
+    emit(BeProviderLoading());
     FormData formData = FormData.fromMap({
       "category_id": 1,
       "name": serviceName.text,
@@ -21,7 +22,11 @@ class BeProviderCubit extends Cubit<BeProviderState> {
       "time_to_complete": "$hour : $minute",
       "available_days[]": [fromDay, toDay],
       "available_hours[]": [firstTime.text, lastTime.text],
-      "mainImage": await MultipartFile.fromFile(mainImage!.path),
+      "otherImages[]":  [ await MultipartFile.fromFile(mainImage!.path),
+        if (images != null)
+          for (var image in images!)
+            await MultipartFile.fromFile(image.path)
+      ],
     });
     var result = await servicesRepo.addServices(formData);
     result.fold(
@@ -100,7 +105,6 @@ class BeProviderCubit extends Cubit<BeProviderState> {
     emit(BeProviderMinuteChanged());
   }
 
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final TextEditingController serviceName = TextEditingController();
   final TextEditingController serviceDescription = TextEditingController();
@@ -150,5 +154,26 @@ class BeProviderCubit extends Cubit<BeProviderState> {
   void toggleTermsAccepted(bool? value) {
     isTermsAccepted = value ?? false;
     emit(BeProviderTermsAcceptedToggled());
+  }
+
+  void clearData() {
+    selectedIndex = -1;
+    category = '';
+    city = 'الرقة';
+    fromDay = 'الاحد';
+    toDay = 'الخميس';
+    hour = 0;
+    minute = 15;
+    serviceName.clear();
+    serviceDescription.clear();
+    serviceLocation.clear();
+    bookPrice.clear();
+    fullPrice.clear();
+    firstTime.clear();
+    lastTime.clear();
+    mainImage = null;
+    images = null;
+    isTermsAccepted = false;
+    emit(BeProviderInitial());
   }
 }
