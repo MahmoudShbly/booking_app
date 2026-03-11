@@ -8,60 +8,78 @@ import 'package:booking_app/features/home/data/repos/home_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-
 class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<Failure, List<ServiceModel>>> fetchServices() async {
-    try{
-      Map<String, dynamic> result =await ApiServices().get(endPoint: ApiEndPoints.acceptServices);
+    try {
+      Map<String, dynamic> result = await ApiServices().get(
+        endPoint: ApiEndPoints.acceptServices,
+      );
       List<ServiceModel> services = [];
-      for(var item in  result['data'])
-        {services.add(ServiceModel.fromJson(item));}
+      for (var item in result['data']) {
+        services.add(ServiceModel.fromJson(item));
+      }
       return right(services);
-
-    }
-    catch(e){
-      if (e is DioException){
-        
-        return left (ServerFailure.fromDioError(e));
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
       }
-      return left (ServerFailure(e.toString()));
+      return left(ServerFailure(e.toString()));
     }
   }
 
-
   @override
-  Future<Either<Failure, List<CategoriesModel>>> fetchCategories() async{
-
-    try{
-      var result =await ApiServices().get(endPoint: ApiEndPoints.categories);
+  Future<Either<Failure, List<CategoriesModel>>> fetchCategories() async {
+    try {
+      var result = await ApiServices().get(endPoint: ApiEndPoints.categories);
       List<CategoriesModel> categories = [];
-      for(var item in  result)
-        {categories.add(CategoriesModel.fromJson(item));}
+      for (var item in result) {
+        categories.add(CategoriesModel.fromJson(item));
+      }
       return right(categories);
-
-    }
-    catch(e){
-      if (e is DioException){
-        
-        return left (ServerFailure.fromDioError(e));
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
       }
-      return left (ServerFailure(e.toString()));
+      return left(ServerFailure(e.toString()));
     }
   }
+
   @override
-  Future<Either<Failure, ServiceModel>> fetchServicesById(int id) async{
-    try{
-     
-      var result = await ApiServices().get(endPoint: '${ApiEndPoints.services}/$id');
-      return right(ServiceModel.fromJson(result)) ;
-    }catch(e){
-      if (e is DioException){
-        
-        return left (ServerFailure.fromDioError(e));
+  Future<Either<Failure, ServiceModel>> fetchServicesById(int id) async {
+    try {
+      var result = await ApiServices().get(
+        endPoint: '${ApiEndPoints.services}/$id',
+      );
+      return right(ServiceModel.fromJson(result));
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
       }
-      return left (ServerFailure(e.toString()));
+      return left(ServerFailure(e.toString()));
     }
   }
-  }
 
+  @override
+  Future<Either<Failure, List<ServiceModel>>> fetchServicesByCategoryId(
+    int id,
+  ) async {
+    try {
+      Map<String, dynamic> result = await ApiServices().get(
+        endPoint: ApiEndPoints.acceptServices,
+      );
+      List<ServiceModel> services = [];
+      for (var item in result['data']) {
+        item['category_id'] == id
+            ? services.add(ServiceModel.fromJson(item))
+            : null;
+      }
+      return right(services);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+}

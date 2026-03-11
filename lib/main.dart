@@ -3,6 +3,7 @@ import 'package:booking_app/core/utils/bloc_observer.dart';
 import 'package:booking_app/features/appointments/presentation/manager/cubit/rating_cubit.dart';
 import 'package:booking_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:booking_app/features/home/presentation/manager/fetch%20categories/fetch_categories_cubit.dart';
+import 'package:booking_app/features/home/presentation/manager/fetch%20service%20by%20category%20id/cubit/fetch_services_by_category_id_cubit.dart';
 import 'package:booking_app/features/home/presentation/manager/fetch%20services/fetch_services_cubit.dart';
 import 'package:booking_app/features/services/data/repos/services_repo_impl.dart';
 import 'package:booking_app/features/services/presentation/manager/cubit/be_provider_cubit.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
       BlocProvider(create:(context)=>FetchServicesCubit(HomeRepoImpl())..fetchServices()),
       BlocProvider(create:(context)=>BeProviderCubit(ServicesRepoImpl())),
       BlocProvider(create:(context)=>RatingCubit()),
+      BlocProvider(create:(context)=>FetchServicesByCategoryIdCubit()),
     ],
       child: MaterialApp.router(
         theme: ThemeData(

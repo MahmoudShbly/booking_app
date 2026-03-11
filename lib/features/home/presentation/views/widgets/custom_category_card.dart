@@ -12,7 +12,7 @@ class CustomCategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => GoRouter.of(context).push(AppRouter.kCategoriesView),
+      onTap: ()  { GoRouter.of(context).push(AppRouter.kCategoriesView, extra: category);},
       child: AspectRatio(
         aspectRatio: 1.7,
         child: Stack(

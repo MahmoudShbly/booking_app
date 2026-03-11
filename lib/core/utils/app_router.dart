@@ -1,3 +1,4 @@
+import 'package:booking_app/features/home/data/models/categories_model.dart';
 import 'package:booking_app/features/home/data/models/service_model.dart';
 import 'package:booking_app/features/home/presentation/views/details_view.dart';
 import 'package:booking_app/features/home/presentation/views/categories_view.dart';
@@ -20,7 +21,7 @@ abstract class AppRouter {
       GoRoute(path: '/', builder: (context, state) => const MainView()),
       GoRoute(
         path: kCategoriesView,
-        builder: (context, state) => const CategoriesView(),
+        builder: (context, state) => CategoriesView(category: state.extra as CategoriesModel,),
       ),
       GoRoute(
         path: kDetailsView,
