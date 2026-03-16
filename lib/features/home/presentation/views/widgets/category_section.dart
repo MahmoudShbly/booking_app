@@ -1,6 +1,7 @@
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/features/home/presentation/manager/fetch%20categories/fetch_categories_cubit.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/custom_category_card.dart';
+import 'package:booking_app/features/home/presentation/views/widgets/custom_category_card_shimer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,40 +11,44 @@ class CategorySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return BlocBuilder<FetchCategoriesCubit, FetchCategoriesState>(
-      builder: (context, state) {
-        if (state is FetchCategoriesFailure) {
-          return Center(child: Text(state.errorMessage));
-        }
-        
-        if (state is FetchCategoriesSuccess) {
-          return state.categories.isEmpty
-              ? Center(child: const Text('no data available'))
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text('الفئات :', style: Styles.textStyle26),
-                    ),
-                    SizedBox(height: 12),
-                    SizedBox(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text('الفئات :', style: Styles.textStyle26),
+        ),
+        BlocBuilder<FetchCategoriesCubit, FetchCategoriesState>(
+          builder: (context, state) {
+            if (state is FetchCategoriesFailure) {
+              return Center(child: Text(state.errorMessage));
+            }
+
+            if (state is FetchCategoriesSuccess) {
+              return state.categories.isEmpty
+                  ? Center(child: const Text('no data available'))
+                  : SizedBox(
                       height: size.height * 0.11,
                       child: ListView.builder(
-                        
                         itemBuilder: (context, index) => CustomCategoryCard(
                           category: state.categories[index],
-
                         ),
                         scrollDirection: Axis.horizontal,
                         itemCount: state.categories.length,
                       ),
-                    ),
-                  ],
-                );
-        }
-        return Center(child: CircularProgressIndicator());
-      },
+                    );
+            }
+            return SizedBox(
+              height: size.height * 0.11,
+              child: ListView.builder(
+                itemBuilder: (context, index) => CustomCategoryCardShimmer(),
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 }
