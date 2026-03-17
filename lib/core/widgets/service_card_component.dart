@@ -2,6 +2,7 @@ import 'package:booking_app/core/utils/app_router.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_location_component.dart';
 import 'package:booking_app/features/home/data/models/service_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,14 +12,14 @@ class ServiceCardComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => GoRouter.of(context).push(AppRouter.kDetailsView , extra: service),
+      onTap: () =>
+          GoRouter.of(context).push(AppRouter.kDetailsView, extra: service),
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          
           color: Colors.white,
-          border: Border.all(color: Colors.black.withValues(alpha: 0.3),),
+          border: Border.all(color: Colors.black.withValues(alpha: 0.3)),
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
@@ -32,7 +33,18 @@ class ServiceCardComponent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             ClipOval(
-              child: Image.network(service.images[0], width: 100, height: 100, fit: BoxFit.cover),
+              child: CachedNetworkImage(
+                imageUrl: service.images[0],
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+                placeholder: (context, url) =>
+                    Container(color: Colors.grey.shade300),
+                errorWidget: (context, url, error) => Container(
+                  color: Colors.grey.shade300,
+                  child: const Icon(Icons.error, color: Colors.red),
+                ),
+              ),
             ),
             const SizedBox(width: 16),
 
@@ -42,14 +54,17 @@ class ServiceCardComponent extends StatelessWidget {
                 children: <Widget>[
                   Text(service.name, style: Styles.textStyle20),
                   const SizedBox(height: 6),
-                   Text(
+                  Text(
                     service.description,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     style: TextStyle(fontSize: 14, color: Colors.black54),
                   ),
                   const SizedBox(height: 8),
-                  CustomLocationComponent(location: service.location, city: service.city)
+                  CustomLocationComponent(
+                    location: service.location,
+                    city: service.city,
+                  ),
                 ],
               ),
             ),
@@ -59,5 +74,3 @@ class ServiceCardComponent extends StatelessWidget {
     );
   }
 }
-
-

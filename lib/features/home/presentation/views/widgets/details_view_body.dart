@@ -1,6 +1,7 @@
 import 'package:booking_app/features/home/data/models/service_model.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/about_service_section.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/review_rating_section.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class DetailsViewBody extends StatelessWidget {
@@ -16,10 +17,16 @@ class DetailsViewBody extends StatelessWidget {
           child: ListView.builder(
             itemBuilder: (context, index) => Padding(
               padding: const EdgeInsets.only(left: 5.0),
-              child: Image.network(
-                service.images[index],
+              child: CachedNetworkImage(
+                imageUrl: service.images[index],
                 width: size.width * 1,
                 fit: BoxFit.cover,
+                placeholder: (context, url) =>
+                    Container(color: Colors.grey.shade300),
+                errorWidget: (context, url, error) => Container(
+                  color: Colors.grey.shade300,
+                  child: const Icon(Icons.error, color: Colors.red),
+                ),
               ),
             ),
             itemCount: service.images.length,

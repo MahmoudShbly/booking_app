@@ -2,7 +2,9 @@ import 'package:booking_app/core/utils/app_router.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/utils/temp.dart';
 import 'package:booking_app/features/home/data/models/categories_model.dart';
+import 'package:booking_app/features/home/presentation/manager/fetch%20service%20by%20category%20id/cubit/fetch_services_by_category_id_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomCategoryCard extends StatelessWidget {
@@ -12,7 +14,7 @@ class CustomCategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()  { GoRouter.of(context).push(AppRouter.kCategoriesView, extra: category);},
+      onTap: () async { GoRouter.of(context).push(AppRouter.kCategoriesView, extra: category);await context.read<FetchServicesByCategoryIdCubit>().fetchServicesByCategoryId(category.id); },
       child: AspectRatio(
         aspectRatio: 1.7,
         child: Stack(

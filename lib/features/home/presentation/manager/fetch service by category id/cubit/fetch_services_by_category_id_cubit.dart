@@ -12,6 +12,7 @@ class FetchServicesByCategoryIdCubit extends Cubit<FetchServicesByCategoryIdStat
   final HomeRepoImpl homeRepo = HomeRepoImpl();
 
   Future<void> fetchServicesByCategoryId(int id) async {
+    emit(FetchServiceByCategoryIdLoading());
     var result = await homeRepo.fetchServicesByCategoryId(id);
     result.fold((failure) {
       emit(FetchServicesByCategoryIdFailure(failure.errorMessage));
