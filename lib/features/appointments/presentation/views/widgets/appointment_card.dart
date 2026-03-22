@@ -1,12 +1,15 @@
 import 'package:booking_app/core/utils/constant.dart';
+import 'package:booking_app/core/utils/enums.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_location_component.dart';
+import 'package:booking_app/features/appointments/data/models/booking_model.dart';
 import 'package:booking_app/features/appointments/presentation/views/widgets/text_button_section.dart';
 import 'package:flutter/material.dart';
 
 class AppointmentCard extends StatelessWidget {
-  const AppointmentCard({super.key,  this.isDone = false});
+  const AppointmentCard({super.key,  this.isDone = false,required this.booking});
   final bool isDone;
+  final BookingModel booking;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,7 +33,7 @@ class AppointmentCard extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              'عيادة الرضوان',
+              booking.service.name,
               style: Styles.textStyle20.copyWith(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
@@ -38,11 +41,11 @@ class AppointmentCard extends StatelessWidget {
             SizedBox(height: 20),
             Text('المبلغ المدفوع :10,000\nالمبلغ المتبقي : 90,000'),
             SizedBox(height: 20),
-            CustomLocationComponent(location: '  باب هود - بالقرب من معرض زيني', city: 'حمص', alignment: MainAxisAlignment.center),
+            CustomLocationComponent(location: booking.service.location, city:booking.service.city, alignment: MainAxisAlignment.center),
             SizedBox(
               height: 20,
             ),
-          TextButtonSection(isDone: isDone)
+          TextButtonSection(isDone: booking.status == '${BookingStatus.completed}')
            
           ],
         ),

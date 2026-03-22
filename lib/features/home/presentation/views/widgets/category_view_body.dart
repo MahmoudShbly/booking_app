@@ -1,6 +1,6 @@
 import 'package:booking_app/core/widgets/service_card_component.dart';
 import 'package:booking_app/core/widgets/service_card_shimer.dart';
-import 'package:booking_app/features/home/presentation/manager/fetch%20service%20by%20category%20id/cubit/fetch_services_by_category_id_cubit.dart';
+import 'package:booking_app/features/home/presentation/manager/fetch%20service%20by%20category%20id/fetch_services_by_category_id_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

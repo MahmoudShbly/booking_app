@@ -40,4 +40,5 @@ class ServiceModel {
     comments: json['comments']??[], mainImage: '${json['mainImage']??''}',
   );
   
+  
 }

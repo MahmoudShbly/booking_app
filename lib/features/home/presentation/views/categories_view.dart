@@ -1,7 +1,7 @@
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_app_bar_component.dart';
 import 'package:booking_app/features/home/data/models/categories_model.dart';
-import 'package:booking_app/features/home/presentation/manager/fetch%20service%20by%20category%20id/cubit/fetch_services_by_category_id_cubit.dart';
+import 'package:booking_app/features/home/presentation/manager/fetch%20service%20by%20category%20id/fetch_services_by_category_id_cubit.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/category_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -4,8 +4,8 @@ import 'package:booking_app/features/home/data/models/rating_model.dart';
 import 'package:booking_app/features/home/data/models/service_model.dart';
 import 'package:dartz/dartz.dart';
 
-abstract class AppointmentsRepo {
-  Future <Either<List<BookingModel>,ServerFailure>> fetchMyBookingsByStatus (String status);
-  Future <Either<String,ServerFailure>> cancelBooking (BookingModel booking);
-  Future <Either<String,ServerFailure>> ratnigService (RatingModel rating, ServiceModel service );
+abstract class BookingRepo {
+  Future <Either<ServerFailure,List<BookingModel>>> fetchMyBookings ();
+  Future <Either<ServerFailure,String>> cancelBooking (BookingModel booking);
+  Future <Either<ServerFailure,String>> ratnigService (RatingModel rating, ServiceModel service );
 }
