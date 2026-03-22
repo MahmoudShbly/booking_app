@@ -3,4 +3,5 @@ class ApiEndPoints {
   static const String categories = "categories";
   static const String acceptServices = "services-accept";
   static const String services = "services";
+  static const String bookService = "book";
 }

@@ -21,6 +21,7 @@ class TermsAndConditionsView extends StatelessWidget {
             final cubit = context.read<BeProviderCubit>();
 
             if (state is BeProviderFailure) {
+              GoRouter.of(context).pop();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(state.errorMessage),

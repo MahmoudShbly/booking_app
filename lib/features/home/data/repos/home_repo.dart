@@ -7,4 +7,5 @@ abstract class HomeRepo {
   Future<Either<Failure,List <ServiceModel>>> fetchServices();
   Future<Either<Failure,ServiceModel>> fetchServicesById(int id);
   Future<Either<Failure,List<ServiceModel>>> fetchServicesByCategoryId(int id);
+  Future<Either<Failure,String>> bookServices(int id);
 }

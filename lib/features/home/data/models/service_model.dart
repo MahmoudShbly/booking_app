@@ -1,6 +1,7 @@
 import 'package:booking_app/features/home/data/models/comment_model.dart';
 
 class ServiceModel {
+  final int id;
   final String name;
   final String bookPrice;
   final String fullPrice;
@@ -14,6 +15,7 @@ class ServiceModel {
 
 
   ServiceModel({
+    required this.id,
     required this.name,
     required this.bookPrice,
     required this.fullPrice,
@@ -26,6 +28,7 @@ class ServiceModel {
   });
 
   factory ServiceModel.fromJson(json) => ServiceModel(
+    id: json['id'],
     name: json['name']??'',
     bookPrice: json['book_price']??'',
     fullPrice: json ['fullPrice']??'',
