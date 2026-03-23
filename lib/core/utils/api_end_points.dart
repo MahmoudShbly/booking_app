@@ -5,4 +5,6 @@ class ApiEndPoints {
   static const String services = "services";
   static const String bookService = "book";
   static const String myBooking = "my-bookings";
+  static const String booking = "bookings";
+  static const String cancel = "cancel";
 }

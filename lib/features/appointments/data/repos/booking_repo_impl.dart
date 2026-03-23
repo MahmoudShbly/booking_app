@@ -14,7 +14,7 @@ class BookingRepoImpl extends BookingRepo {
   Future<Either<ServerFailure, List<BookingModel>>> fetchMyBookings() async {
     try {
       List<BookingModel> myBooking = [];
-      List<dynamic>result = await ApiServices().get(
+      List<dynamic> result = await ApiServices().get(
         endPoint: ApiEndPoints.myBooking,
         headers: {
           'Authorization': 'Bearer ${Temp.userToken}',
@@ -36,9 +36,26 @@ class BookingRepoImpl extends BookingRepo {
   }
 
   @override
-  Future<Either<ServerFailure, String>> cancelBooking(BookingModel booking) {
-    // TODO: implement cancelBooking
-    throw UnimplementedError();
+  Future<Either<ServerFailure, String>> cancelBooking(
+    BookingModel booking,
+  ) async {
+    try {
+      var result = await ApiServices().post(
+        endPoint:
+            '${ApiEndPoints.booking}/${booking.id}/${ApiEndPoints.cancel}',
+        headers: {
+          'Authorization': 'Bearer ${Temp.userToken}',
+          "Accept": "application/json",
+        },
+      );
+      return right(result['message']);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      } else {
+        return left(ServerFailure(e.toString()));
+      }
+    }
   }
 
   @override

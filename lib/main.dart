@@ -1,6 +1,7 @@
 import 'package:booking_app/core/utils/app_router.dart';
 import 'package:booking_app/core/utils/bloc_observer.dart';
 import 'package:booking_app/features/appointments/data/repos/booking_repo_impl.dart';
+import 'package:booking_app/features/appointments/presentation/manager/cancel%20booking/cancel_booking_cubit.dart';
 import 'package:booking_app/features/appointments/presentation/manager/fetch%20my%20bookings/fetch_my_bookings_cubit.dart';
 import 'package:booking_app/features/appointments/presentation/manager/rating%20cubit/rating_cubit.dart';
 import 'package:booking_app/features/home/data/repos/home_repo_impl.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
       BlocProvider(create:(context)=>FetchServicesByCategoryIdCubit()),
       BlocProvider(create:(context)=>BookServiceCubit(HomeRepoImpl())),
       BlocProvider(create:(context)=>FetchMyBookingsCubit(BookingRepoImpl())),
+      BlocProvider(create:(context)=>CancelBookingCubit(BookingRepoImpl())),
     ],
       child: MaterialApp.router(
         theme: ThemeData(
@@ -42,7 +44,7 @@ class MyApp extends StatelessWidget {
         ),
       
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Fourth year project',
         routerConfig: AppRouter.router,
         builder: (context, child) {
           return Directionality(
