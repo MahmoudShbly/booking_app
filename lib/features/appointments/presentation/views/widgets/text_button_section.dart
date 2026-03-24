@@ -21,12 +21,14 @@ class TextButtonSection extends StatelessWidget {
     return BlocConsumer<CancelBookingCubit, CancelBookingState>(
       listener: (context, state) {
         if (state is CancelBookingSuccess) {
+
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.successMessage),
               backgroundColor: Colors.green,
             ),
           );
+          context.read<FetchMyBookingsCubit>().fetchMyBookings();
         }
         if (state is CancelBookingFailure) {
           
@@ -37,14 +39,17 @@ class TextButtonSection extends StatelessWidget {
             ),
           );
         }
-        if (state is CancelBookingLoading) {
-          
-          context.read<FetchMyBookingsCubit>().fetchMyBookings();
-          GoRouter.of(context).pop();  
-        }
+
+       
       },
       builder: (context, state) {
-        return TextButton(
+        if (state is CancelBookingLoading){
+          
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }else
+        {return TextButton(
           onPressed: () {
             if (!isDone) {
               showAppDialog(
@@ -54,6 +59,7 @@ class TextButtonSection extends StatelessWidget {
                     'هل انت متاكد من رغبتك في الغاء مواعدك مع ${booking.service.name} في الساعة ${booking.scheduledAt} علما انه لا يمكنك استرجاع رسوم الحجز في حال تاكيده من قبل صاحب الخدمة',
                 onConfirm: () {
                   context.read<CancelBookingCubit>().cancelBooking(booking);
+                  GoRouter.of(context).pop();
                 },
                 cancelText: 'رجوع',
                 confirmText: 'نعم',
@@ -90,7 +96,7 @@ class TextButtonSection extends StatelessWidget {
               ),
             ),
           ),
-        );
+        );}
       },
     );
   }
