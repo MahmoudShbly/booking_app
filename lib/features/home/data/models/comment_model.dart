@@ -1,4 +1,4 @@
-import 'package:booking_app/features/home/data/models/user_model.dart';
+import 'package:booking_app/features/auth/data/models/user_model.dart';
 
 class CommentModel {
   final UserModel user;

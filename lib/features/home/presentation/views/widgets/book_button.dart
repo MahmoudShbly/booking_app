@@ -32,18 +32,24 @@ class BookButton extends StatelessWidget {
                       context: context,
                       title: Text('تأكيد طلب الحجز', style: Styles.textStyle26),
                       message: 'هل أنت متأكد من رغبتك في حجز هذه الخدمة؟',
-                      
+
                       onConfirm: () {
                         GoRouter.of(context).pop();
                         context.read<BookServiceCubit>().bookService(serviceId);
                         showAppDialog(
                           context: context,
-                          title: Text('تم تقديم الطلب',style: Styles.textStyle26),
-                          message: state is BookServiceSuccess
+                          title: Text(
+                            'تم تقديم الطلب',
+                            style: Styles.textStyle26,
+                          ),
+                          message: state is BookServiceLoading
+                              ? 'يتم ارسال الطلب ...'
+                              : state is BookServiceSuccess
                               ? 'تم إرسال طلب الحجز بنجاح، بانتظار تحديد التوقيت من مقدم الخدمة'
                               : 'حدث خطأ أثناء تقديم الطلب. يرجى المحاولة مرة أخرى.',
                           onConfirm: () {
                             GoRouter.of(context).pop();
+                            
                           },
                         );
                       },

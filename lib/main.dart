@@ -4,6 +4,8 @@ import 'package:booking_app/features/appointments/data/repos/booking_repo_impl.d
 import 'package:booking_app/features/appointments/presentation/manager/cancel%20booking/cancel_booking_cubit.dart';
 import 'package:booking_app/features/appointments/presentation/manager/fetch%20my%20bookings/fetch_my_bookings_cubit.dart';
 import 'package:booking_app/features/appointments/presentation/manager/rating%20cubit/rating_cubit.dart';
+import 'package:booking_app/features/auth/data/repos/auth_repo_impl.dart';
+import 'package:booking_app/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:booking_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:booking_app/features/home/presentation/manager/book%20service/book_service_cubit.dart';
 import 'package:booking_app/features/home/presentation/manager/fetch%20categories/fetch_categories_cubit.dart';
@@ -36,6 +38,7 @@ class MyApp extends StatelessWidget {
       BlocProvider(create:(context)=>BookServiceCubit(HomeRepoImpl())),
       BlocProvider(create:(context)=>FetchMyBookingsCubit(BookingRepoImpl())),
       BlocProvider(create:(context)=>CancelBookingCubit(BookingRepoImpl())),
+      BlocProvider(create:(context)=>AuthCubit(AuthRepoImpl())),
     ],
       child: MaterialApp.router(
         theme: ThemeData(

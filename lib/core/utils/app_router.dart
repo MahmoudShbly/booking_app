@@ -1,3 +1,4 @@
+import 'package:booking_app/features/auth/presentation/views/login_view.dart';
 import 'package:booking_app/features/home/data/models/categories_model.dart';
 import 'package:booking_app/features/home/data/models/service_model.dart';
 import 'package:booking_app/features/home/presentation/views/details_view.dart';
@@ -18,7 +19,7 @@ abstract class AppRouter {
   static final kTermsAndConditionsView = '/TermsAndConditionsView';
   static final router = GoRouter(
     routes: [
-      GoRoute(path: '/', builder: (context, state) => const MainView()),
+      GoRoute(path: '/', builder: (context, state) => const LoginView()),
       GoRoute(
         path: kCategoriesView,
         builder: (context, state) => CategoriesView(category: state.extra as CategoriesModel,),
