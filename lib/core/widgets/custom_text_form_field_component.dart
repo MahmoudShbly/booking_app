@@ -4,13 +4,16 @@ class CustomTextFormFieldComponent extends StatelessWidget {
   const CustomTextFormFieldComponent({
     super.key,
     required this.hint,
+    this.isObscure=false,
     this.onTap,
     this.isReadOnly=false,
     this.controller,
     this.isRequired = true,
     this.type=TextInputType.text
+
   });
   final String hint;
+  final bool isObscure;
   final VoidCallback? onTap;
   final bool isReadOnly;
   final TextEditingController? controller;
@@ -33,6 +36,7 @@ class CustomTextFormFieldComponent extends StatelessWidget {
         readOnly: isReadOnly,
         controller: controller,
         onTap: onTap,
+        obscureText: isObscure,
         textDirection: TextDirection.rtl,
         decoration: InputDecoration(
           hintText: hint,

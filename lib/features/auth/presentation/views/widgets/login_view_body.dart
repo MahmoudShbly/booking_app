@@ -41,6 +41,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 hint: 'كلمة المرور',
                 controller: cubit.passwordController,
                 type: TextInputType.visiblePassword,
+                isObscure: true,
               ),
               CustomButtonComponent(
                 title: 'تسجيل الدخول',
