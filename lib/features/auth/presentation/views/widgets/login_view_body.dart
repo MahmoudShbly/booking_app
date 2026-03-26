@@ -1,3 +1,4 @@
+
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_button_component.dart';
 import 'package:booking_app/core/widgets/custom_text_form_field_component.dart';
@@ -53,6 +54,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   }
                 },
               ),
+
             ],
           ),
         );
