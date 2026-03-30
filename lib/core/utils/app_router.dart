@@ -1,3 +1,7 @@
+import 'dart:async';
+import 'package:booking_app/core/utils/scure_storage_services.dart';
+import 'package:booking_app/features/auth/data/repos/auth_repo_impl.dart';
+import 'package:booking_app/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:booking_app/features/auth/presentation/views/login_view.dart';
 import 'package:booking_app/features/auth/presentation/views/register_view.dart';
 import 'package:booking_app/features/home/data/models/categories_model.dart';
@@ -9,31 +13,56 @@ import 'package:booking_app/features/services/presentation/views/about_you_servi
 import 'package:booking_app/features/services/presentation/views/choose_category_view.dart';
 import 'package:booking_app/features/services/presentation/views/terms_and_conditions_view.dart';
 import 'package:booking_app/features/services/presentation/views/upload_images_view.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
   static final kRegisterView = '/kRegisterView';
+  static final kMainView = '/kMainView';                         
   static final kCategoriesView = '/kCategoriesView';
   static final kDetailsView = '/kDetailsView';
   static final kChooseCategoryView = '/kChooseCategoryView';
   static final kAboutYourServiceView = '/kAboutYourServiceView';
   static final kUploadImagesView = '/kUploadImagesView';
-  static final kTermsAndConditionsView = '/TermsAndConditionsView';
+  static final kTermsAndConditionsView = '/kTermsAndConditionsView';
+  static final storage = ScureStorageServices();
+  static final authCubit = AuthCubit(AuthRepoImpl());             
+
   static final router = GoRouter(
+    refreshListenable: GoRouterRefreshStream(authCubit.stream),
+
+    redirect: (context, state) async {
+      final token = await ScureStorageServices().getUserToken();
+      if (token != null && state.uri.toString() == '/') {
+        return kMainView;                                       
+      } else if (token == null && state.uri.toString() != '/') {
+        return '/';
+      }
+      return null;
+    },
+
     routes: [
       GoRoute(path: '/', builder: (context, state) => const LoginView()),
 
       GoRoute(
         path: kRegisterView,
-        builder: (context, state) => const RegisterView(),),
-      
+        builder: (context, state) => const RegisterView(),
+      ),
+
+      GoRoute(
+        path: kMainView,                                         
+        builder: (context, state) => const MainView(),
+      ),
+
       GoRoute(
         path: kCategoriesView,
-        builder: (context, state) => CategoriesView(category: state.extra as CategoriesModel,),
+        builder: (context, state) =>
+            CategoriesView(category: state.extra as CategoriesModel),
       ),
       GoRoute(
         path: kDetailsView,
-        builder: (context, state) => DetailsView(service: state.extra as ServiceModel),
+        builder: (context, state) =>
+            DetailsView(service: state.extra as ServiceModel),
       ),
       GoRoute(
         path: kChooseCategoryView,
@@ -53,4 +82,22 @@ abstract class AppRouter {
       ),
     ],
   );
+}
+
+
+class GoRouterRefreshStream extends ChangeNotifier {
+  GoRouterRefreshStream(Stream<dynamic> stream) {
+    notifyListeners();
+    _subscription = stream.listen(
+      (dynamic _) => notifyListeners(),
+    );
+  }
+
+  late final StreamSubscription<dynamic> _subscription;
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
 }
