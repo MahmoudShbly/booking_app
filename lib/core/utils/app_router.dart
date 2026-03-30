@@ -1,4 +1,5 @@
 import 'package:booking_app/features/auth/presentation/views/login_view.dart';
+import 'package:booking_app/features/auth/presentation/views/register_view.dart';
 import 'package:booking_app/features/home/data/models/categories_model.dart';
 import 'package:booking_app/features/home/data/models/service_model.dart';
 import 'package:booking_app/features/home/presentation/views/details_view.dart';
@@ -11,6 +12,7 @@ import 'package:booking_app/features/services/presentation/views/upload_images_v
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
+  static final kRegisterView = '/kRegisterView';
   static final kCategoriesView = '/kCategoriesView';
   static final kDetailsView = '/kDetailsView';
   static final kChooseCategoryView = '/kChooseCategoryView';
@@ -20,6 +22,11 @@ abstract class AppRouter {
   static final router = GoRouter(
     routes: [
       GoRoute(path: '/', builder: (context, state) => const LoginView()),
+
+      GoRoute(
+        path: kRegisterView,
+        builder: (context, state) => const RegisterView(),),
+      
       GoRoute(
         path: kCategoriesView,
         builder: (context, state) => CategoriesView(category: state.extra as CategoriesModel,),

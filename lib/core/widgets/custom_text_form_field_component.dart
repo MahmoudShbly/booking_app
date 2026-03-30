@@ -9,7 +9,8 @@ class CustomTextFormFieldComponent extends StatelessWidget {
     this.isReadOnly=false,
     this.controller,
     this.isRequired = true,
-    this.type=TextInputType.text
+    this.type=TextInputType.text,
+    this.fillColor = Colors.white,
 
   });
   final String hint;
@@ -19,6 +20,7 @@ class CustomTextFormFieldComponent extends StatelessWidget {
   final TextEditingController? controller;
   final bool isRequired;
   final TextInputType type;
+  final Color fillColor;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,7 +43,8 @@ class CustomTextFormFieldComponent extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hint,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
-        ),
+          filled: true,
+          fillColor: fillColor,),
       ),
     );
   }

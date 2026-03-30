@@ -1,3 +1,4 @@
+import 'package:booking_app/core/utils/constant.dart';
 import 'package:flutter/material.dart';
 
 class Styles {
@@ -5,6 +6,11 @@ class Styles {
     fontSize: 40,
     fontWeight: FontWeight.normal,
     color: Colors.white,
+  );
+  static const textStyle30 = TextStyle(
+    fontSize: 30,
+    fontWeight: FontWeight.bold,
+    color: kBlue,
   );
   static const textStyle26 = TextStyle(
     fontSize: 26,
@@ -27,6 +33,11 @@ class Styles {
   static const textStyle16 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.normal,
+  );
+  static const textStyle14 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+    color: Color(0xff545F70)
   );
   static const textStyle12 = TextStyle(
     fontSize: 12,

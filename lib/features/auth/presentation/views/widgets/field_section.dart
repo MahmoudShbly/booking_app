@@ -1,9 +1,12 @@
+import 'package:booking_app/core/utils/app_router.dart';
+import 'package:booking_app/core/utils/constant.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_button_component.dart';
 import 'package:booking_app/core/widgets/custom_text_form_field_component.dart';
 import 'package:booking_app/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class FieldsSection extends StatefulWidget {
   const FieldsSection({super.key});
@@ -73,6 +76,18 @@ class _FieldsSectionState extends State<FieldsSection> {
                     }
                   },
                 ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: TextButton(
+                    onPressed: () {
+                      GoRouter.of(context).push(AppRouter.kRegisterView);
+                    },
+                    child: const Text(
+                      'إنشاء حساب جديد',
+                      style: TextStyle(color: kBlue),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
