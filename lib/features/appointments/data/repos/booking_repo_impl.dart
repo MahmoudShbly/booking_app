@@ -1,7 +1,6 @@
 import 'package:booking_app/core/errors/failure.dart';
 import 'package:booking_app/core/utils/api_end_points.dart';
 import 'package:booking_app/core/utils/api_services.dart';
-import 'package:booking_app/core/utils/temp.dart';
 import 'package:booking_app/features/appointments/data/models/booking_model.dart';
 import 'package:booking_app/features/appointments/data/repos/booking_repo.dart';
 import 'package:booking_app/features/home/data/models/rating_model.dart';
@@ -16,10 +15,7 @@ class BookingRepoImpl extends BookingRepo {
       List<BookingModel> myBooking = [];
       List<dynamic> result = await ApiServices().get(
         endPoint: ApiEndPoints.myBooking,
-        headers: {
-          'Authorization': 'Bearer ${Temp.userToken}',
-          "Accept": "application/json",
-        },
+       
       );
       for (var booking in result) {
         myBooking.add(BookingModel.fromJson(booking));
@@ -43,10 +39,7 @@ class BookingRepoImpl extends BookingRepo {
       var result = await ApiServices().post(
         endPoint:
             '${ApiEndPoints.booking}/${booking.id}/${ApiEndPoints.cancel}',
-        headers: {
-          'Authorization': 'Bearer ${Temp.userToken}',
-          "Accept": "application/json",
-        },
+        
       );
       return right(result['message']);
     } catch (e) {

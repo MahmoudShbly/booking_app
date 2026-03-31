@@ -1,14 +1,14 @@
-
-
 import 'package:booking_app/core/utils/api_end_points.dart';
+import 'package:booking_app/core/utils/scure_storage_services.dart';
 import 'package:dio/dio.dart';
 
 class ApiServices {
-
   static final ApiServices instance = ApiServices._internal();
+  final storage = ScureStorageServices();
+
   factory ApiServices() => instance;
   late Dio dio;
-  ApiServices._internal(){
+  ApiServices._internal() {
     dio = Dio(
       BaseOptions(
         baseUrl: ApiEndPoints.baseUrl,
@@ -18,20 +18,35 @@ class ApiServices {
         receiveTimeout: const Duration(seconds: 20),
       ),
     );
- 
-
-  }
- 
-  Future<dynamic> get({required String endPoint,Map <String,dynamic>? headers}) async {
-    Response response = await dio.get(endPoint,options: Options(headers: headers));
-    return response.data;
-  }
-  Future<dynamic> post({required String endPoint,Map <String,dynamic>? headers, dynamic data}) async {
-    Response response = await dio.post(endPoint,options: Options(headers: headers), data: data);
-    
-  
-    return response.data;
   }
 
-  
+  Future<dynamic> get({required String endPoint}) async {
+    final token = await storage.getUserToken();
+    Response response = await dio.get(
+      endPoint,
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+          "Accept": "application/json",
+        },
+      ),
+    );
+    return response.data;
+  }
+
+  Future<dynamic> post({required String endPoint, dynamic data}) async {
+    final token = await storage.getUserToken();
+    Response response = await dio.post(
+      endPoint,
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+          "Accept": "application/json",
+        },
+      ),
+      data: data,
+    );
+
+    return response.data;
+  }
 }

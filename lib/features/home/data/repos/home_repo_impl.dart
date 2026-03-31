@@ -2,7 +2,6 @@ import 'package:booking_app/core/errors/failure.dart';
 import 'package:booking_app/core/utils/api_end_points.dart';
 
 import 'package:booking_app/core/utils/api_services.dart';
-import 'package:booking_app/core/utils/temp.dart';
 import 'package:booking_app/features/home/data/models/categories_model.dart';
 import 'package:booking_app/features/home/data/models/service_model.dart';
 import 'package:booking_app/features/home/data/repos/home_repo.dart';
@@ -90,10 +89,7 @@ class HomeRepoImpl implements HomeRepo {
       var result = await ApiServices().post(
        
         endPoint: '${ApiEndPoints.services}/$id/${ApiEndPoints.bookService}',
-        headers: {
-          'Authorization': 'Bearer ${Temp.userToken}',
-          "Accept": "application/json",
-        },
+        
       );
       return right(result['message']);
     } catch (e) {

@@ -1,7 +1,6 @@
 import 'package:booking_app/core/errors/failure.dart';
 import 'package:booking_app/core/utils/api_end_points.dart';
 import 'package:booking_app/core/utils/api_services.dart';
-import 'package:booking_app/core/utils/temp.dart';
 import 'package:booking_app/features/services/data/repos/services_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -15,7 +14,6 @@ class ServicesRepoImpl implements ServicesRepo {
       var result = await ApiServices().post(
         endPoint: ApiEndPoints.services,
         data: services,
-        headers: {'Authorization': 'Bearer ${Temp.providerToken}',"Accept": "application/json",},
       );
       return right(result["message"]);
     } catch (e) {
