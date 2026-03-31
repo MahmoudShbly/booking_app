@@ -1,7 +1,9 @@
+import 'package:booking_app/core/utils/scure_storage_services.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/features/account/presentation/views/widgets/option_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
+import 'package:go_router/go_router.dart';
 
 class AccountManagementSection extends StatelessWidget {
   const AccountManagementSection({super.key});
@@ -31,7 +33,11 @@ class AccountManagementSection extends StatelessWidget {
             title: 'تسجيل الخروج',
             iconsColor: Color(0xffBA1A1A),
             icon: FontAwesomeIcons.rightFromBracket,
-            onTap: () {},
+            onTap: () async{ 
+              GoRouter.of(context).go('/');
+              final storage = ScureStorageServices();
+              await storage.clearAuthData();
+            },
           ),
         ],
       ),

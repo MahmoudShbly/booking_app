@@ -29,4 +29,21 @@ class AuthRepoImpl extends AuthRepo {
       return left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<ServerFailure, void>> logout() async {
+    try {
+      await ApiServices().post(
+        endPoint: ApiEndPoints.logout,
+      );
+      final ScureStorageServices storageServices = ScureStorageServices();
+      await storageServices.clearAuthData();
+      return right(null);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
 }

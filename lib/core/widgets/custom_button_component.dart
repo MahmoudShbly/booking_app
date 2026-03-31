@@ -12,6 +12,7 @@ class CustomButtonComponent extends StatelessWidget {
      this.color = kBlue,
      this.onTap,
      this.border,
+     this.isLoading = false,
   });
   final double borderRadius;
   final double? width;
@@ -21,6 +22,7 @@ class CustomButtonComponent extends StatelessWidget {
   final Color color;
   final void Function()?onTap;
   final BoxBorder? border;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -34,7 +36,7 @@ class CustomButtonComponent extends StatelessWidget {
           color: color,
           borderRadius: BorderRadius.circular(borderRadius),
         ),
-        child: Center(child: Text(title, style: titleStyle)),
+        child: Center(child: isLoading ? CircularProgressIndicator(color: Colors.white,) : Text(title, style: titleStyle)),
       ),
     );
   }

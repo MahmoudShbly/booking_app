@@ -15,7 +15,7 @@ import 'package:booking_app/features/services/data/repos/services_repo_impl.dart
 import 'package:booking_app/features/services/presentation/manager/cubit/be_provider_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+final authCubit = AuthCubit(AuthRepoImpl()); 
 void main() {
   Bloc.observer = MyBlocObserver();
   runApp(
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       BlocProvider(create:(context)=>BookServiceCubit(HomeRepoImpl())),
       BlocProvider(create:(context)=>FetchMyBookingsCubit(BookingRepoImpl())),
       BlocProvider(create:(context)=>CancelBookingCubit(BookingRepoImpl())),
-      BlocProvider(create:(context)=>AuthCubit(AuthRepoImpl())),
+      BlocProvider.value(value: authCubit,),
     ],
       child: MaterialApp.router(
         theme: ThemeData(

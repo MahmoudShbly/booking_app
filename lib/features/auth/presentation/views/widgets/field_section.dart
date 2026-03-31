@@ -1,5 +1,6 @@
 import 'package:booking_app/core/utils/app_router.dart';
 import 'package:booking_app/core/utils/constant.dart';
+import 'package:booking_app/core/utils/scure_storage_services.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_button_component.dart';
 import 'package:booking_app/core/widgets/custom_text_form_field_component.dart';
@@ -21,7 +22,7 @@ class _FieldsSectionState extends State<FieldsSection> {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
-        if (state is AuthSuccess) {
+        if (state is AuthLogginIn) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('نم نسجيل الدخول'),
@@ -67,12 +68,15 @@ class _FieldsSectionState extends State<FieldsSection> {
                   isObscure: true,
                 ),
                 CustomButtonComponent(
+                  isLoading: state is AuthLoading,
                   title: 'تسجيل الدخول',
                   titleStyle: Styles.textStyle18.copyWith(color: Colors.white),
                   borderRadius: 12,
-                  onTap: () {
+                  onTap: () async {
                     if (formKey.currentState!.validate()) {
-                      cubit.login();
+                     await cubit.login();
+                      final storage = ScureStorageServices();
+                      print('${await storage.getUserToken()}');
                     }
                   },
                 ),

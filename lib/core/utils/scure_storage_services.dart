@@ -8,4 +8,7 @@ class ScureStorageServices {
     final token = await _storage.read(key: 'token');
     return token;
   }
+  Future<void> clearAuthData() async {
+    await _storage.delete(key: 'token');
+  }
 }

@@ -12,71 +12,78 @@ Future<T?> showAppDialog<T>({
   Widget? content,
   String confirmText = 'موافق',
   String? cancelText,
-  Color confirmColor=kBlue,
-  Color cancelColor=kBlue,
-  BoxBorder?confirmBorder,
-  BoxBorder?cancelBorder,
-
+  Color confirmColor = kBlue,
+  Color cancelColor = kBlue,
+  BoxBorder? confirmBorder,
+  BoxBorder? cancelBorder,
   required VoidCallback onConfirm,
 }) {
   return showDialog<T>(
     context: context,
     barrierDismissible: false,
     builder: (dialogContext) {
-      final size = MediaQuery.of(context).size;
-      return Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                title,
-                const SizedBox(height: 12),
-                Text(
-                  message,
-                  textAlign: TextAlign.center,
-                  style: Styles.textStyle18
-                ),
-                if (content != null) ...[
-                  const SizedBox(height: 12),
-                  content,
-                ],
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
+      bool localLoading = isLoading; // ✅ state محلي داخل الـ dialog
+
+      return StatefulBuilder( // ✅ يسمح بإعادة البناء داخل الـ Dialog
+        builder: (context, setState) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16)),
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    if (cancelText != null)
-                      CustomButtonComponent(
-                        titleStyle: Styles.textStyle20.copyWith(color: Colors.white),
-                        title: cancelText,
-                        onTap: () => GoRouter.of(context).pop(),
-                        width: size.width * 0.25,
-                        borderRadius: 10,
-                        color: cancelColor,
-                        border: cancelBorder,
-                      ),
-                    if (cancelText != null) const SizedBox(width: 10),
-                    if(!isLoading)
-                    CustomButtonComponent(
-                      titleStyle: Styles.textStyle20.copyWith(color: Colors.white),
-                      title: confirmText,
-                      onTap: (){
-                        onConfirm();
-                      },
-                      width: size.width * 0.25,
-                      borderRadius: 10,
-                      color: confirmColor,
-                      border: confirmBorder,
+                    title,
+                    const SizedBox(height: 12),
+                    Text(
+                      message,
+                      textAlign: TextAlign.center,
+                      style: Styles.textStyle18,
+                    ),
+                    if (content != null) ...[
+                      const SizedBox(height: 12),
+                      content,
+                    ],
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (cancelText != null)
+                          CustomButtonComponent(
+                            titleStyle: Styles.textStyle20
+                                .copyWith(color: Colors.white),
+                            title: cancelText,
+                            onTap: () => GoRouter.of(dialogContext).pop(),
+                            width: MediaQuery.of(context).size.width * 0.25,
+                            borderRadius: 10,
+                            color: cancelColor,
+                            border: cancelBorder,
+                          ),
+                        if (cancelText != null) const SizedBox(width: 10),
+                        CustomButtonComponent(
+                          isLoading: localLoading, // ✅ يستجيب للتغيير
+                          titleStyle: Styles.textStyle20
+                              .copyWith(color: Colors.white),
+                          title: confirmText,
+                          onTap: () {
+                            setState(() => localLoading = true); // ✅ يُحدّث الـ UI
+                            onConfirm();
+                          },
+                          width: MediaQuery.of(context).size.width * 0.25,
+                          borderRadius: 10,
+                          color: confirmColor,
+                          border: confirmBorder,
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       );
     },
   );

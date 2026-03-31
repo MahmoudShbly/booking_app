@@ -38,6 +38,7 @@ class BookButton extends StatelessWidget {
                         context.read<BookServiceCubit>().bookService(serviceId);
                         showAppDialog(
                           context: context,
+                          isLoading: state is BookServiceLoading,
                           title: Text(
                             'تم تقديم الطلب',
                             style: Styles.textStyle26,
