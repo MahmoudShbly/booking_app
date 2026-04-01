@@ -10,9 +10,9 @@ class AppointmentsView extends StatefulWidget {
   @override
   State<AppointmentsView> createState() => _AppointmentsViewState();
 }
- final refreshKey = GlobalKey<RefreshIndicatorState>();
 
 class _AppointmentsViewState extends State<AppointmentsView> {
+ final refreshKey = GlobalKey<RefreshIndicatorState>();
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(

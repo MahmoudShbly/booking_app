@@ -33,10 +33,12 @@ class AccountManagementSection extends StatelessWidget {
             title: 'تسجيل الخروج',
             iconsColor: Color(0xffBA1A1A),
             icon: FontAwesomeIcons.rightFromBracket,
-            onTap: () async{ 
-              GoRouter.of(context).go('/');
+            onTap: () async {
               final storage = ScureStorageServices();
               await storage.clearAuthData();
+              if (context.mounted) {
+                GoRouter.of(context).go('/');
+              }
             },
           ),
         ],

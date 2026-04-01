@@ -1,4 +1,4 @@
-
+import 'package:booking_app/core/utils/scure_storage_services.dart';
 import 'package:booking_app/features/auth/data/models/user_model.dart';
 import 'package:booking_app/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:flutter/material.dart';
@@ -24,12 +24,19 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
+
   Future<void> logout() async {
     emit(AuthLoading());
+    final storage = ScureStorageServices();
+
     var result = await authRepo.logout();
-    result.fold(
-      (failure) => emit(AuthFailure(failure.errorMessage)),
-      (_) => emit(AuthLoggedOut()),
-    );
+    result.fold((failure) {
+      emit(AuthFailure(failure.errorMessage));
+      print(failure.errorMessage);
+    },
+     (_) async {
+      emit(AuthLoggedOut());
+      await storage.clearAuthData();
+    });
   }
 }
