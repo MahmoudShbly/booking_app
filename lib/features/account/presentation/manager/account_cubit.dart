@@ -8,9 +8,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'account_state.dart';
 
 class AccountCubit extends Cubit<AccountState> {
-  AccountCubit() : super(AccountInitial()) {
-    fetchUserData();
-  }
+  AccountCubit() : super(AccountInitial()) ;
+  
+  
   final storage = ScureStorageServices();
    UserModel? userData;
   Future <void> fetchUserData()async {
@@ -26,4 +26,11 @@ class AccountCubit extends Cubit<AccountState> {
       emit(AccountError('Failed to load user data: $e'));
     }
   }
+
+  void logout() {
+    userData = null;
+    emit(AccountInitial());
+  }
+
+
 }

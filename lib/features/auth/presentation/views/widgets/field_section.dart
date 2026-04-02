@@ -4,6 +4,7 @@ import 'package:booking_app/core/utils/scure_storage_services.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_button_component.dart';
 import 'package:booking_app/core/widgets/custom_text_form_field_component.dart';
+import 'package:booking_app/features/account/presentation/manager/account_cubit.dart';
 import 'package:booking_app/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +22,7 @@ class _FieldsSectionState extends State<FieldsSection> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
-      listener: (context, state) {
+      listener: (context, state)async {
         if (state is AuthLogginIn) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -29,6 +30,7 @@ class _FieldsSectionState extends State<FieldsSection> {
               backgroundColor: Colors.green,
             ),
           );
+         await context.read<AccountCubit>().fetchUserData();
         }
       },
       builder: (context, state) {

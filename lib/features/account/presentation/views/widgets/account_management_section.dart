@@ -1,7 +1,9 @@
 import 'package:booking_app/core/utils/scure_storage_services.dart';
 import 'package:booking_app/core/utils/styles.dart';
+import 'package:booking_app/features/account/presentation/manager/account_cubit.dart';
 import 'package:booking_app/features/account/presentation/views/widgets/option_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:go_router/go_router.dart';
 
@@ -34,6 +36,7 @@ class AccountManagementSection extends StatelessWidget {
             iconsColor: Color(0xffBA1A1A),
             icon: FontAwesomeIcons.rightFromBracket,
             onTap: () async {
+              context.read<AccountCubit>().logout();
               final storage = ScureStorageServices();
               await storage.clearAuthData();
               if (context.mounted) {
