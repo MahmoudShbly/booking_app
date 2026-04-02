@@ -1,5 +1,6 @@
 import 'package:booking_app/core/utils/app_router.dart';
 import 'package:booking_app/core/utils/bloc_observer.dart';
+import 'package:booking_app/features/account/presentation/manager/account_cubit.dart';
 import 'package:booking_app/features/appointments/data/repos/booking_repo_impl.dart';
 import 'package:booking_app/features/appointments/presentation/manager/cancel%20booking/cancel_booking_cubit.dart';
 import 'package:booking_app/features/appointments/presentation/manager/fetch%20my%20bookings/fetch_my_bookings_cubit.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
       BlocProvider(create:(context)=>BookServiceCubit(HomeRepoImpl())),
       BlocProvider(create:(context)=>FetchMyBookingsCubit(BookingRepoImpl())),
       BlocProvider(create:(context)=>CancelBookingCubit(BookingRepoImpl())),
+      BlocProvider(create:(context)=>AccountCubit()..fetchUserData()),
       BlocProvider.value(value: authCubit,),
     ],
       child: MaterialApp.router(
