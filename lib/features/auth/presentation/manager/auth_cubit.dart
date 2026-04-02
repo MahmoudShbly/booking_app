@@ -10,6 +10,9 @@ class AuthCubit extends Cubit<AuthState> {
   AuthRepoImpl authRepo;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   Future<void> login() async {
     emit(AuthLoading());
@@ -23,6 +26,21 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-
-
+  Future<void> register() async {
+    emit(AuthLoading());
+    var result = await authRepo.register(
+      email: emailController.text,
+      password: passwordController.text,
+      confirmPassword: confirmPasswordController.text,
+      phone: phoneController.text,
+      name: nameController.text,
+    );
+    result.fold(
+      (failure) {
+        emit(AuthFailure(failure.errorMessage));
+        
+      },
+      (user) => emit(AuthRegistered(user: user)),
+    );
+  }
 }

@@ -15,3 +15,8 @@ final class AuthFailure extends AuthState {
   AuthFailure(this.errorMessage);
 }
 final class AuthLoggedOut extends AuthState {}
+
+final class AuthRegistered extends AuthState {
+  final UserModel user;
+  AuthRegistered({required this.user});
+}

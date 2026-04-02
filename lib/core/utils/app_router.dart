@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:booking_app/core/utils/scure_storage_services.dart';
+import 'package:booking_app/core/utils/scure_storage_services.dart';    
 import 'package:booking_app/features/auth/presentation/views/login_view.dart';
 import 'package:booking_app/features/auth/presentation/views/register_view.dart';
 import 'package:booking_app/features/home/data/models/categories_model.dart';
@@ -31,10 +31,14 @@ abstract class AppRouter {
 
     redirect: (context, state) async {
       final token = await ScureStorageServices().getUserToken();
-      if (token != null && state.uri.toString() == '/') {
-        return kMainView;                                       
-      } else if (token == null && state.uri.toString() != '/') {
+      final isLoginRoute = state.uri.toString() == '/';
+      final isRegisterRoute = state.uri.toString() == kRegisterView;
+
+      if (token != null && isLoginRoute) {
+        return kMainView;
+      } else if (token == null && !isLoginRoute && !isRegisterRoute) {
         return '/';
+        
       }
       return null;
     },
