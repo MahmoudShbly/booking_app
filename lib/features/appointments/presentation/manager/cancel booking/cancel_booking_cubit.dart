@@ -9,12 +9,12 @@ class CancelBookingCubit extends Cubit<CancelBookingState> {
   CancelBookingCubit(this.bookingRepo) : super(CancelBookingInitial());
   final BookingRepoImpl bookingRepo;
   Future<void> cancelBooking(BookingModel booking) async {
-    emit(CancelBookingLoading());
+    emit(CancelBookingLoading(bookingId: booking.id));
     var result = await bookingRepo.cancelBooking(booking);
     result.fold(
       (failure) =>
-          emit(CancelBookingFailure(errorMessage: failure.errorMessage)),
-      (success) => emit(CancelBookingSuccess(successMessage: success)),
+          emit(CancelBookingFailure(errorMessage: failure.errorMessage, bookingId: booking.id)),
+      (success) => emit(CancelBookingSuccess(successMessage: success, bookingId: booking.id)),
     );
   }
 }

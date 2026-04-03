@@ -20,7 +20,7 @@ class TextButtonSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<CancelBookingCubit, CancelBookingState>(
       listener: (context, state) {
-        if (state is CancelBookingSuccess) {
+        if (state is CancelBookingSuccess && state.bookingId == booking.id) {
 
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -30,7 +30,7 @@ class TextButtonSection extends StatelessWidget {
           );
           context.read<FetchMyBookingsCubit>().fetchMyBookings();
         }
-        if (state is CancelBookingFailure) {
+        if (state is CancelBookingFailure && state.bookingId == booking.id) {
           
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -43,14 +43,9 @@ class TextButtonSection extends StatelessWidget {
        
       },
       builder: (context, state) {
-        if (state is CancelBookingLoading){
-          
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }else
-        {return TextButton(
-          onPressed: () {
+        final isLoading = state is CancelBookingLoading && state.bookingId == booking.id;
+        return TextButton(
+          onPressed: isLoading ? null : () {
             if (!isDone) {
               showAppDialog(
                 context: context,
@@ -88,15 +83,24 @@ class TextButtonSection extends StatelessWidget {
             ),
             child: Align(
               alignment: Alignment.center,
-              child: Text(
-                isDone ? 'تقييم' : 'الغاء',
-                style: Styles.textStyle18.copyWith(
-                  color: isDone ? Colors.black : Colors.red,
-                ),
-              ),
+              child: isLoading
+                  ? SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: isDone ? Colors.amber : Colors.red,
+                      ),
+                    )
+                  : Text(
+                      isDone ? 'تقييم' : 'الغاء',
+                      style: Styles.textStyle18.copyWith(
+                        color: isDone ? Colors.black : Colors.red,
+                      ),
+                    ),
             ),
           ),
-        );}
+        );
       },
     );
   }
