@@ -1,4 +1,5 @@
 import 'package:booking_app/core/utils/app_dialog.dart';
+import 'package:booking_app/core/utils/constant.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/features/appointments/data/models/booking_model.dart';
 import 'package:booking_app/features/appointments/presentation/manager/cancel%20booking/cancel_booking_cubit.dart';
@@ -121,13 +122,13 @@ class TextButtonSection extends StatelessWidget {
                         }
                       },
                 child: Container(
-                  width: 80,
-                  height: 35,
+                  width: double.infinity,
+                  height: 56,
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: isDone ? Colors.amber : Colors.red,
+                      color: isDone ? kBlue : Colors.red,
                     ),
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(24),
                   ),
                   child: Align(
                     alignment: Alignment.center,
@@ -137,13 +138,13 @@ class TextButtonSection extends StatelessWidget {
                             height: 20,
                             child: CircularProgressIndicator(
                               strokeWidth: 2,
-                              color: isDone ? Colors.amber : Colors.red,
+                              color: isDone ? kBlue : Colors.red,
                             ),
                           )
                         : Text(
                             isDone ? 'تقييم' : 'الغاء',
-                            style: Styles.textStyle18.copyWith(
-                              color: isDone ? Colors.black : Colors.red,
+                            style: Styles.textStyle20.copyWith(
+                              color: isDone ? kBlue : Colors.red,
                             ),
                           ),
                   ),

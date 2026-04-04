@@ -1,5 +1,3 @@
-import 'package:booking_app/features/home/data/models/comment_model.dart';
-
 class ServiceModel {
   final int id;
   final String name;
@@ -10,9 +8,7 @@ class ServiceModel {
   final List<dynamic> images;
   final String city;
   final String location;
-  final String category;
-  final List<CommentModel> comments;
-
+  final String categoryId;
 
   ServiceModel({
     required this.id,
@@ -23,22 +19,20 @@ class ServiceModel {
     required this.images,
     required this.city,
     required this.location,
-    required this.category,
-    required this.comments, required this.mainImage,
+    required this.categoryId    ,
+    required this.mainImage,
   });
 
   factory ServiceModel.fromJson(json) => ServiceModel(
     id: json['id'],
-    name: json['name']??'',
-    bookPrice: json['book_price']??'',
-    fullPrice: json ['fullPrice']??'',
-    description: json['description']??'',
-    images: json['otherImages']??[],
-    city: json['city']??'',
-    location: json['location']??'',
-    category: json['category']??'',
-    comments: json['comments']??[], mainImage: '${json['mainImage']??''}',
+    name: json['name'] ?? '',
+    bookPrice: json['book_price'] ?? '',
+    fullPrice: json['fullPrice'] ?? '',
+    description: json['description'] ?? '',
+    images: json['otherImages'] ?? [],
+    city: json['city'] ?? '',
+    location: json['location'] ?? '',
+    categoryId: json['categoryId'] ?? '',
+    mainImage: '${json['mainImage'] ?? ''}',
   );
-  
-  
 }

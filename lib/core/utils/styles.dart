@@ -44,4 +44,9 @@ class Styles {
     fontWeight: FontWeight.normal,
     
   );
+  static const textStyle10 = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.normal,
+    
+  );
 }
