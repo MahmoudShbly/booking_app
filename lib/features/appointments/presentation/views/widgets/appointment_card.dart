@@ -45,7 +45,7 @@ class AppointmentCard extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-          TextButtonSection(isDone: booking.status == '${BookingStatus.completed}',booking: booking,)
+          TextButtonSection(isDone: booking.status == BookingStatus.completed.name,booking: booking,)
            
           ],
         ),

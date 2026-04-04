@@ -7,6 +7,7 @@ class ApiEndPoints {
   static const String myBooking = "my-bookings";
   static const String booking = "bookings";
   static const String cancel = "cancel";
+  static const String rating = "rate";
   static const String login = "login";
   static const String register = "register";
   static const String logout = "logout";

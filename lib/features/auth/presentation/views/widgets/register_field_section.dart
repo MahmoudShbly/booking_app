@@ -65,6 +65,7 @@ class RegisterFieldSection extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: CustomButtonComponent(
+                  isLoading: state is AuthLoading,
                   onTap: () {
                     cubit.register();
                   },

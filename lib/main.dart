@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       BlocProvider(create:(context)=>FetchCategoriesCubit(HomeRepoImpl())..fetchCategories()),
       BlocProvider(create:(context)=>FetchServicesCubit(HomeRepoImpl())..fetchServices()),
       BlocProvider(create:(context)=>BeProviderCubit(ServicesRepoImpl())),
-      BlocProvider(create:(context)=>RatingCubit()),
+      BlocProvider(create:(context)=>RatingCubit(BookingRepoImpl())),
       BlocProvider(create:(context)=>FetchServicesByCategoryIdCubit()),
       BlocProvider(create:(context)=>BookServiceCubit(HomeRepoImpl())),
       BlocProvider(create:(context)=>FetchMyBookingsCubit(BookingRepoImpl())),
