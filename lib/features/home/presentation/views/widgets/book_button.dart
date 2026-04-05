@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:booking_app/core/utils/app_dialog.dart';
+import 'package:booking_app/core/utils/constant.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_button_component.dart';
 import 'package:booking_app/features/home/presentation/manager/book%20service/book_service_cubit.dart';
@@ -12,8 +13,29 @@ class BookButton extends StatelessWidget {
   final int serviceId;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BookServiceCubit, BookServiceState>(
+    return BlocConsumer<BookServiceCubit, BookServiceState>(
+      listener: (context, state) {
+        if (state is BookServiceFailure && state.serviceId == serviceId) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errorMessage),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+
+        if (state is BookServiceSuccess && state.serviceId == serviceId) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.successMessage)),
+          );
+        }
+      },
       builder: (context, state) {
+        final bool isCurrentLoading =
+            state is BookServiceLoading && state.serviceId == serviceId;
+        final bool isCurrentSuccess =
+            state is BookServiceSuccess && state.serviceId == serviceId;
+
         return ClipRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
@@ -22,12 +44,19 @@ class BookButton extends StatelessWidget {
               color: Colors.white.withValues(alpha: 0.6),
               child: SizedBox(
                 child: CustomButtonComponent(
+                  border: isCurrentSuccess ? Border.all(color: kBlue) : null,
+                  color: isCurrentSuccess ? Colors.white : kBlue,
+                  isLoading: isCurrentLoading,
                   borderRadius: 16,
-                  title: 'احجز الان',
-                  titleStyle: Styles.textStyle26.copyWith(color: Colors.white),
+                  title: isCurrentSuccess ? 'تم الحجز' : 'احجز الان',
+                  titleStyle: Styles.textStyle26.copyWith(
+                    color: isCurrentSuccess ? kBlue : Colors.white,
+                  ),
                   height: 55,
                   width: double.infinity,
-                  onTap: () {
+                  onTap: (isCurrentLoading || isCurrentSuccess)
+                      ? null
+                      : () {
                     showAppDialog(
                       context: context,
                       title: Text('تأكيد طلب الحجز', style: Styles.textStyle26),
@@ -36,23 +65,6 @@ class BookButton extends StatelessWidget {
                       onConfirm: () {
                         GoRouter.of(context).pop();
                         context.read<BookServiceCubit>().bookService(serviceId);
-                        showAppDialog(
-                          context: context,
-                          isLoading: state is BookServiceLoading,
-                          title: Text(
-                            'تم تقديم الطلب',
-                            style: Styles.textStyle26,
-                          ),
-                          message: state is BookServiceLoading
-                              ? 'يتم ارسال الطلب ...'
-                              : state is BookServiceSuccess
-                              ? 'تم إرسال طلب الحجز بنجاح، بانتظار تحديد التوقيت من مقدم الخدمة'
-                              : 'حدث خطأ أثناء تقديم الطلب. يرجى المحاولة مرة أخرى.',
-                          onConfirm: () {
-                            GoRouter.of(context).pop();
-                            
-                          },
-                        );
                       },
                     );
                   },

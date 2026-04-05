@@ -8,12 +8,27 @@ class BookServiceCubit extends Cubit<BookServiceState> {
   BookServiceCubit(this.homeRepo) : super(BookServiceInitial());
   final HomeRepoImpl homeRepo;
 
+  void resetBookingState(int serviceId) {
+    final currentState = state;
+    if (currentState is BookServiceSuccess && currentState.serviceId == serviceId) {
+      emit(BookServiceInitial());
+    }
+  }
+
   Future<void> bookService(int id) async {
-    emit(BookServiceLoading());
+    if (state is BookServiceLoading && (state as BookServiceLoading).serviceId == id) {
+      return;
+    }
+
+    if (state is BookServiceSuccess && (state as BookServiceSuccess).serviceId == id) {
+      return;
+    }
+
+    emit(BookServiceLoading(serviceId: id));
     var result = await homeRepo.bookServices(id);
     result.fold(
-      (failure) => emit(BookServiceFailure(errorMessage: failure.errorMessage)),
-      (success) => emit(BookServiceSuccess(successMessage: success)),
+      (failure) => emit(BookServiceFailure(serviceId: id, errorMessage: failure.errorMessage)),
+      (success) => emit(BookServiceSuccess(serviceId: id, successMessage: success)),
     );
   }
 }

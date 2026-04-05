@@ -6,6 +6,7 @@ import 'package:booking_app/features/appointments/presentation/manager/cancel%20
 import 'package:booking_app/features/appointments/presentation/manager/fetch%20my%20bookings/fetch_my_bookings_cubit.dart';
 import 'package:booking_app/features/appointments/presentation/manager/rating%20cubit/rating_cubit.dart';
 import 'package:booking_app/features/appointments/presentation/views/widgets/comment_rating_section.dart';
+import 'package:booking_app/features/home/presentation/manager/book%20service/book_service_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -53,6 +54,9 @@ class TextButtonSection extends StatelessWidget {
                   backgroundColor: Colors.green,
                 ),
               );
+              context
+                  .read<BookServiceCubit>()
+                  .resetBookingState(booking.serviceId);
               context.read<FetchMyBookingsCubit>().fetchMyBookings();
             }
             if (state is CancelBookingFailure &&
