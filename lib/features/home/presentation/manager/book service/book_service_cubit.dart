@@ -17,6 +17,8 @@ class BookServiceCubit extends Cubit<BookServiceState> {
 
   Future<void> bookService(int id) async {
     if (state is BookServiceLoading && (state as BookServiceLoading).serviceId == id) {
+
+      //TODO : what is (state as BookingServiceLoading) do
       return;
     }
 

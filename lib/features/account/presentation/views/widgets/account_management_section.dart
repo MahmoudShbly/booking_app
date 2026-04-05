@@ -1,4 +1,5 @@
-import 'package:booking_app/core/utils/scure_storage_services.dart';
+import 'package:booking_app/core/utils/app_dialog.dart';
+import 'package:booking_app/core/utils/constant.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/features/account/presentation/manager/account_cubit.dart';
 import 'package:booking_app/features/account/presentation/views/widgets/option_card.dart';
@@ -35,13 +36,23 @@ class AccountManagementSection extends StatelessWidget {
             title: 'تسجيل الخروج',
             iconsColor: Color(0xffBA1A1A),
             icon: FontAwesomeIcons.rightFromBracket,
-            onTap: () async {
-              context.read<AccountCubit>().logout();
-              final storage = ScureStorageServices();
-              await storage.clearAuthData();
-              if (context.mounted) {
-                GoRouter.of(context).go('/');
-              }
+            onTap: () {
+              showAppDialog(
+                context: context,
+                cancelText: 'لا',
+                confirmText: 'نعم',
+                
+                confirmColor: Color(0xffBA1A1A),
+                cancelBorder: BoxBorder.all(color: kBlue),
+                title: const Text('تسجيل الخروج',style: Styles.textStyle18,),
+                message: 'هل أنت متأكد أنك تريد تسجيل الخروج؟',
+                onConfirm: () {
+                  context.read<AccountCubit>().logout();
+                  if (context.mounted) {
+                    GoRouter.of(context).go('/');
+                  }
+                },
+              );
             },
           ),
         ],

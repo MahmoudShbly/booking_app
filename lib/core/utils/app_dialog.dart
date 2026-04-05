@@ -20,14 +20,17 @@ Future<T?> showAppDialog<T>({
 }) {
   return showDialog<T>(
     context: context,
+
     barrierDismissible: false,
     builder: (dialogContext) {
-      bool localLoading = isLoading; // ✅ state محلي داخل الـ dialog
+      bool localLoading = isLoading; 
 
-      return StatefulBuilder( // ✅ يسمح بإعادة البناء داخل الـ Dialog
+      return StatefulBuilder( 
         builder: (context, setState) {
           return Dialog(
+            backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(
+              
                 borderRadius: BorderRadius.circular(16)),
             child: Padding(
               padding: const EdgeInsets.all(20),
