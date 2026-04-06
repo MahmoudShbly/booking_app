@@ -1,10 +1,10 @@
 import 'package:booking_app/core/utils/api_end_points.dart';
-import 'package:booking_app/core/utils/scure_storage_services.dart';
+import 'package:booking_app/core/utils/secure_storage_services.dart';
 import 'package:dio/dio.dart';
 
 class ApiServices {
   static final ApiServices instance = ApiServices._internal();
-  final storage = ScureStorageServices();
+  final storage = SecureStorageServices();
 
   factory ApiServices() => instance;
   late Dio dio;

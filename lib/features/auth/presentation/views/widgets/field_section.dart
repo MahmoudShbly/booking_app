@@ -1,6 +1,6 @@
 import 'package:booking_app/core/utils/app_router.dart';
 import 'package:booking_app/core/utils/constant.dart';
-import 'package:booking_app/core/utils/scure_storage_services.dart';
+import 'package:booking_app/core/utils/secure_storage_services.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_button_component.dart';
 import 'package:booking_app/core/widgets/custom_text_form_field_component.dart';
@@ -77,7 +77,7 @@ class _FieldsSectionState extends State<FieldsSection> {
                   onTap: () async {
                     if (formKey.currentState!.validate()) {
                      await cubit.login();
-                      final storage = ScureStorageServices();
+                      final storage = SecureStorageServices();
                       print('${await storage.getUserToken()}');
                     }
                   },

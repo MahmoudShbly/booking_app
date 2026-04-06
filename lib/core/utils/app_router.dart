@@ -1,9 +1,11 @@
 import 'dart:async';
-import 'package:booking_app/core/utils/scure_storage_services.dart';    
+import 'package:booking_app/core/utils/secure_storage_services.dart';    
 import 'package:booking_app/features/auth/presentation/views/login_view.dart';
 import 'package:booking_app/features/auth/presentation/views/register_view.dart';
 import 'package:booking_app/features/home/data/models/categories_model.dart';
 import 'package:booking_app/features/home/data/models/service_model.dart';
+import 'package:booking_app/features/home/data/repos/home_repo_impl.dart';
+import 'package:booking_app/features/home/presentation/manager/fetch%20service%20reviews/fetch_service_reviews_cubit.dart';
 import 'package:booking_app/features/home/presentation/views/details_view.dart';
 import 'package:booking_app/features/home/presentation/views/categories_view.dart';
 import 'package:booking_app/features/main/presentation/views/main_view.dart';
@@ -13,6 +15,7 @@ import 'package:booking_app/features/services/presentation/views/terms_and_condi
 import 'package:booking_app/features/services/presentation/views/upload_images_view.dart';
 import 'package:booking_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
@@ -24,13 +27,13 @@ abstract class AppRouter {
   static final kAboutYourServiceView = '/kAboutYourServiceView';
   static final kUploadImagesView = '/kUploadImagesView';
   static final kTermsAndConditionsView = '/kTermsAndConditionsView';
-  static final storage = ScureStorageServices();
+  static final storage = SecureStorageServices();
 
   static final router = GoRouter(
     refreshListenable: GoRouterRefreshStream(authCubit.stream),
 
     redirect: (context, state) async {
-      final token = await ScureStorageServices().getUserToken();
+      final token = await SecureStorageServices().getUserToken();
       final isLoginRoute = state.uri.toString() == '/';
       final isRegisterRoute = state.uri.toString() == kRegisterView;
 
@@ -63,8 +66,15 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kDetailsView,
-        builder: (context, state) =>
-            DetailsView(service: state.extra as ServiceModel),
+        builder: (context, state) {
+          final service = state.extra as ServiceModel;
+          return BlocProvider(
+            create: (context) =>
+                FetchServiceReviewsCubit(HomeRepoImpl())
+                  ..fetchServiceReviews(service.id),
+            child: DetailsView(service: service),
+          );
+        },
       ),
       GoRoute(
         path: kChooseCategoryView,

@@ -5,8 +5,9 @@ import 'package:booking_app/features/home/presentation/views/widgets/cost_sectio
 import 'package:flutter/material.dart';
 
 class AboutServiceSection extends StatelessWidget {
-  const AboutServiceSection({super.key, required this.service});
+  const AboutServiceSection({super.key, required this.service,required this.average});
   final ServiceModel service;
+  final String average;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class AboutServiceSection extends StatelessWidget {
             Text(service.name, style: Styles.textStyle26),
             Spacer(),
             Icon(Icons.star, color: Colors.amber),
-            Text('4.5', style: Styles.textStyle20),
+            Text(average, style: Styles.textStyle20),
           ],
         ),
         const SizedBox(height: 15),

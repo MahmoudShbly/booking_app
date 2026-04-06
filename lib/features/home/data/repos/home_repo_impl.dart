@@ -2,6 +2,7 @@ import 'package:booking_app/core/errors/failure.dart';
 import 'package:booking_app/core/utils/api_end_points.dart';
 
 import 'package:booking_app/core/utils/api_services.dart';
+import 'package:booking_app/features/appointments/data/models/review_model.dart';
 import 'package:booking_app/features/home/data/models/categories_model.dart';
 import 'package:booking_app/features/home/data/models/service_model.dart';
 import 'package:booking_app/features/home/data/repos/home_repo.dart';
@@ -92,6 +93,21 @@ class HomeRepoImpl implements HomeRepo {
         
       );
       return right(result['message']);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ReviewModel>> fetchServiceReviews(int id) async {
+    try {
+      var result = await ApiServices().get(
+        endPoint: '${ApiEndPoints.services}/$id/${ApiEndPoints.ratingStats}',
+      );
+      return right(ReviewModel.fromJson(result));
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));

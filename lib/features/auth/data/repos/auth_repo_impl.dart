@@ -1,7 +1,7 @@
 import 'package:booking_app/core/errors/failure.dart';
 import 'package:booking_app/core/utils/api_end_points.dart';
 import 'package:booking_app/core/utils/api_services.dart';
-import 'package:booking_app/core/utils/scure_storage_services.dart';
+import 'package:booking_app/core/utils/secure_storage_services.dart';
 import 'package:booking_app/features/auth/data/models/user_model.dart';
 import 'package:booking_app/features/auth/data/repos/auth_repo.dart';
 import 'package:dartz/dartz.dart';
@@ -18,7 +18,7 @@ class AuthRepoImpl extends AuthRepo {
         endPoint: ApiEndPoints.login,
         data: {'email': email, 'password': password},
       );
-      final ScureStorageServices storageServices = ScureStorageServices();
+      final SecureStorageServices storageServices = SecureStorageServices();
       final userData = UserModel.fromJson(result['user']);
       storageServices.saveToken(userToken: result['access_token']);
       storageServices.saveUserData(
@@ -58,7 +58,7 @@ class AuthRepoImpl extends AuthRepo {
           'name': name,
         },
       );
-      final ScureStorageServices storageServices = ScureStorageServices();
+      final SecureStorageServices storageServices = SecureStorageServices();
       final userData = UserModel.fromJson(result['user']);
       storageServices.saveToken(userToken: result['access_token']);
       storageServices.saveUserData(
@@ -81,7 +81,7 @@ class AuthRepoImpl extends AuthRepo {
   Future<Either<ServerFailure, void>> logout() async {
     try {
       await ApiServices().post(endPoint: ApiEndPoints.logout);
-      final ScureStorageServices storageServices = ScureStorageServices();
+      final SecureStorageServices storageServices = SecureStorageServices();
       await storageServices.clearAuthData();
       return right(null);
     } on Exception catch (e) {

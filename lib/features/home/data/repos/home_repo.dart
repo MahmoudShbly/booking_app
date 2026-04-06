@@ -1,4 +1,5 @@
 import 'package:booking_app/core/errors/failure.dart';
+import 'package:booking_app/features/appointments/data/models/review_model.dart';
 import 'package:booking_app/features/home/data/models/categories_model.dart';
 import 'package:booking_app/features/home/data/models/service_model.dart';
 import 'package:dartz/dartz.dart';
@@ -8,4 +9,5 @@ abstract class HomeRepo {
   Future<Either<Failure,ServiceModel>> fetchServicesById(int id);
   Future<Either<Failure,List<ServiceModel>>> fetchServicesByCategoryId(int id);
   Future<Either<Failure,String>> bookServices(int id);
+  Future<Either<Failure,ReviewModel>> fetchServiceReviews(int id);
 }

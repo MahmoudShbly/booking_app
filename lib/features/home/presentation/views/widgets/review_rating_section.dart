@@ -1,10 +1,11 @@
 import 'package:booking_app/core/utils/styles.dart';
+import 'package:booking_app/features/appointments/data/models/feedback_model.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/custom_review_card.dart';
 import 'package:flutter/material.dart';
 
 class ReviewRatingSection extends StatelessWidget {
-  const ReviewRatingSection({super.key});
-
+  const ReviewRatingSection({super.key,required this.feedbacks});
+  final List<FeedbackModel> feedbacks;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,11 +19,10 @@ class ReviewRatingSection extends StatelessWidget {
         ListView.separated(
           separatorBuilder: (context, index) =>
               Container(height: 1, color: Colors.grey.shade300),
-          itemBuilder: (context, index) => CustomReviewCard(),
-          itemCount: 3,
+          itemBuilder: (context, index) => CustomReviewCard(feedback: feedbacks[index],),
+          itemCount: feedbacks.length,
           shrinkWrap: true,
           padding: EdgeInsets.all(8),
-          
           physics: NeverScrollableScrollPhysics(),
         ),
       ],

@@ -3,14 +3,14 @@ class FeedbackModel {
   final int stars;
   final String comment;
   final int userId;
-  final Map<String, dynamic> user;
+  final String userName;
 
   FeedbackModel({
     required this.id,
     required this.stars,
     required this.comment,
     required this.userId,
-    required this.user,
+    required this.userName,
   });
 
   factory FeedbackModel.fromJson(Map<String, dynamic> json) => FeedbackModel(
@@ -18,7 +18,7 @@ class FeedbackModel {
     stars: json['stars'],
     comment: json['comment'] ?? '',
     userId: json['user_id'],
-    user: json['user'] ?? {},
+    userName: json['user_name'] ,
   );
 
   Map<String, dynamic> toJson() => {
@@ -26,6 +26,6 @@ class FeedbackModel {
     'stars': stars,
     'comment': comment,
     'user_id': userId,
-    'user': user,
+    'user_name': userName,
   };
 }

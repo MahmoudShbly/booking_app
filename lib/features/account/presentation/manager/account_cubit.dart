@@ -1,6 +1,6 @@
 
 
-import 'package:booking_app/core/utils/scure_storage_services.dart';
+import 'package:booking_app/core/utils/secure_storage_services.dart';
 import 'package:booking_app/features/auth/data/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +11,7 @@ class AccountCubit extends Cubit<AccountState> {
   AccountCubit() : super(AccountInitial()) ;
   
   
-  final storage = ScureStorageServices();
+  final storage = SecureStorageServices();
    UserModel? userData;
   Future <void> fetchUserData()async {
     emit(AccountLoading());

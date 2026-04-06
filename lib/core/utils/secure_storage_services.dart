@@ -1,6 +1,6 @@
 import 'package:booking_app/features/auth/data/models/user_model.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-class ScureStorageServices {
+class SecureStorageServices {
   static final _storage = FlutterSecureStorage();
   Future <void> saveToken ({required String userToken})async{
     await _storage.write(key: 'token', value: userToken);
