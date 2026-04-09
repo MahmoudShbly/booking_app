@@ -22,6 +22,7 @@ class DetailsViewBody extends StatelessWidget {
       {        return Stack(
         children: [
           SingleChildScrollView(
+            physics: AlwaysScrollableScrollPhysics(),
             child: Column(
                   children: [
                     SizedBox(
@@ -69,7 +70,33 @@ class DetailsViewBody extends StatelessWidget {
         ],
       );}
           else if (state is FetchServiceReviewsFailure) {
-            return Center(child: Text(state.message));
+            return ListView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              children: [
+                SizedBox(
+                  height: size.height,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            state.message,
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(width: 10),
+                          Icon( 
+                            Icons.error,
+                            color: Colors.red,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            );
           }
           else {
             return const DetailsViewBodyShmmier();
