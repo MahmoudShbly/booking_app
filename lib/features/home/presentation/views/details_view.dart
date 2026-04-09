@@ -1,6 +1,4 @@
-
 import 'package:booking_app/features/home/data/models/service_model.dart';
-import 'package:booking_app/features/home/presentation/views/widgets/book_button.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/details_view_body.dart';
 import 'package:flutter/material.dart';
 
@@ -13,15 +11,8 @@ class DetailsView extends StatelessWidget {
       body: Stack(
         children: [
           Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: DetailsViewBody(service: service),
-                ),
-              ),
-            ],
+            children: [Expanded(child: DetailsViewBody(service: service))],
           ),
-          Positioned(bottom: 0, left: 0, right: 0, child: BookButton(serviceId: service.id,)),
         ],
       ),
     );
