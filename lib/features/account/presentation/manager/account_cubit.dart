@@ -27,11 +27,7 @@ class AccountCubit extends Cubit<AccountState> {
     }
   }
 
-  void logout()async {
-    userData = null;
-   await storage.clearAuthData();
-    emit(AccountInitial());
-  }
+
 
 
 }

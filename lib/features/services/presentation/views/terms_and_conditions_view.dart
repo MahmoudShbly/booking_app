@@ -43,7 +43,6 @@ class TermsAndConditionsView extends StatelessWidget {
             }
             if (state is BeProviderLoading) {
               showAppDialog(
-                isLoading: true ,
                 context: context,
                 title: Text('جاري تقديم الطلب', style: Styles.textStyle26),
                 message: 'يرجى الانتظار بينما نقوم بمعالجة طلبك.',

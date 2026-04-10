@@ -8,7 +8,6 @@ Future<T?> showAppDialog<T>({
   required BuildContext context,
   required Widget title,
   required String message,
-  bool isLoading = false,
   Widget? content,
   String confirmText = 'موافق',
   String? cancelText,
@@ -23,7 +22,7 @@ Future<T?> showAppDialog<T>({
 
     barrierDismissible: false,
     builder: (dialogContext) {
-      bool localLoading = isLoading; 
+      bool localLoading = false; 
 
       return StatefulBuilder( 
         builder: (context, setState) {
@@ -66,12 +65,12 @@ Future<T?> showAppDialog<T>({
                           ),
                         if (cancelText != null) const SizedBox(width: 10),
                         CustomButtonComponent(
-                          isLoading: localLoading, // ✅ يستجيب للتغيير
+                          isLoading: localLoading, 
                           titleStyle: Styles.textStyle20
                               .copyWith(color: Colors.white),
                           title: confirmText,
                           onTap: () {
-                            setState(() => localLoading = true); // ✅ يُحدّث الـ UI
+                            setState(() => localLoading = true);
                             onConfirm();
                           },
                           width: MediaQuery.of(context).size.width * 0.25,
