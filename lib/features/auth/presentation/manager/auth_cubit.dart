@@ -22,7 +22,10 @@ class AuthCubit extends Cubit<AuthState> {
     );
     result.fold(
       (failure) => emit(AuthFailure(failure.errorMessage)),
-      (user) => emit(AuthLogginIn(user: user)),
+      (user) {
+        emit(AuthLogginIn(user: user));
+        clearControllers();
+      },
     );
   }
 
@@ -40,7 +43,17 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthFailure(failure.errorMessage));
         
       },
-      (user) => emit(AuthRegistered(user: user)),
+      (user) {
+        emit(AuthRegistered(user: user));
+        clearControllers();
+      },
     );
   }
+
+  void clearControllers() {
+    emailController.clear();
+    passwordController.clear();
+    nameController.clear();
+    phoneController.clear();
+    confirmPasswordController.clear();}
 }
