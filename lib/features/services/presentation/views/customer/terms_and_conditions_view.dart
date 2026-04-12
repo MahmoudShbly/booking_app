@@ -3,7 +3,7 @@ import 'package:booking_app/core/utils/constant.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_button_component.dart';
 import 'package:booking_app/features/services/presentation/manager/cubit/be_provider_cubit.dart';
-import 'package:booking_app/features/services/presentation/views/widgets/custom_app_bar.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/customer/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

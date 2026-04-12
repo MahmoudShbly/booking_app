@@ -1,5 +1,5 @@
 import 'package:booking_app/features/services/presentation/manager/cubit/be_provider_cubit.dart';
-import 'package:booking_app/features/services/presentation/views/widgets/days_dropdown_section.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/customer/days_dropdown_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,9 +1,9 @@
 import 'package:booking_app/core/utils/app_router.dart';
 import 'package:booking_app/features/services/presentation/manager/cubit/be_provider_cubit.dart';
-import 'package:booking_app/features/services/presentation/views/widgets/buttons_section.dart';
-import 'package:booking_app/features/services/presentation/views/widgets/custom_app_bar.dart';
-import 'package:booking_app/features/services/presentation/views/widgets/upload_main_image.dart';
-import 'package:booking_app/features/services/presentation/views/widgets/upload_multi_image_section.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/customer/buttons_section.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/customer/custom_app_bar.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/customer/upload_main_image.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/customer/upload_multi_image_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

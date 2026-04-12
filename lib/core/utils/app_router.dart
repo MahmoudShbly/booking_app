@@ -9,10 +9,10 @@ import 'package:booking_app/features/home/presentation/manager/fetch%20service%2
 import 'package:booking_app/features/home/presentation/views/details_view.dart';
 import 'package:booking_app/features/home/presentation/views/categories_view.dart';
 import 'package:booking_app/features/main/presentation/views/main_view.dart';
-import 'package:booking_app/features/services/presentation/views/about_you_service.dart';
-import 'package:booking_app/features/services/presentation/views/choose_category_view.dart';
-import 'package:booking_app/features/services/presentation/views/terms_and_conditions_view.dart';
-import 'package:booking_app/features/services/presentation/views/upload_images_view.dart';
+import 'package:booking_app/features/services/presentation/views/customer/about_you_service.dart';
+import 'package:booking_app/features/services/presentation/views/customer/choose_category_view.dart';
+import 'package:booking_app/features/services/presentation/views/customer/terms_and_conditions_view.dart';
+import 'package:booking_app/features/services/presentation/views/customer/upload_images_view.dart';
 import 'package:booking_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

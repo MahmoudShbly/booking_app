@@ -1,5 +1,5 @@
-import 'package:booking_app/features/services/presentation/views/widgets/custom_app_bar.dart';
-import 'package:booking_app/features/services/presentation/views/widgets/form_data_section.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/customer/custom_app_bar.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/customer/form_data_section.dart';
 import 'package:flutter/material.dart';
 
 class AboutYourServiceView extends StatelessWidget {

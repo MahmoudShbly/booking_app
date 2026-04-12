@@ -1,7 +1,7 @@
 import 'package:booking_app/core/utils/constant.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_text_form_field_component.dart';
-import 'package:booking_app/features/services/presentation/views/widgets/title_section.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/customer/title_section.dart';
 import 'package:flutter/material.dart';
 
 class PriceSection extends StatelessWidget {
