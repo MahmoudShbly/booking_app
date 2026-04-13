@@ -1,10 +1,35 @@
+import 'package:booking_app/features/services/presentation/views/widgets/service%20provider/app_bar_section.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/service%20provider/bookings_management_section.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/service%20provider/profits_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:booking_app/features/services/presentation/manager/fetch%20service%20into/fetch_service_info_cubit.dart';
 
+// MVVM - View: Main service provider screen layout.
 class ServiceProviderViewBody extends StatelessWidget {
   const ServiceProviderViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return BlocProvider(
+      create: (_) => FetchServiceInfoCubit(),
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: <Widget>[
+              const AppBarSection(),
+              const SizedBox(height: 16),
+              const ProfitsCard(),
+              const SizedBox(
+                height: 20,
+              ),
+              const Expanded(child: BookingsManagementSection()),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
+

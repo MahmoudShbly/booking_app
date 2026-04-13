@@ -1,6 +1,6 @@
-import 'package:booking_app/features/services/data/models/service_days_model.dart';
-import 'package:booking_app/features/services/data/models/service_hours_model.dart';
-import 'package:booking_app/features/services/data/models/service_time_model.dart';
+import 'package:booking_app/features/services/data/models/customer/service_days_model.dart';
+import 'package:booking_app/features/services/data/models/customer/service_hours_model.dart';
+import 'package:booking_app/features/services/data/models/customer/service_time_model.dart';
 import 'package:image_picker/image_picker.dart';
 
 class FormModel {

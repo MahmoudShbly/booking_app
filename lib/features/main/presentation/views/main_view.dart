@@ -21,7 +21,7 @@ class MainView extends StatelessWidget {
       builder: (context, state) {
         final role =
             state is AccountLoaded ? state.userData.role.toLowerCase() : '';
-        final isProvider = role == 'provider';
+        final isProvider = role == 'service_provider';
 
         List<Widget> screens = [
           HomeView(),
