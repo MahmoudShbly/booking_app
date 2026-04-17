@@ -37,6 +37,7 @@ class BookingsManagementSection extends StatelessWidget {
             ),
             const SizedBox(height: 14),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: List<Widget>.generate(cubit.bookingsStatus.length, (
                 int index,
               ) {
@@ -51,22 +52,20 @@ class BookingsManagementSection extends StatelessWidget {
               }),
             ),
             const SizedBox(height: 14),
-            Expanded(
-              child: ListView.separated(
-                itemBuilder: (BuildContext context, int index) {
-                  return BookingRequestCard(
-                    request: cubit.bookingRequests[index],
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(height: 10);
-                },
-                itemCount: cubit.bookingRequests.length,
-              ),
+            ListView.separated(
+              itemBuilder: (BuildContext context, int index) {
+                return BookingRequestCard(
+                  request: cubit.bookingRequests[index],
+                );
+              },
+              physics: const NeverScrollableScrollPhysics(),
+              primary: false,
+              shrinkWrap: true,
+              separatorBuilder: (BuildContext context, int index) {
+                return const SizedBox(height: 10);
+              },
+              itemCount: cubit.bookingRequests.length,
             ),
-            SizedBox(
-              height: 20,
-            )
           ],
         );
       },

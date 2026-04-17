@@ -1,6 +1,7 @@
 import 'package:booking_app/features/services/presentation/views/widgets/service%20provider/app_bar_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/service%20provider/bookings_management_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/service%20provider/profits_card.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/service%20provider/review_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:booking_app/features/services/presentation/manager/fetch%20service%20into/fetch_service_info_cubit.dart';
@@ -16,20 +17,24 @@ class ServiceProviderViewBody extends StatelessWidget {
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: Column(
-            children: <Widget>[
-              const AppBarSection(),
-              const SizedBox(height: 16),
-              const ProfitsCard(),
-              const SizedBox(
-                height: 20,
-              ),
-              const Expanded(child: BookingsManagementSection()),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                const AppBarSection(),
+                const SizedBox(height: 16),
+                const ProfitsCard(),
+                const SizedBox(height: 20),
+                const BookingsManagementSection(),
+                const SizedBox(height: 20),
+                const ReviewSection(),
+                const SizedBox(height: 26),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
-

@@ -11,10 +11,10 @@ class BookingRequestCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(24),
         boxShadow: <BoxShadow>[
           BoxShadow(
             color: Colors.black.withValues(alpha: .04),
@@ -27,7 +27,7 @@ class BookingRequestCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           CircleAvatar(
-            radius: 40,
+            radius: 36,
             backgroundColor: const Color(0xFFCCE6FB),
             child: const Icon(
               Icons.person,

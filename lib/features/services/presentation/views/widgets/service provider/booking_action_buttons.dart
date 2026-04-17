@@ -16,6 +16,7 @@ class BookingActionButtons extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: ElevatedButton(
+            
             onPressed: onAccept,
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF0F2E57),
@@ -24,8 +25,8 @@ class BookingActionButtons extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
-              minimumSize: const Size.fromHeight(34),
-              textStyle: Styles.textStyle12.copyWith(
+              minimumSize: const Size.fromHeight(28),
+              textStyle: Styles.textStyle10.copyWith(
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -42,8 +43,8 @@ class BookingActionButtons extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
-              minimumSize: const Size.fromHeight(34),
-              textStyle: Styles.textStyle12.copyWith(
+              minimumSize: const Size.fromHeight(28),
+              textStyle: Styles.textStyle10.copyWith(
                 fontWeight: FontWeight.w700,
               ),
             ),
