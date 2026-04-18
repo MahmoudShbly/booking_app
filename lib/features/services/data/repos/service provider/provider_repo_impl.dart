@@ -7,9 +7,9 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 class ProviderRepoImpl implements ProviderRepo {
-	@override
-	Future<Either<ServerFailure, List<BookingRequestModel>>>
-	fetchBookingRequest() async {
+	
+@override
+  Future<Either<ServerFailure, List<BookingRequestModel>>> fetchBookingRequest({String? status}) async {
 		try {
 			final result = await ApiServices().get(endPoint: ApiEndPoints.providerBookings);
 
@@ -28,10 +28,5 @@ class ProviderRepoImpl implements ProviderRepo {
 			return left(ServerFailure(e.toString()));
 		}
 	}
-  @override
-  Future<Either<ServerFailure, List<BookingRequestModel>>> fetchBookingRequestByStatus({required String status}) {
-    // TODO: implement fetchBookingRequestByStatus
-    throw UnimplementedError();
-  }
 
 }

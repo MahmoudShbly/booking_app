@@ -4,7 +4,7 @@ import 'package:booking_app/features/services/data/repos/service%20provider/prov
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-part 'fetch_service_info_state.dart';
+part 'fetch_booking_request_state.dart';
 
 class FetchBookingRequestCubit extends Cubit<FetchBookingRequestState> {
   FetchBookingRequestCubit(this.providerRepo)
@@ -12,28 +12,27 @@ class FetchBookingRequestCubit extends Cubit<FetchBookingRequestState> {
 
   final ProviderRepo providerRepo;
 
-  int selectedFilterIndex = 0;
-  final List<String> bookingsStatus = ['الطلبات', 'بانتظار الدفع', 'المؤكدة'];
+
   final List<BookingRequestModel> bookingRequests = [];
 
-  Future<void> fetchBookingRequests() async {
+  Future<void> fetchBookingRequests({required String status}) async {
     emit(FetchBookingRequestLoading());
 
-    final result = await providerRepo.fetchBookingRequest();
+    final result = await providerRepo.fetchBookingRequest(status: status);
     result.fold(
       (failure) =>
           emit(FetchBookingRequestFailure(errorMessage: failure.errorMessage)),
       (requests) {
+        final filteredRequests =
+            requests.where((i) => i.status == status).toList();
+
         bookingRequests
           ..clear()
-          ..addAll(requests);
-        emit(FetchBookingRequestSuccess(requests: requests));
+          ..addAll(filteredRequests);
+        emit(FetchBookingRequestSuccess(requests: filteredRequests));
       },
     );
   }
 
-  void selectFilter(int index) {
-    selectedFilterIndex = index;
-    emit(FetchBookingRequestFilterChanged());
-  }
+
 }

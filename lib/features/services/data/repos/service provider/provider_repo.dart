@@ -4,6 +4,5 @@ import 'package:dartz/dartz.dart';
 
 abstract class ProviderRepo {
 
-  Future <Either<ServerFailure,List<BookingRequestModel>>> fetchBookingRequest ();
-  Future <Either<ServerFailure,List<BookingRequestModel>>> fetchBookingRequestByStatus ({required String status});
+  Future <Either<ServerFailure,List<BookingRequestModel>>> fetchBookingRequest ({ String status});
 }
