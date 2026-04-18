@@ -14,16 +14,17 @@ import 'package:booking_app/features/home/presentation/manager/book%20service/bo
 import 'package:booking_app/features/home/presentation/manager/fetch%20categories/fetch_categories_cubit.dart';
 import 'package:booking_app/features/home/presentation/manager/fetch%20service%20by%20category%20id/fetch_services_by_category_id_cubit.dart';
 import 'package:booking_app/features/home/presentation/manager/fetch%20services/fetch_services_cubit.dart';
-import 'package:booking_app/features/services/data/repos/services_repo_impl.dart';
-import 'package:booking_app/features/services/presentation/manager/cubit/be_provider_cubit.dart';
+import 'package:booking_app/features/services/data/repos/customer/customer_repo_impl.dart';
+import 'package:booking_app/features/services/data/repos/service%20provider/provider_repo_impl.dart';
+import 'package:booking_app/features/services/presentation/manager/customer/be%20provider/be_provider_cubit.dart';
+import 'package:booking_app/features/services/presentation/manager/service%20provider/fetch%20service%20into/fetch_service_info_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-final authCubit = AuthCubit(AuthRepoImpl()); 
+
+final authCubit = AuthCubit(AuthRepoImpl());
 void main() {
   Bloc.observer = MyBlocObserver();
-  runApp(
-    const MyApp(),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -32,25 +33,41 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(providers: [
-      BlocProvider(create:(context)=>FetchCategoriesCubit(HomeRepoImpl())..fetchCategories()),
-      BlocProvider(create:(context)=>FetchServicesCubit(HomeRepoImpl())..fetchServices()),
-      BlocProvider(create:(context)=>BeProviderCubit(ServicesRepoImpl())),
-      BlocProvider(create:(context)=>RatingCubit(BookingRepoImpl())),
-      BlocProvider(create:(context)=>FetchServicesByCategoryIdCubit()),
-      BlocProvider(create:(context)=>BookServiceCubit(HomeRepoImpl())),
-      BlocProvider(create:(context)=>FetchMyBookingsCubit(BookingRepoImpl())),
-      BlocProvider(create:(context)=>CancelBookingCubit(BookingRepoImpl())),
-      BlocProvider(create:(context)=>AccountCubit()..fetchUserData()),
-      BlocProvider(create:(context)=>LogoutCubit(AccountRepoImpl())),
-      BlocProvider.value(value: authCubit,),
-    ],
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              FetchCategoriesCubit(HomeRepoImpl())..fetchCategories(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              FetchServicesCubit(HomeRepoImpl())..fetchServices(),
+        ),
+        BlocProvider(create: (context) => BeProviderCubit(CustomerRepoImpl())),
+        BlocProvider(create: (context) => RatingCubit(BookingRepoImpl())),
+        BlocProvider(create: (context) => FetchServicesByCategoryIdCubit()),
+        BlocProvider(create: (context) => BookServiceCubit(HomeRepoImpl())),
+        BlocProvider(
+          create: (context) => FetchMyBookingsCubit(BookingRepoImpl()),
+        ),
+        BlocProvider(
+          create: (context) => CancelBookingCubit(BookingRepoImpl()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              FetchBookingRequestCubit(ProviderRepoImpl())
+                ..fetchBookingRequests(),
+        ),
+        BlocProvider(create: (context) => AccountCubit()..fetchUserData()),
+        BlocProvider(create: (context) => LogoutCubit(AccountRepoImpl())),
+        BlocProvider.value(value: authCubit),
+      ],
       child: MaterialApp.router(
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
           fontFamily: 'NotoSansArabic',
         ),
-      
+
         debugShowCheckedModeBanner: false,
         title: 'Fourth year project',
         routerConfig: AppRouter.router,

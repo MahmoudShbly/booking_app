@@ -12,5 +12,6 @@ class ApiEndPoints {
   static const String register = "register";
   static const String logout = "logout";
   static const String ratingStats = "rating-stats";
+  static const String providerBookings = "provider/bookings";
 
 }

@@ -1,4 +1,4 @@
-import 'package:booking_app/features/services/data/repos/services_repo_impl.dart';
+import 'package:booking_app/features/services/data/repos/customer/customer_repo_impl.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +8,7 @@ part 'be_provider_state.dart';
 
 class BeProviderCubit extends Cubit<BeProviderState> {
   BeProviderCubit(this.servicesRepo) : super(BeProviderInitial());
-  final ServicesRepoImpl servicesRepo;
+  final CustomerRepoImpl servicesRepo;
   Future<void> addService() async {
     emit(BeProviderLoading());
     FormData formData = FormData.fromMap({

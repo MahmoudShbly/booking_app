@@ -1,7 +1,7 @@
 import 'package:booking_app/core/utils/app_router.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_button_component.dart';
-import 'package:booking_app/features/services/presentation/manager/cubit/be_provider_cubit.dart';
+import 'package:booking_app/features/services/presentation/manager/customer/be%20provider/be_provider_cubit.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/customer/category_selection_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/customer/custom_app_bar.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/customer/title_section.dart';

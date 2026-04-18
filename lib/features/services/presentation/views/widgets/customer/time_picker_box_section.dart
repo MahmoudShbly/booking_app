@@ -1,4 +1,4 @@
-import 'package:booking_app/features/services/presentation/manager/cubit/be_provider_cubit.dart';
+import 'package:booking_app/features/services/presentation/manager/customer/be%20provider/be_provider_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:flutter/material.dart';

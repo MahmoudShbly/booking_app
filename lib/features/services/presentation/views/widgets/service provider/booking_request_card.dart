@@ -41,7 +41,7 @@ class BookingRequestCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  request.customerName,
+                  request.userData.name,
                   style: Styles.textStyle14.copyWith(
                     fontWeight: FontWeight.w700,
                     color: Colors.black87,
@@ -49,7 +49,7 @@ class BookingRequestCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  request.phoneNumber,
+                  request.userData.phone,
                   style: Styles.textStyle10.copyWith(
                     color: const Color(0xFF8B95A5),
                   ),
