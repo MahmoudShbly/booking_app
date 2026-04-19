@@ -3,8 +3,8 @@ import 'package:booking_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class AppBarSection extends StatelessWidget {
-  const AppBarSection({super.key});
-
+  const AppBarSection({super.key, required this.serviceName});
+  final String serviceName;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -22,7 +22,7 @@ class AppBarSection extends StatelessWidget {
           width: 12,
         ),
         Text(
-          'أهلاً، د. أحمد',
+          serviceName,
           style: Styles.textStyle14.copyWith(fontWeight: FontWeight.bold),
         ),
         Spacer(),

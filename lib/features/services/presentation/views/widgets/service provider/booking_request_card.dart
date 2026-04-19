@@ -57,7 +57,9 @@ class BookingRequestCard extends StatelessWidget {
                 const SizedBox(height: 10),
                 BookingActionButtons(
                   onRefuse: () {},
-                  onAccept: () {},
+                  onAccept: () {
+                    
+                  },
                 ),
               ],
             ),

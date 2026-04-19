@@ -17,8 +17,9 @@ import 'package:booking_app/features/home/presentation/manager/fetch%20services/
 import 'package:booking_app/features/services/data/repos/customer/customer_repo_impl.dart';
 import 'package:booking_app/features/services/data/repos/service%20provider/provider_repo_impl.dart';
 import 'package:booking_app/features/services/presentation/manager/customer/be%20provider/be_provider_cubit.dart';
-import 'package:booking_app/features/services/presentation/manager/service%20provider/cubit/filter_booking_request_by_status_cubit.dart';
+import 'package:booking_app/features/services/presentation/manager/service%20provider/filter%20booking%20request/filter_booking_request_by_status_cubit.dart';
 import 'package:booking_app/features/services/presentation/manager/service%20provider/fetch%20bookings%20request/fetch_booking_request_cubit.dart';
+import 'package:booking_app/features/services/presentation/manager/service%20provider/fetch%20provider%20service%20info/fetch_provider_service_info_cubit_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -56,6 +57,11 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => FetchBookingRequestCubit(ProviderRepoImpl())..fetchBookingRequests(status: 'pending'),
+        ),
+        BlocProvider(
+          create: (context) =>
+              FetchProviderServiceInfoCubitCubit(ProviderRepoImpl())
+                ..fetchProviderServiceInfo(),
         ),
         BlocProvider(create: (context) => FilterBookingRequestByStatusCubit()),
         BlocProvider(create: (context) => AccountCubit()..fetchUserData()),
