@@ -38,7 +38,7 @@ class ProviderRepoImpl implements ProviderRepo {
   }) async {
     try {
       final result = await ApiServices().post(
-        endPoint: '$bookingRequestId/${ApiEndPoints.detectBookingTime}',
+        endPoint: '${ApiEndPoints.booking}/$bookingRequestId/${ApiEndPoints.detectBookingTime}',
         data: {'scheduled_at': time},
       );
       return right(result['message']);

@@ -4,15 +4,35 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'detect_booking_time_cubit_state.dart';
 
-class DetectBookingTimeCubitCubit extends Cubit<DetectBookingTimeCubitState> {
-  DetectBookingTimeCubitCubit(this.providerRepo) : super(DetectBookingTimeCubitInitial());
+class DetectBookingTimeCubit extends Cubit<DetectBookingTimeCubitState> {
+  DetectBookingTimeCubit(this.providerRepo) : super(DetectBookingTimeCubitInitial());
   final ProviderRepoImpl providerRepo;
+    
+     String time = '' ;
+    Future<void> selectTime(
+    BuildContext context,
+  ) async {
+    final TimeOfDay? selectedTime = await showTimePicker(
+      barrierDismissible: false,
+      helpText: 'حدد وقت الحجز',
+       cancelText: 'الغاء',
+       confirmText: 'تأكيد',
+       errorInvalidText: 'وقت غير صالح',
+       hourLabelText: 'ساعة',
+       minuteLabelText: 'دقيقة',
+       useRootNavigator: false,
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+    if (selectedTime != null&& context.mounted) {
+      time = selectedTime.format(context);
+    }
+  }
 
   Future<void> detectBookingTime({
     required int bookingRequestId,
-    required String time,
   }) async {
-    emit(DetectBookingTimeCubitLoading());
+    emit(DetectBookingTimeCubitLoading(bookingRequestId: bookingRequestId));
     final result = await providerRepo.detectBookingTime(
       bookingRequestId: bookingRequestId,
       time: time,
@@ -22,5 +42,6 @@ class DetectBookingTimeCubitCubit extends Cubit<DetectBookingTimeCubitState> {
       (failure) => emit(DetectBookingTimeCubitFailure(message: failure.errorMessage)),
       (message) => emit(DetectBookingTimeCubitSuccess(message: message)),
     );
+    time = '';
   }
 }

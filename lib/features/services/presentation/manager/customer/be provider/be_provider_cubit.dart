@@ -125,7 +125,7 @@ class BeProviderCubit extends Cubit<BeProviderState> {
       context: context,
       initialTime: TimeOfDay.now(),
     );
-    if (selectedTime != null) {
+    if (selectedTime != null&& context.mounted) {
       controller.text = selectedTime.format(context);
     }
   }

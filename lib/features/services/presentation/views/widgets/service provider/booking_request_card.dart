@@ -29,11 +29,7 @@ class BookingRequestCard extends StatelessWidget {
           CircleAvatar(
             radius: 36,
             backgroundColor: const Color(0xFFCCE6FB),
-            child: const Icon(
-              Icons.person,
-              size: 32,
-              color: Color(0xFF0F2E57),
-            ),
+            child: const Icon(Icons.person, size: 32, color: Color(0xFF0F2E57)),
           ),
           const SizedBox(width: 10),
           Expanded(
@@ -56,10 +52,7 @@ class BookingRequestCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 BookingActionButtons(
-                  onRefuse: () {},
-                  onAccept: () {
-                    
-                  },
+                  request: request,
                 ),
               ],
             ),
