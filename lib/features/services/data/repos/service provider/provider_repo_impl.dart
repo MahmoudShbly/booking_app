@@ -1,6 +1,7 @@
 import 'package:booking_app/core/errors/failure.dart';
 import 'package:booking_app/core/utils/api_end_points.dart';
 import 'package:booking_app/core/utils/api_services.dart';
+import 'package:booking_app/features/appointments/data/models/review_model.dart';
 import 'package:booking_app/features/services/data/models/service%20provider/booking_request_model.dart';
 import 'package:booking_app/features/services/data/models/service%20provider/service_info_model.dart';
 import 'package:booking_app/features/services/data/repos/service%20provider/provider_repo.dart';
@@ -38,7 +39,8 @@ class ProviderRepoImpl implements ProviderRepo {
   }) async {
     try {
       final result = await ApiServices().post(
-        endPoint: '${ApiEndPoints.booking}/$bookingRequestId/${ApiEndPoints.detectBookingTime}',
+        endPoint:
+            '${ApiEndPoints.booking}/$bookingRequestId/${ApiEndPoints.detectBookingTime}',
         data: {'scheduled_at': time},
       );
       return right(result['message']);
@@ -51,7 +53,8 @@ class ProviderRepoImpl implements ProviderRepo {
   }
 
   @override
-  Future<Either<ServerFailure, ServiceInfoModel>> fetchProviderServiceInfo() async {
+  Future<Either<ServerFailure, ServiceInfoModel>>
+  fetchProviderServiceInfo() async {
     try {
       final result = await ApiServices().get(
         endPoint: ApiEndPoints.providerService,
@@ -75,7 +78,8 @@ class ProviderRepoImpl implements ProviderRepo {
   }) async {
     try {
       final result = await ApiServices().post(
-        endPoint: '${ApiEndPoints.booking}/$bookingRequestId/${ApiEndPoints.completeBooking}',
+        endPoint:
+            '${ApiEndPoints.booking}/$bookingRequestId/${ApiEndPoints.completeBooking}',
       );
       return right(result['message']);
     } catch (e) {
@@ -86,4 +90,29 @@ class ProviderRepoImpl implements ProviderRepo {
     }
   }
 
+  @override
+  Future<Either<ServerFailure, List<ReviewModel>>> fetchProviderServiceReview({
+    required int serviceId,
+  }) async {
+    try {
+      final result = await ApiServices().get(
+        endPoint: '${ApiEndPoints.services}/$serviceId/${ApiEndPoints.ratingStats}',
+      );
+
+      if (result is List) {
+        final List<ReviewModel> reviews = [];
+        for (final item in result) {
+          reviews.add(ReviewModel.fromJson(item as Map<String, dynamic>));
+        }
+        return right(reviews);
+      }
+
+      return right([ReviewModel.fromJson(result as Map<String, dynamic>)]);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
 }

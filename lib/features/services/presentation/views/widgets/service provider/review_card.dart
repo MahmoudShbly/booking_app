@@ -31,7 +31,6 @@ class ReviewCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
                       width: 24,
@@ -49,27 +48,33 @@ class ReviewCard extends StatelessWidget {
                     SizedBox(
                       width: 6,
                     ),
-                    Text(
-                      reviewerName,
-                      style: Styles.textStyle12.copyWith(
-                        color: Color(0xFF1C2A39),
-                        fontWeight: FontWeight.w700,
+                    Expanded(
+                      child: Text(
+                        reviewerName,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Styles.textStyle12.copyWith(
+                          color: Color(0xFF1C2A39),
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                    const SizedBox(width: 8),
                   ],
                 ),
               ),
-              Spacer(),
-              Row(
-                children: List.generate(
-                  5,
-                  (index) => Padding(
-                    padding: const EdgeInsetsDirectional.only(end: 1),
-                    child: Icon(
-                      index < clampedRating ? Icons.star : Icons.star_border,
-                      size: 12,
-                      color: const Color(0xFFF4A21D),
+              const SizedBox(width: 8),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Row(
+                  children: List.generate(
+                    5,
+                    (index) => Padding(
+                      padding: const EdgeInsetsDirectional.only(end: 1),
+                      child: Icon(
+                        index < clampedRating ? Icons.star : Icons.star_border,
+                        size: 12,
+                        color: const Color(0xFFF4A21D),
+                      ),
                     ),
                   ),
                 ),

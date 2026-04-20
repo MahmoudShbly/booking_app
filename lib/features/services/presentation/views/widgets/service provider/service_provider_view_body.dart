@@ -53,7 +53,7 @@ class ServiceProviderViewBody extends StatelessWidget {
                       SizedBox(height: 20),
                       BookingsManagementSection(),
                       SizedBox(height: 20),
-                      ReviewSection(),
+                      ReviewSection(serviceId: state.serviceInfo.id),
                       SizedBox(height: 26),
                       ],
                     );
