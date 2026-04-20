@@ -14,6 +14,7 @@ class ApiEndPoints {
   static const String ratingStats = "rating-stats";
   static const String providerBookings = "provider/bookings";
   static const String detectBookingTime = "schedule";
+  static const String completeBooking = "complete";
   static const String providerService = "my-services";
 
 }

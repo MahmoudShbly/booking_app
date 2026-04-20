@@ -68,4 +68,22 @@ class ProviderRepoImpl implements ProviderRepo {
       return left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<ServerFailure, String>> completeBooking({
+    required int bookingRequestId,
+  }) async {
+    try {
+      final result = await ApiServices().post(
+        endPoint: '${ApiEndPoints.booking}/$bookingRequestId/${ApiEndPoints.completeBooking}',
+      );
+      return right(result['message']);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
 }

@@ -1,4 +1,4 @@
-part of 'detect_booking_time_cubit_cubit.dart';
+part of 'detect_booking_time_cubit.dart';
 
 @immutable
 sealed class DetectBookingTimeCubitState {}

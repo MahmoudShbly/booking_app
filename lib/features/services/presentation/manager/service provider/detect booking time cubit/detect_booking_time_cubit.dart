@@ -2,7 +2,7 @@ import 'package:booking_app/features/services/data/repos/service%20provider/prov
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'detect_booking_time_cubit_state.dart';
+part 'detect_booking_time_state.dart';
 
 class DetectBookingTimeCubit extends Cubit<DetectBookingTimeCubitState> {
   DetectBookingTimeCubit(this.providerRepo) : super(DetectBookingTimeCubitInitial());

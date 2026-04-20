@@ -57,6 +57,22 @@ class BookingRequestCard extends StatelessWidget {
               ],
             ),
           ),
+         if(request.bookingTime != null) 
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Column(
+              children: [
+                const Icon(Icons.schedule, size: 16, color: Color(0xFF8B95A5)),
+                const SizedBox(height: 2),
+                Text(
+                  request.bookingTime!,
+                  style: Styles.textStyle10.copyWith(
+                    color: const Color(0xFF8B95A5),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

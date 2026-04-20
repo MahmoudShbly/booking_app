@@ -7,5 +7,6 @@ abstract class ProviderRepo {
 
   Future <Either<ServerFailure,List<BookingRequestModel>>> fetchBookingRequest ({ String status});
   Future <Either<ServerFailure,String>> detectBookingTime ({ required int bookingRequestId , required String time});
+  Future <Either<ServerFailure,String>> completeBooking ({ required int bookingRequestId });
   Future <Either<ServerFailure,ServiceInfoModel>> fetchProviderServiceInfo ();
 }
