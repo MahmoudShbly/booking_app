@@ -12,6 +12,13 @@ class FetchProviderServiceReviewsCubit extends Cubit<FetchProviderServiceReviews
     : super(FetchProviderServiceReviewsInitial());
 
   final ProviderRepo providerRepo;
+  
+    String ratingLabel(double average) {
+    if (average >= 4.5) return 'تقييم ممتاز';
+    if (average >= 3.5) return 'تقييم جيد جدا';
+    if (average >= 2.5) return 'تقييم جيد';
+    return 'تقييم ضعيف';
+  }
 
   Future<void> fetchProviderServiceReviews({required int serviceId}) async {
     emit(FetchProviderServiceReviewsLoading());

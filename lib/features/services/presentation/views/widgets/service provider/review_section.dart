@@ -1,20 +1,17 @@
+import 'package:booking_app/core/utils/app_router.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/features/services/data/repos/service%20provider/provider_repo_impl.dart';
 import 'package:booking_app/features/services/presentation/manager/service%20provider/fetch%20service%20provider%20reviews/fetch_provider_service_reviews_cubit.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/service%20provider/review_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ReviewSection extends StatelessWidget {
   const ReviewSection({super.key, required this.serviceId});
   final int serviceId;
 
-  String _ratingLabel(double average) {
-    if (average >= 4.5) return 'تقييم ممتاز';
-    if (average >= 3.5) return 'تقييم جيد جدا';
-    if (average >= 2.5) return 'تقييم جيد';
-    return 'تقييم ضعيف';
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +36,7 @@ class ReviewSection extends StatelessWidget {
 
           if (state is FetchProviderServiceReviewsSuccess &&
               state.reviews.isNotEmpty) {
+                final cubit = context.read<FetchProviderServiceReviewsCubit>();
             final reviewStats = state.reviews.first;
             final firstComment = reviewStats.comments.isNotEmpty
                 ? reviewStats.comments.first
@@ -99,7 +97,7 @@ class ReviewSection extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  _ratingLabel(reviewStats.average),
+                                  cubit.ratingLabel(reviewStats.average),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: Styles.textStyle12.copyWith(
@@ -118,35 +116,33 @@ class ReviewSection extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 8),
-                          Flexible(
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 8,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFFF2F3F5),
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Text(
-                                      'التفاصيل',
-                                      style: Styles.textStyle12.copyWith(
-                                        color: const Color(0xFF606A78),
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                          InkWell(
+                            onTap: () => GoRouter.of(context).push(AppRouter.kReviewDetailsView, extra: reviewStats),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFF2F3F5),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Text(
+                                    'التفاصيل',
+                                    style: Styles.textStyle12.copyWith(
+                                      color: const Color(0xFF606A78),
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    const Icon(
-                                      Icons.chevron_right_rounded,
-                                      size: 16,
-                                      color: Color(0xFF606A78),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                  const Icon(
+                                    Icons.chevron_right_rounded,
+                                    size: 16,
+                                    color: Color(0xFF606A78),
+                                  ),
+                                ],
                               ),
                             ),
                           ),

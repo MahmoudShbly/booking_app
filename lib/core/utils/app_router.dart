@@ -1,5 +1,6 @@
 import 'dart:async';
-import 'package:booking_app/core/utils/secure_storage_services.dart';    
+import 'package:booking_app/core/utils/secure_storage_services.dart';
+import 'package:booking_app/features/appointments/data/models/review_model.dart';    
 import 'package:booking_app/features/auth/presentation/views/login_view.dart';
 import 'package:booking_app/features/auth/presentation/views/register_view.dart';
 import 'package:booking_app/features/home/data/models/categories_model.dart';
@@ -13,6 +14,7 @@ import 'package:booking_app/features/services/presentation/views/customer/about_
 import 'package:booking_app/features/services/presentation/views/customer/choose_category_view.dart';
 import 'package:booking_app/features/services/presentation/views/customer/terms_and_conditions_view.dart';
 import 'package:booking_app/features/services/presentation/views/customer/upload_images_view.dart';
+import 'package:booking_app/features/services/presentation/views/service%20provider/review_details_view.dart';
 import 'package:booking_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,6 +29,7 @@ abstract class AppRouter {
   static final kAboutYourServiceView = '/kAboutYourServiceView';
   static final kUploadImagesView = '/kUploadImagesView';
   static final kTermsAndConditionsView = '/kTermsAndConditionsView';
+  static final kReviewDetailsView = '/kReviewDetailsView';
   static final storage = SecureStorageServices();
 
   static final router = GoRouter(
@@ -91,6 +94,10 @@ abstract class AppRouter {
       GoRoute(
         path: kTermsAndConditionsView,
         builder: (context, state) => const TermsAndConditionsView(),
+      ),
+      GoRoute(
+        path: kReviewDetailsView,
+        builder: (context, state) => ReviewDetailsView(reviews: state.extra as ReviewModel,),
       ),
     ],
   );
