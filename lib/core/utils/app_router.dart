@@ -10,6 +10,7 @@ import 'package:booking_app/features/home/presentation/manager/fetch%20service%2
 import 'package:booking_app/features/home/presentation/views/details_view.dart';
 import 'package:booking_app/features/home/presentation/views/categories_view.dart';
 import 'package:booking_app/features/main/presentation/views/main_view.dart';
+import 'package:booking_app/features/account/presentation/views/support_view.dart';
 import 'package:booking_app/features/services/presentation/views/customer/about_you_service.dart';
 import 'package:booking_app/features/services/presentation/views/customer/choose_category_view.dart';
 import 'package:booking_app/features/services/presentation/views/customer/terms_and_conditions_view.dart';
@@ -30,6 +31,7 @@ abstract class AppRouter {
   static final kUploadImagesView = '/kUploadImagesView';
   static final kTermsAndConditionsView = '/kTermsAndConditionsView';
   static final kReviewDetailsView = '/kReviewDetailsView';
+  static final kSupportView = '/kSupportView';
   static final storage = SecureStorageServices();
 
   static final router = GoRouter(
@@ -98,6 +100,10 @@ abstract class AppRouter {
       GoRoute(
         path: kReviewDetailsView,
         builder: (context, state) => ReviewDetailsView(reviews: state.extra as ReviewModel,),
+      ),
+      GoRoute(
+        path: kSupportView,
+        builder: (context, state) => const SupportView(),
       ),
     ],
   );

@@ -1,4 +1,5 @@
 import 'package:booking_app/core/utils/app_dialog.dart';
+import 'package:booking_app/core/utils/app_router.dart';
 import 'package:booking_app/core/utils/constant.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/features/account/presentation/manager/logout/logout_cubit.dart';
@@ -40,7 +41,7 @@ class AccountManagementSection extends StatelessWidget {
             OptionCard(
               title: 'المساعدة والدعم',
               icon: FontAwesomeIcons.solidCircleQuestion,
-              onTap: () {},
+              onTap: () => GoRouter.of(context).push(AppRouter.kSupportView),
             ),
             SizedBox(height: 8),
             OptionCard(
