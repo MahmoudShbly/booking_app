@@ -10,7 +10,11 @@ class ProfitsCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Color(0xff1A3A5F),
+        gradient: const LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+          colors: <Color>[Color(0xFF113D6E), Color.fromARGB(244, 30, 76, 129),Color(0xFF1A3A5F)],
+        ),
         borderRadius: BorderRadius.circular(32),
       ),
       child: Column(
