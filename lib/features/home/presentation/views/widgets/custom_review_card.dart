@@ -1,5 +1,4 @@
 import 'package:booking_app/core/utils/styles.dart';
-import 'package:booking_app/core/utils/temp.dart';
 import 'package:booking_app/features/appointments/data/models/feedback_model.dart';
 import 'package:booking_app/features/home/presentation/views/widgets/rating.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,7 @@ class CustomReviewCard extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              CircleAvatar(child: Image.asset(Temp.tempImage)),
+              ClipOval(child: Icon(Icons.account_circle,size: 36,)),
               SizedBox(width: 12),
                Text(feedback.userName, style: Styles.textStyle20.copyWith(fontWeight: FontWeight.bold)),
               Spacer(),

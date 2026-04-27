@@ -32,12 +32,12 @@ class BookingRepoImpl extends BookingRepo {
 
   @override
   Future<Either<ServerFailure, String>> cancelBooking(
-    BookingModel booking,
+    int bookingId,
   ) async {
     try {
       var result = await ApiServices().post(
         endPoint:
-            '${ApiEndPoints.booking}/${booking.id}/${ApiEndPoints.cancel}',
+            '${ApiEndPoints.booking}/$bookingId/${ApiEndPoints.cancel}',
         
       );
       return right(result['message']);

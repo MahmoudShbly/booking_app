@@ -22,12 +22,11 @@ class ImageSection extends StatelessWidget {
           height: 100,
           width: 100,
           decoration: BoxDecoration(
+            color: Colors.white,
             shape: BoxShape.circle,
             border: Border.all(color: Colors.white, width: 5),
-            image: DecorationImage(
-              image: AssetImage('assets/images/service_image.png'),
-            ),
           ),
+          child: Icon(Icons.account_circle_rounded,size:170,color: kBlue,),
         ),
       ),
     );

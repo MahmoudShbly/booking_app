@@ -96,7 +96,7 @@ class TextButtonSection extends StatelessWidget {
                                 'هل انت متاكد من رغبتك في الغاء مواعدك مع ${booking.service.name} في الساعة ${booking.scheduledAt} علما انه لا يمكنك استرجاع رسوم الحجز في حال تاكيده من قبل صاحب الخدمة',
                             onConfirm: () {
                               context.read<CancelBookingCubit>().cancelBooking(
-                                booking,
+                                booking.id,
                               );
                               GoRouter.of(context).pop();
                             },

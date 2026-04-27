@@ -3,6 +3,7 @@ import 'package:booking_app/features/services/presentation/views/widgets/service
 import 'package:booking_app/features/services/presentation/views/widgets/service%20provider/bookings_management_section.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/service%20provider/profits_card.dart';
 import 'package:booking_app/features/services/presentation/views/widgets/service%20provider/review_section.dart';
+import 'package:booking_app/features/services/presentation/views/widgets/service%20provider/service_provider_shimmer.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,57 +12,62 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ServiceProviderViewBody extends StatelessWidget {
   const ServiceProviderViewBody({super.key});
 
+  Future<void> _refreshServiceInfo(BuildContext context) async {
+    await context.read<FetchProviderServiceInfoCubitCubit>().fetchProviderServiceInfo();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: SingleChildScrollView(
-          child:
-              BlocBuilder<
-                FetchProviderServiceInfoCubitCubit,
-                FetchProviderServiceInfoCubitState
-              >(
-                builder: (context, state) {
-                  if (state is FetchProviderServiceInfoCubitLoading) {
-                    return const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 24),
-                      child: Center(child: CircularProgressIndicator()),
-                    );
-                  }
+        child: RefreshIndicator(
+          onRefresh: () => _refreshServiceInfo(context),
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: BlocBuilder<
+              FetchProviderServiceInfoCubitCubit,
+              FetchProviderServiceInfoCubitState
+            >(
+              builder: (context, state) {
+                if (state is FetchProviderServiceInfoCubitLoading) {
+                  return const ServiceProviderShimmer();
+                }
 
-                  if (state is FetchProviderServiceInfoCubitFailure) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: Text(
-                        state.message,
-                        textAlign: TextAlign.center,
-                        style: Styles.textStyle12.copyWith(
-                          color: Colors.red.shade700,
-                        ),
+                if (state is FetchProviderServiceInfoCubitFailure) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    child: Text(
+                      state.message,
+                      textAlign: TextAlign.center,
+                      style: Styles.textStyle12.copyWith(
+                        color: Colors.red.shade700,
                       ),
-                    );
-                  }
-                  if (state is FetchProviderServiceInfoCubitSuccess) {
+                    ),
+                  );
+                }
+
+                if (state is FetchProviderServiceInfoCubitSuccess) {
                   return Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        AppBarSection(serviceName: state.serviceInfo.name),
-                      SizedBox(height: 16),
-                      ProfitsCard(),
-                      SizedBox(height: 20),
-                      BookingsManagementSection(),
-                      SizedBox(height: 20),
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      AppBarSection(serviceName: state.serviceInfo.name),
+                      const SizedBox(height: 16),
+                      const ProfitsCard(),
+                      const SizedBox(height: 20),
+                      const BookingsManagementSection(),
+                      const SizedBox(height: 20),
                       ReviewSection(serviceId: state.serviceInfo.id),
-                      SizedBox(height: 26),
-                      ],
-                    );
-                  } else {
-                    return const SizedBox.shrink();
-                  }
-                },
-              ),
+                      const SizedBox(height: 26),
+                    ],
+                  );
+                }
+
+                return const SizedBox.shrink();
+              },
+            ),
+          ),
         ),
       ),
     );

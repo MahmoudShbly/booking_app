@@ -46,15 +46,17 @@ class AppointmentCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          _buildClinicInfo(),
+                          _buildServiceInfo(),
                           _buildStatusBadge(),
                     
                         ],
                       ),
                       const SizedBox(height: 16),
                       _buildDetailRow(
-                        Icons.calendar_month_outlined,
-                        'الأربعاء، 2025/10/11 - 10:00م',
+                        booking.status == 'pending'?
+                        Icons.calendar_month_outlined :Icons.watch_later_outlined,
+                        booking.status == 'pending'?
+                        booking.createdAt.toString():booking.scheduledAt.toString(),
                       ),
                       const SizedBox(height: 12),
                       _buildDetailRow(
@@ -99,7 +101,7 @@ class AppointmentCard extends StatelessWidget {
     );
   }
 
-  Widget _buildClinicInfo() {
+  Widget _buildServiceInfo() {
     final String? imageUrl =
         booking.service.images.isNotEmpty ? booking.service.images.first : null;
 
@@ -181,7 +183,9 @@ class AppointmentCard extends StatelessWidget {
         color: const Color(0xFFF5F8FC),
         borderRadius: BorderRadius.circular(14),
       ),
-      child: Row(
+      child:booking.status == 'completed'? const Text('كيف كانت تجربتك ؟',style: Styles.textStyle16,):
+      booking.status == 'pending'?  Text('سعر حجز هذه الخدمة سيكون ${booking.service.bookPrice}'):
+      Row(
         children: [
         
           const SizedBox(width: 10),

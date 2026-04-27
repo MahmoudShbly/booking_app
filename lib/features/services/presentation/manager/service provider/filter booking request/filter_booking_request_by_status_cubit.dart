@@ -10,11 +10,11 @@ class FilterBookingRequestByStatusCubit extends Cubit<FilterBookingRequestByStat
       int selectedFilterIndex = 0;
 
   final List<String> bookingsStatus = ['الطلبات', 'بانتظار الدفع', 'المؤكدة'];
-  final List<String> _bookingsStatus = ['pending','scheduled','confirmed'];
+  final List<String> eBookingsStatus = ['pending','scheduled','confirmed'];
 
     void selectFilter(int index , BuildContext context) {
     selectedFilterIndex = index;
     emit(FilterBookingRequestFilterChanged());
-    context.read<FetchBookingRequestCubit>().fetchBookingRequests(status: _bookingsStatus[index]);
+    context.read<FetchBookingRequestCubit>().fetchBookingRequests(status: eBookingsStatus[index]);
   }
 }

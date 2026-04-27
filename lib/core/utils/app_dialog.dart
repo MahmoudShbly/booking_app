@@ -15,7 +15,7 @@ Future<T?> showAppDialog<T>({
   Color cancelColor = kBlue,
   BoxBorder? confirmBorder,
   BoxBorder? cancelBorder,
-  required VoidCallback onConfirm,
+  required Function onConfirm,
 }) {
   return showDialog<T>(
     context: context,
@@ -69,9 +69,9 @@ Future<T?> showAppDialog<T>({
                           titleStyle: Styles.textStyle20
                               .copyWith(color: Colors.white),
                           title: confirmText,
-                          onTap: () {
+                          onTap: () async{
                             setState(() => localLoading = true);
-                            onConfirm();
+                           await onConfirm();
                           },
                           width: MediaQuery.of(context).size.width * 0.25,
                           borderRadius: 10,
