@@ -12,18 +12,17 @@ class DetailsViewBody extends StatelessWidget {
   const DetailsViewBody({super.key, required this.service});
   final ServiceModel service;
 
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return  BlocBuilder<FetchServiceReviewsCubit, FetchServiceReviewsState>(
-        builder: (context, state) {
-          if (state is FetchServiceReviewsSuccess)
-      {        return Stack(
-        children: [
-          SingleChildScrollView(
-            physics: AlwaysScrollableScrollPhysics(),
-            child: Column(
+    return BlocBuilder<FetchServiceReviewsCubit, FetchServiceReviewsState>(
+      builder: (context, state) {
+        if (state is FetchServiceReviewsSuccess) {
+          return Stack(
+            children: [
+              SingleChildScrollView(
+                physics: AlwaysScrollableScrollPhysics(),
+                child: Column(
                   children: [
                     SizedBox(
                       height: size.height * .4,
@@ -51,58 +50,55 @@ class DetailsViewBody extends StatelessWidget {
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
                         children: [
-                          AboutServiceSection(service: service,average: state.reviews.average.toString(),),
+                          AboutServiceSection(
+                            service: service,
+                            average: state.reviews.average.toString(),
+                          ),
                           const SizedBox(height: 26),
-                          ReviewRatingSection(feedbacks: state.reviews.comments,),
+                          ReviewRatingSection(
+                            feedbacks: state.reviews.comments,
+                          ),
                           const SizedBox(height: 70),
                         ],
                       ),
                     ),
                   ],
                 ),
-          ),
-             Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: BookButton(serviceId: service.id),
-          ),
-        ],
-      );}
-          else if (state is FetchServiceReviewsFailure) {
-            return ListView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              children: [
-                SizedBox(
-                  height: size.height,
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            state.message,
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(width: 10),
-                          Icon( 
-                            Icons.error,
-                            color: Colors.red,
-                          ),
-                        ],
-                      ),
+              ),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: BookButton(serviceId: service.id),
+              ),
+            ],
+          );
+        } else if (state is FetchServiceReviewsFailure) {
+          return ListView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            children: [
+              SizedBox(
+                height: size.height,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(state.message, textAlign: TextAlign.center),
+                        const SizedBox(width: 10),
+                        Icon(Icons.error, color: Colors.red),
+                      ],
                     ),
                   ),
                 ),
-              ],
-            );
-          }
-          else {
-            return const DetailsViewBodyShmmier();
-          }
-        },
-      
+              ),
+            ],
+          );
+        } else {
+          return const DetailsViewBodyShmmier();
+        }
+      },
     );
   }
 }

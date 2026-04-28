@@ -8,24 +8,28 @@ class ReviewRatingSection extends StatelessWidget {
   final List<FeedbackModel> feedbacks;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'التعليقات',
-          style: Styles.textStyle26.copyWith(fontWeight: FontWeight.bold),
-        ),
-        SizedBox(height: 12),
-        ListView.separated(
-          separatorBuilder: (context, index) =>
-              Container(height: 1, color: Colors.grey.shade300),
-          itemBuilder: (context, index) => CustomReviewCard(feedback: feedbacks[index],),
-          itemCount: feedbacks.length,
-          shrinkWrap: true,
-          padding: EdgeInsets.all(8),
-          physics: NeverScrollableScrollPhysics(),
-        ),
-      ],
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            'التعليقات',
+            style: Styles.textStyle26.copyWith(fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 12),
+          feedbacks.isEmpty? const Center(child:  Text('لا توجد تعليقات بعد',style: Styles.textStyle14,)):
+          ListView.separated(
+            separatorBuilder: (context, index) =>
+                Container(height: 1, color: Colors.grey.shade300),
+            itemBuilder: (context, index) => CustomReviewCard(feedback: feedbacks[index],),
+            itemCount: feedbacks.length,
+            shrinkWrap: true,
+            padding: EdgeInsets.all(8),
+            physics: NeverScrollableScrollPhysics(),
+          ),
+        ],
+      ),
     );
   }
 }
