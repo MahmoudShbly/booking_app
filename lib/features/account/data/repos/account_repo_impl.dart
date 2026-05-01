@@ -20,4 +20,17 @@ class AccountRepoImpl extends AccountRepo {
 			return left(ServerFailure(e.toString()));
 		}
 	}
+
+	@override
+	Future<Either<ServerFailure, void>> requestPoints({required Map<String, dynamic> data}) async {
+		try {
+			await ApiServices().post(endPoint: ApiEndPoints.requestPoints, data: data);
+			return right(null);
+		} on Exception catch (e) {
+			if (e is DioException) {
+				return left(ServerFailure.fromDioError(e));
+			}
+			return left(ServerFailure(e.toString()));
+		}
+	}
 }

@@ -3,7 +3,14 @@ import 'package:booking_app/features/account/presentation/views/widgets/bottom_s
 import 'package:flutter/material.dart';
 
 class PointRequestFormContent extends StatelessWidget {
-  const PointRequestFormContent({super.key});
+  const PointRequestFormContent({
+    super.key,
+    required this.pointsController,
+    required this.transferIdController,
+  });
+
+  final TextEditingController pointsController;
+  final TextEditingController transferIdController;
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +39,11 @@ class PointRequestFormContent extends StatelessWidget {
           style: Styles.textStyle12.copyWith(color: const Color(0xff4F5D73)),
         ),
         const SizedBox(height: 6),
-        const BottomSheetInput(
+        BottomSheetInput(
           hintText: 'ادخل عدد النقاط',
           icon: Icons.radio_button_unchecked,
+          controller: pointsController,
+          keyboardType: TextInputType.number,
         ),
         const SizedBox(height: 10),
         Text(
@@ -43,9 +52,10 @@ class PointRequestFormContent extends StatelessWidget {
           style: Styles.textStyle12.copyWith(color: const Color(0xff4F5D73)),
         ),
         const SizedBox(height: 6),
-        const BottomSheetInput(
+        BottomSheetInput(
           hintText: 'ادخل رقم عملية التحويل',
           icon: Icons.receipt_long_outlined,
+          controller: transferIdController,
         ),
       ],
     );

@@ -1,23 +1,24 @@
-import 'package:booking_app/core/utils/app_bottom_sheet.dart';
-import 'package:booking_app/core/utils/constant.dart';
 import 'package:booking_app/core/utils/styles.dart';
-import 'package:booking_app/features/account/presentation/views/widgets/point_request_form_content.dart';
-import 'package:booking_app/features/account/presentation/views/widgets/point_request_header.dart';
+import 'package:booking_app/features/account/data/repos/account_repo_impl.dart';
+import 'package:booking_app/features/account/presentation/manager/request_points/request_points_cubit.dart';
+import 'package:booking_app/features/account/presentation/views/widgets/request_points_bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PointRequestButton extends StatelessWidget {
   const PointRequestButton({super.key});
 
   void _showPointRequestBottomSheet(BuildContext context) {
-    showAppBottomSheet(
+    showModalBottomSheet(
       context: context,
-      title: const PointRequestHeader(),
-      content: const PointRequestFormContent(),
-      confirmText: 'إرسال الطلب',
-      confirmColor: kBlue,
-      confirmWidth: double.infinity,
-      onConfirm: () {},
       isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (sheetContext) {
+        return BlocProvider(
+          create: (_) => RequestPointsCubit(AccountRepoImpl()),
+          child: RequestPointsBottomSheet(parentContext: context),
+        );
+      },
     );
   }
 

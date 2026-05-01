@@ -3,4 +3,5 @@ import 'package:dartz/dartz.dart';
 
 abstract class AccountRepo {
 	Future<Either<ServerFailure, void>> logout();
+	Future<Either<ServerFailure, void>> requestPoints({required Map<String, dynamic> data});
 }

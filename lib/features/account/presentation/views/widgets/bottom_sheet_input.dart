@@ -2,14 +2,24 @@ import 'package:booking_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class BottomSheetInput extends StatelessWidget {
-  const BottomSheetInput({super.key, required this.hintText, required this.icon});
+  const BottomSheetInput({
+    super.key,
+    required this.hintText,
+    required this.icon,
+    this.controller,
+    this.keyboardType,
+  });
 
   final String hintText;
   final IconData icon;
+  final TextEditingController? controller;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
+      keyboardType: keyboardType,
       textAlign: TextAlign.right,
       decoration: InputDecoration(
         hintText: hintText,

@@ -16,5 +16,6 @@ class ApiEndPoints {
   static const String detectBookingTime = "schedule";
   static const String completeBooking = "complete";
   static const String providerService = "my-services";
+  static const String requestPoints = "topups";
 
 }
