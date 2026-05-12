@@ -1,7 +1,7 @@
 import 'package:booking_app/core/utils/app_router.dart';
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/custom_location_component.dart';
-import 'package:booking_app/features/home/data/models/service_model.dart';
+import 'package:booking_app/features/user%20features/home/data/models/service_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

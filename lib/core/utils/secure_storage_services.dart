@@ -1,4 +1,4 @@
-import 'package:booking_app/features/auth/data/models/user_model.dart';
+import 'package:booking_app/features/user%20features/auth/data/models/user_model.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class SecureStorageServices {
   static final _storage = FlutterSecureStorage();
