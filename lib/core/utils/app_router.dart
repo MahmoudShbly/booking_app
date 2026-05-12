@@ -2,6 +2,8 @@
 import 'dart:async';
 
 import 'package:booking_app/core/utils/secure_storage_services.dart';
+import 'package:booking_app/features/admin%20features/home/presentation/view/admin_home_view.dart';
+import 'package:booking_app/features/admin%20features/main/presentation/views/main_view.dart';
 import 'package:booking_app/features/user%20features/account/presentation/views/support_view.dart';
 import 'package:booking_app/features/user%20features/appointments/data/models/review_model.dart';
 import 'package:booking_app/features/user%20features/auth/presentation/views/login_view.dart';
@@ -39,22 +41,22 @@ abstract class AppRouter {
   static final router = GoRouter(
     refreshListenable: GoRouterRefreshStream(authCubit.stream),
 
-    redirect: (context, state) async {
-      final token = await SecureStorageServices().getUserToken();
-      final isLoginRoute = state.uri.toString() == '/';
-      final isRegisterRoute = state.uri.toString() == kRegisterView;
+    // redirect: (context, state) async {
+    //   final token = await SecureStorageServices().getUserToken();
+    //   final isLoginRoute = state.uri.toString() == '/';
+    //   final isRegisterRoute = state.uri.toString() == kRegisterView;
 
-      if (token != null && isLoginRoute) {
-        return kMainView;
-      } else if (token == null && !isLoginRoute && !isRegisterRoute) {
-        return '/';
+    //   if (token != null && isLoginRoute) {
+    //     return kMainView;
+    //   } else if (token == null && !isLoginRoute && !isRegisterRoute) {
+    //     return '/';
         
-      }
-      return null;
-    },
+    //   }
+    //   return null;
+    // },
 
     routes: [
-      GoRoute(path: '/', builder: (context, state) => const LoginView()),
+      GoRoute(path: '/', builder: (context, state) => const AdminMainView()),
 
       GoRoute(
         path: kRegisterView,
