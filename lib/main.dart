@@ -1,27 +1,28 @@
-import 'package:booking_app/core/utils/app_router.dart';
+﻿import 'package:booking_app/core/utils/app_router.dart';
 import 'package:booking_app/core/utils/bloc_observer.dart';
-import 'package:booking_app/features/account/data/repos/account_repo_impl.dart';
-import 'package:booking_app/features/account/presentation/manager/account_cubit.dart';
-import 'package:booking_app/features/account/presentation/manager/logout/logout_cubit.dart';
-import 'package:booking_app/features/appointments/data/repos/booking_repo_impl.dart';
-import 'package:booking_app/features/appointments/presentation/manager/cancel%20booking/cancel_booking_cubit.dart';
-import 'package:booking_app/features/appointments/presentation/manager/fetch%20my%20bookings/fetch_my_bookings_cubit.dart';
-import 'package:booking_app/features/appointments/presentation/manager/rating%20cubit/rating_cubit.dart';
-import 'package:booking_app/features/auth/data/repos/auth_repo_impl.dart';
-import 'package:booking_app/features/auth/presentation/manager/auth_cubit.dart';
-import 'package:booking_app/features/home/data/repos/home_repo_impl.dart';
-import 'package:booking_app/features/home/presentation/manager/book%20service/book_service_cubit.dart';
-import 'package:booking_app/features/home/presentation/manager/fetch%20categories/fetch_categories_cubit.dart';
-import 'package:booking_app/features/home/presentation/manager/fetch%20service%20by%20category%20id/fetch_services_by_category_id_cubit.dart';
-import 'package:booking_app/features/home/presentation/manager/fetch%20services/fetch_services_cubit.dart';
-import 'package:booking_app/features/services/data/repos/customer/customer_repo_impl.dart';
-import 'package:booking_app/features/services/data/repos/service%20provider/provider_repo_impl.dart';
-import 'package:booking_app/features/services/presentation/manager/customer/be%20provider/be_provider_cubit.dart';
-import 'package:booking_app/features/services/presentation/manager/service%20provider/complete%20booking/complete_booking_cubit.dart';
-import 'package:booking_app/features/services/presentation/manager/service%20provider/detect%20booking%20time%20cubit/detect_booking_time_cubit.dart';
-import 'package:booking_app/features/services/presentation/manager/service%20provider/filter%20booking%20request/filter_booking_request_by_status_cubit.dart';
-import 'package:booking_app/features/services/presentation/manager/service%20provider/fetch%20bookings%20request/fetch_booking_request_cubit.dart';
-import 'package:booking_app/features/services/presentation/manager/service%20provider/fetch%20provider%20service%20info/fetch_provider_service_info_cubit_cubit.dart';
+import 'package:booking_app/features/user%20features/account/data/repos/account_repo_impl.dart';
+import 'package:booking_app/features/user%20features/account/presentation/manager/account_cubit.dart';
+import 'package:booking_app/features/user%20features/account/presentation/manager/logout/logout_cubit.dart';
+import 'package:booking_app/features/user%20features/appointments/data/repos/booking_repo_impl.dart';
+import 'package:booking_app/features/user%20features/appointments/presentation/manager/cancel%20booking/cancel_booking_cubit.dart';
+import 'package:booking_app/features/user%20features/appointments/presentation/manager/fetch%20my%20bookings/fetch_my_bookings_cubit.dart';
+import 'package:booking_app/features/user%20features/appointments/presentation/manager/rating%20cubit/rating_cubit.dart';
+import 'package:booking_app/features/user%20features/auth/data/repos/auth_repo_impl.dart';
+import 'package:booking_app/features/user%20features/auth/presentation/manager/auth_cubit.dart';
+import 'package:booking_app/features/user%20features/home/data/repos/home_repo_impl.dart';
+import 'package:booking_app/features/user%20features/home/presentation/manager/book%20service/book_service_cubit.dart';
+import 'package:booking_app/features/user%20features/home/presentation/manager/fetch%20categories/fetch_categories_cubit.dart';
+import 'package:booking_app/features/user%20features/home/presentation/manager/fetch%20service%20by%20category%20id/fetch_services_by_category_id_cubit.dart';
+import 'package:booking_app/features/user%20features/home/presentation/manager/fetch%20services/fetch_services_cubit.dart';
+import 'package:booking_app/features/user%20features/services/data/repos/customer/customer_repo_impl.dart';
+import 'package:booking_app/features/user%20features/services/data/repos/service%20provider/provider_repo_impl.dart';
+import 'package:booking_app/features/user%20features/services/presentation/manager/customer/be%20provider/be_provider_cubit.dart';
+import 'package:booking_app/features/user%20features/services/presentation/manager/service%20provider/complete%20booking/complete_booking_cubit.dart';
+import 'package:booking_app/features/user%20features/services/presentation/manager/service%20provider/detect%20booking%20time%20cubit/detect_booking_time_cubit.dart';
+import 'package:booking_app/features/user%20features/services/presentation/manager/service%20provider/fetch%20bookings%20request/fetch_booking_request_cubit.dart';
+import 'package:booking_app/features/user%20features/services/presentation/manager/service%20provider/fetch%20provider%20service%20info/fetch_provider_service_info_cubit_cubit.dart';
+import 'package:booking_app/features/user%20features/services/presentation/manager/service%20provider/filter%20booking%20request/filter_booking_request_by_status_cubit.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -91,3 +92,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
