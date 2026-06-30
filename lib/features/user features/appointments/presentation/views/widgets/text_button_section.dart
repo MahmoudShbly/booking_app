@@ -58,6 +58,7 @@ class TextButtonSection extends StatelessWidget {
                   .read<BookServiceCubit>()
                   .resetBookingState(booking.serviceId);
               context.read<FetchMyBookingsCubit>().fetchMyBookings();
+              
             }
             if (state is CancelBookingFailure &&
                 state.bookingId == booking.id) {
@@ -114,7 +115,7 @@ class TextButtonSection extends StatelessWidget {
                               style: Styles.textStyle26,
                             ),
                             message:
-                                'يرجى تقييم خدمتك المقدمة من عيادة الرضوان',
+                                'يرجى تقييم خدمتك المقدمة من  ${booking.service.name}',
                             content: const CommentRatingSection(),
                             cancelText: 'رجوع',
                             confirmText: 'تقييم',

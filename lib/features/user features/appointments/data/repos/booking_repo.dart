@@ -6,5 +6,5 @@ import 'package:dartz/dartz.dart';
 abstract class BookingRepo {
   Future <Either<ServerFailure,List<BookingModel>>> fetchMyBookings ();
   Future <Either<ServerFailure,String>> cancelBooking (int bookingId);
-  Future <Either<ServerFailure,String>> ratnigService ({required RatingModel rating,required BookingModel booking} );
+  Future <Either<ServerFailure,String>> ratingService ({required RatingModel rating,required BookingModel booking} );
 }

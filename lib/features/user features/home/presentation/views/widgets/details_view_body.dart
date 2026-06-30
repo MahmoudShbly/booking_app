@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetailsViewBody extends StatelessWidget {
+  
   const DetailsViewBody({super.key, required this.service});
   final ServiceModel service;
 

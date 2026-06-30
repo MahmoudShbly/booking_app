@@ -76,7 +76,7 @@ class ProvidersList extends StatelessWidget {
               description: item['description'] as String,
               location: item['location'] as String,
               city: item['city'] as String,
-              images: item['images'] as List<dynamic>,
+              images: List<String>.from(item['images'] as List<dynamic>),
               mainImage: item['mainImage'] as String,
               bookPrice: item['bookPrice'] as String,
               fullPrice: item['fullPrice'] as String,

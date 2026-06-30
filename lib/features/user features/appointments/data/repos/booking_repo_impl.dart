@@ -51,7 +51,7 @@ class BookingRepoImpl extends BookingRepo {
   }
 
   @override
-  Future<Either<ServerFailure, String>> ratnigService(
+  Future<Either<ServerFailure, String>> ratingService(
     {required RatingModel rating,
     required BookingModel booking}
   ) async {

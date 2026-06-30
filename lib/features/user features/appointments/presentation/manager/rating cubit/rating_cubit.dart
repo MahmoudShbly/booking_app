@@ -22,7 +22,7 @@ class RatingCubit extends Cubit<RatingState> {
       comment: commentController.text,
       stars: stars.toString(),
     );
-    var result = await bookingRepo.ratnigService(
+    var result = await bookingRepo.ratingService(
       rating: rating,
       booking: booking,
     );

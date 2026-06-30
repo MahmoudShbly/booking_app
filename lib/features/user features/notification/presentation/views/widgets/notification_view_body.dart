@@ -42,7 +42,7 @@ class NotificationViewBody extends StatelessWidget {
                     context: context,
                     title: Text('تأكيد', style: Styles.textStyle26),
                     message:
-                        'هل انت واثق من تأكيد حجزك لدى عيادة الرضوان علما انه سيتم خصم 2 نقطة كجزء من رسم الخدمة .',
+                        'هل انت واثق من تأكيد حجزك لدى صالون العلي علما انه سيتم خصم 20 نقطة كجزء من رسم الخدمة .',
                     confirmText: 'تأكيد',
                     confirmColor: Colors.green,
                     cancelText: 'الغاء',
@@ -63,7 +63,7 @@ class NotificationViewBody extends StatelessWidget {
                   );
                 },
               );
-            }, childCount: 10),
+            }, childCount: 1),
           ),
         ],
       ),

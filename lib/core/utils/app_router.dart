@@ -41,22 +41,22 @@ abstract class AppRouter {
   static final router = GoRouter(
     refreshListenable: GoRouterRefreshStream(authCubit.stream),
 
-    // redirect: (context, state) async {
-    //   final token = await SecureStorageServices().getUserToken();
-    //   final isLoginRoute = state.uri.toString() == '/';
-    //   final isRegisterRoute = state.uri.toString() == kRegisterView;
+    redirect: (context, state) async {
+      final token = await SecureStorageServices().getUserToken();
+      final isLoginRoute = state.uri.toString() == '/';
+      final isRegisterRoute = state.uri.toString() == kRegisterView;
 
-    //   if (token != null && isLoginRoute) {
-    //     return kMainView;
-    //   } else if (token == null && !isLoginRoute && !isRegisterRoute) {
-    //     return '/';
+      if (token != null && isLoginRoute) {
+        return kMainView;
+      } else if (token == null && !isLoginRoute && !isRegisterRoute) {
+        return '/';
         
-    //   }
-    //   return null;
-    // },
+      }
+      return null;
+    },
 
     routes: [
-      GoRoute(path: '/', builder: (context, state) => const AdminMainView()),
+      GoRoute(path: '/', builder: (context, state) => const LoginView()),
 
       GoRoute(
         path: kRegisterView,

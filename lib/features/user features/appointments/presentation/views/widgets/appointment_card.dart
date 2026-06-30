@@ -102,8 +102,9 @@ class AppointmentCard extends StatelessWidget {
   }
 
   Widget _buildServiceInfo() {
-    final String? imageUrl =
-        booking.service.images.isNotEmpty ? booking.service.images.first : null;
+    final String? imageUrl = (booking.service.images.isNotEmpty && booking.service.images[0] != null && booking.service.images[0].toString().trim().isNotEmpty)
+        ? booking.service.images[0].toString()
+        : (booking.service.mainImage.isNotEmpty ? booking.service.mainImage : null);
 
     return Expanded(
       child: Row(
@@ -124,10 +125,13 @@ class AppointmentCard extends StatelessWidget {
                     fit: BoxFit.cover,
                     placeholder: (context, url) =>
                         Container(color: Colors.grey.shade300),
-                    errorWidget: (context, url, error) => Container(
-                      color: Colors.grey.shade300,
-                      child: const Icon(Icons.error, color: Colors.red),
-                    ),
+                    errorWidget: (context, url, error) {
+                      debugPrint('Error loading image: $error');
+                      return Container(
+                        color: Colors.grey.shade300,
+                        child: const Icon(Icons.error, color: Colors.red),
+                      );
+                    },
                   ),
           ),
           const SizedBox(width: 12),

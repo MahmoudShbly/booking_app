@@ -11,7 +11,18 @@ class CustomNotificationCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(15),
-        color: kLightBlue,
+        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        decoration: BoxDecoration(
+          color: kLightBlue,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -25,14 +36,14 @@ class CustomNotificationCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'عيادة الرضوان',
+                    ' صالون العلي',
                     style: Styles.textStyle16.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    'تمت الموافقة على حجزك اضغط هنا لتاكيده.',
+                    'تم تحديد موعدك مع صالون العلي في تمام الساعة 11:00 AM اضغط هنا لتأكيده',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: Styles.textStyle16,
