@@ -65,7 +65,7 @@ abstract class AppRouter {
 
       GoRoute(
         path: kMainView,                                         
-        builder: (context, state) => const MainView(),
+        builder: (context, state) => const AdminMainView(),
       ),
 
       GoRoute(

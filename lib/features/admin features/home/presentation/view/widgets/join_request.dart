@@ -3,8 +3,8 @@ import 'package:booking_app/core/widgets/admin_service_card_component%20.dart';
 import 'package:booking_app/features/user%20features/home/data/models/service_model.dart';
 import 'package:flutter/material.dart';
 
-class ProvidersList extends StatelessWidget {
-  const ProvidersList({super.key});
+class JoinRequest extends StatelessWidget {
+  const JoinRequest({super.key});
 
   static final _items = [
     {
@@ -62,12 +62,18 @@ class ProvidersList extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Text('المزودين الاعلى تقييما : ', style: Styles.textStyle16),
+         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+           children: [
+             Text('طلبات الانضمام', style: Styles.textStyle18.copyWith(fontWeight: FontWeight.bold)),
+             Text('عرض الكل', style: Styles.textStyle14.copyWith(fontWeight:FontWeight.w600,color: Color(0xff003D9B))),
+           ],
+         ),
         const SizedBox(height: 8),
         ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: _items.length,
+          itemCount: 1,
           itemBuilder: (context, index) {
             final item = _items[index];
             final service = ServiceModel(

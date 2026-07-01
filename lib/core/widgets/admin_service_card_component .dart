@@ -4,8 +4,8 @@ import 'package:booking_app/features/user%20features/home/data/models/service_mo
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class AdminServiceCardComponent  extends StatelessWidget {
-  const AdminServiceCardComponent ({super.key, required this.service});
+class AdminServiceCardComponent extends StatelessWidget {
+  const AdminServiceCardComponent({super.key, required this.service});
   final ServiceModel service;
   @override
   Widget build(BuildContext context) {
@@ -24,55 +24,119 @@ class AdminServiceCardComponent  extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.black.withValues(alpha: 0.3)),
-            ),
-            child: CachedNetworkImage(
-              imageUrl: service.images[0],
-              width: 100,
-              height: 100,
-              fit: BoxFit.cover,
-              placeholder: (context, url) =>
-                  Container(color: Colors.grey.shade300),
-              errorWidget: (context, url, error) => Container(
+      child: Column(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  color: Colors.grey.shade300,
-                  border: Border.all(color: Colors.black.withValues(alpha: 0.3)),
+                  border: Border.all(
+                    color: Colors.black.withValues(alpha: 0.3),
+                  ),
                 ),
-               
-                child: const Icon(Icons.error, color: Colors.red),
+                child: CachedNetworkImage(
+                  imageUrl: service.images[0],
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) =>
+                      Container(color: Colors.grey.shade300),
+                  errorWidget: (context, url, error) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.grey.shade300,
+                      border: Border.all(
+                        color: Colors.black.withValues(alpha: 0.3),
+                      ),
+                    ),
+
+                    child: const Icon(Icons.error, color: Colors.red),
+                  ),
+                ),
               ),
-            ),
+              const SizedBox(width: 16),
+
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(service.name, style: Styles.textStyle20),
+                    const SizedBox(height: 6),
+                    Text(
+                      service.description,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: TextStyle(fontSize: 14, color: Colors.black54),
+                    ),
+                    const SizedBox(height: 8),
+                    CustomLocationComponent(
+                      location: service.location,
+                      city: service.city,
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          const SizedBox(width: 16),
-    
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(service.name, style: Styles.textStyle20),
-                const SizedBox(height: 6),
-                Text(
-                  service.description,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  style: TextStyle(fontSize: 14, color: Colors.black54),
-                ),
-                const SizedBox(height: 8),
-                CustomLocationComponent(
-                  location: service.location,
-                  city: service.city,
-                ),
-              ],
-            ),
+          SizedBox(
+            height: 16,
+          ),
+          Row(
+            children: <Widget>[
+              CardButton(
+                title: 'قبول',
+                color: Color(0xff004E32),
+                bgColor: Color(0xff006844).withAlpha(70),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              CardButton(
+                title: 'رفض',
+                color: Color(0xffBA1A1A),
+                bgColor: Color(0xffFFDAD6),
+              ),
+            ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CardButton extends StatelessWidget {
+  final VoidCallback? onPressed;
+  final Color bgColor;
+  final Color color;
+  final String title;
+  const CardButton({
+    super.key,
+    this.onPressed,
+    required this.bgColor,
+    required this.color,
+    required this.title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: onPressed,
+        child: Container(
+          decoration: BoxDecoration(
+            color: bgColor,
+            borderRadius: BorderRadius.circular(2),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          alignment: Alignment.center,
+          child: Text(
+            title,
+            textDirection: TextDirection.rtl,
+            style: Styles.textStyle14.copyWith(color: color),
+          ),
+        ),
       ),
     );
   }
