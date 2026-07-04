@@ -1,5 +1,5 @@
 class ApiEndPoints {
-  static const String baseUrl = "https://goplace-first-iuaf.onrender.com/api/";
+  static const String baseUrl = "https://sedation-rematch-polygon.ngrok-free.dev/api/";
   static const String categories = "categories";
   static const String acceptServices = "services-accept";
   static const String services = "services";
@@ -17,5 +17,7 @@ class ApiEndPoints {
   static const String completeBooking = "complete";
   static const String providerService = "my-services";
   static const String requestPoints = "topups";
+  static const String notAcceptedServices = "services-notaccept";
+  static const String allUsers = "users";
 
 }

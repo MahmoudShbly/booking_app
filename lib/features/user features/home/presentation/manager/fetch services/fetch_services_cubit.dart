@@ -7,17 +7,19 @@ part 'fetch_services_state.dart';
 
 class FetchServicesCubit extends Cubit<FetchServicesState> {
   final HomeRepoImpl homeRepoImpl;
+  int? providerCounts;
 
   FetchServicesCubit(this.homeRepoImpl) : super(FetchServicesInitial());
+
   Future<void> fetchServices() async {
     emit(FetchServicesLoading());
-    var result = await homeRepoImpl.fetchServices();
+    final result = await homeRepoImpl.fetchServices();
     result.fold(
-      (failure) =>
-          emit(FetchServicesFailure(errorMessage: failure.errorMessage)),
-      (services)=>
-        emit(FetchServicesSuccess(services: services)),
-      
+      (failure) => emit(FetchServicesFailure(errorMessage: failure.errorMessage)),
+      (services) {
+        providerCounts = services.length;
+        emit(FetchServicesSuccess(services: services));
+      },
     );
   }
 }

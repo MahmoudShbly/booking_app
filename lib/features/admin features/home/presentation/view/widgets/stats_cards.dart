@@ -1,5 +1,8 @@
 import 'package:booking_app/core/utils/styles.dart';
+import 'package:booking_app/features/admin%20features/home/presentation/manager/fetch%20users/fetch_users_cubit.dart';
+import 'package:booking_app/features/user%20features/home/presentation/manager/fetch%20services/fetch_services_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UsersTypeCard extends StatelessWidget {
   const UsersTypeCard({super.key});
@@ -59,14 +62,17 @@ class UsersTypeCard extends StatelessWidget {
       );
     }
 
+    final providerCount = context.watch<FetchServicesCubit>().providerCounts ?? 0;
+    final usersCount = context.watch<FetchUsersCubit>().usersCount ?? 0;
+
     return Row(
       children: [
         Expanded(
-          child: statCard(Icons.person, 'المستخدمين', '653'),
+          child: statCard(Icons.person, 'المستخدمين', usersCount.toString()),
         ),
         const SizedBox(width: 12),
         Expanded(
-          child: statCard(Icons.supervisor_account, 'مزودي الخدمة', '85'),
+          child: statCard(Icons.supervisor_account, 'مزودي الخدمة', providerCount.toString()),
         ),
       ],
     );

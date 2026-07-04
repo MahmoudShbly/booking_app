@@ -1,75 +1,14 @@
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/admin_service_card_component%20.dart';
-import 'package:booking_app/features/user%20features/home/data/models/service_model.dart';
+import 'package:booking_app/features/admin%20features/providers/presentation/manager/fetch%20not%20accepted%20services/fetch_not_accepted_services_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProvidersViewBody extends StatefulWidget {
+class ProvidersViewBody extends StatelessWidget {
   const ProvidersViewBody({super.key});
 
   @override
-  State<ProvidersViewBody> createState() => _ProvidersViewBodyState();
-}
-
-class _ProvidersViewBodyState extends State<ProvidersViewBody> {
-
-  static final List<ServiceModel> _requests = [
-    
-       ServiceModel(
-        id: 1,
-        name: 'خدمات النجارة المتكاملة',
-        description: 'أحمد محمود الخالدي',
-        location: 'المنطقة الصناعية',
-        city: 'حمص',
-        images: const ['https://via.placeholder.com/100'],
-        mainImage: 'https://via.placeholder.com/100',
-        bookPrice: '50',
-        fullPrice: '100',
-        categoryId: '1',
-      ),
-   
-     ServiceModel(
-        id: 2,
-        name: 'تصميم ديكورات مودرن',
-        description: 'سارة عبد الرحمن',
-        location: 'شارع الحضارة',
-        city: 'حمص',
-        images: const ['https://via.placeholder.com/100'],
-        mainImage: 'https://via.placeholder.com/100',
-        bookPrice: '60',
-        fullPrice: '120',
-        categoryId: '2',
-      ),
-     ServiceModel(
-        id: 3,
-        name: 'فني كهرباء منازل',
-        description: 'محمد إبراهيم حسن',
-        location: 'حي الوعر',
-        city: 'حمص',
-        images: const ['https://via.placeholder.com/100'],
-        mainImage: 'https://via.placeholder.com/100',
-        bookPrice: '75',
-        fullPrice: '150',
-        categoryId: '3',
-      ),
-    
-    ServiceModel(
-        id: 4,
-        name: 'شركة مياه وصرف صحي',
-        description: 'خالد عمر اليوسف',
-        location: 'شارع بغداد',
-        city: 'حمص',
-        images: const ['https://via.placeholder.com/100'],
-        mainImage: 'https://via.placeholder.com/100',
-        bookPrice: '80',
-        fullPrice: '160',
-        categoryId: '4',
-      ),
-    
-  ];
-
-  @override
   Widget build(BuildContext context) {
- 
     return ColoredBox(
       color: const Color(0xFFF8F9FB),
       child: CustomScrollView(
@@ -90,10 +29,54 @@ class _ProvidersViewBodyState extends State<ProvidersViewBody> {
                   ),
                 ),
                 const SizedBox(height: 16),
-              
-                ..._requests.map(
-                  (request) =>
-                      AdminServiceCardComponent(service: request),
+                BlocBuilder<
+                  FetchNotAcceptedServicesCubit,
+                  FetchNotAcceptedServicesState
+                >(
+                  builder: (context, state) {
+                    if (state is FetchNotAcceptedServicesLoading) {
+                      return const Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 24),
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    }
+
+                    if (state is FetchNotAcceptedServicesFailure) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 24),
+                        child: Text(
+                          state.errorMessage,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(color: Colors.red),
+                        ),
+                      );
+                    }
+
+                    if (state is FetchNotAcceptedServicesSuccess) {
+                      if (state.services.isEmpty) {
+                        return const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 24),
+                          child: Text(
+                            'لا توجد طلبات حالياً',
+                            textAlign: TextAlign.center,
+                          ),
+                        );
+                      }
+
+                      return Column(
+                        children: state.services
+                            .map(
+                              (request) =>
+                                  AdminServiceCardComponent(service: request),
+                            )
+                            .toList(),
+                      );
+                    }
+
+                    return const SizedBox.shrink();
+                  },
                 ),
               ]),
             ),
@@ -103,7 +86,4 @@ class _ProvidersViewBodyState extends State<ProvidersViewBody> {
     );
   }
 }
-
-
-
 

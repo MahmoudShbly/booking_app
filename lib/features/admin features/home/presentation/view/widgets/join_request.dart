@@ -1,96 +1,46 @@
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/admin_service_card_component%20.dart';
-import 'package:booking_app/features/user%20features/home/data/models/service_model.dart';
+import 'package:booking_app/features/admin%20features/providers/presentation/manager/fetch%20not%20accepted%20services/fetch_not_accepted_services_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class JoinRequest extends StatelessWidget {
-  const JoinRequest({super.key});
-
-  static final _items = [
-    {
-      'id': 1,
-      'name': 'احمد ياسين',
-      'description': 'خدمات الصيانة والإصلاح',
-      'location': 'الجزيرة السابعة',
-      'city': 'حمص',
-      'images': ['https://via.placeholder.com/100'],
-      'mainImage': 'https://via.placeholder.com/100',
-      'bookPrice': '50',
-      'fullPrice': '100',
-      'categoryId': '1',
-    },
-    {
-      'id': 2,
-      'name': 'سامر محمود',
-      'description': 'خدمات التنظيف والتطهير',
-      'location': 'شارع بغداد',
-      'city': 'حمص',
-      'images': ['https://via.placeholder.com/100'],
-      'mainImage': 'https://via.placeholder.com/100',
-      'bookPrice': '60',
-      'fullPrice': '120',
-      'categoryId': '2',
-    },
-    {
-      'id': 3,
-      'name': 'ليث علي',
-      'description': 'خدمات التدريب والاستشارة',
-      'location': 'الكورنيش',
-      'city': 'حمص',
-      'images': ['https://via.placeholder.com/100'],
-      'mainImage': 'https://via.placeholder.com/100',
-      'bookPrice': '75',
-      'fullPrice': '150',
-      'categoryId': '3',
-    },
-    {
-      'id': 4,
-      'name': 'هند قاسم',
-      'description': 'خدمات التصميم والديكور',
-      'location': 'الشارع الرئيسي',
-      'city': 'حمص',
-      'images': ['https://via.placeholder.com/100'],
-      'mainImage': 'https://via.placeholder.com/100',
-      'bookPrice': '80',
-      'fullPrice': '160',
-      'categoryId': '4',
-    },
-  ];
-
+  const JoinRequest({super.key, required this.state});
+  final FetchNotAcceptedServicesState state;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-         Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-           children: [
-             Text('طلبات الانضمام', style: Styles.textStyle18.copyWith(fontWeight: FontWeight.bold)),
-             Text('عرض الكل', style: Styles.textStyle14.copyWith(fontWeight:FontWeight.w600,color: Color(0xff003D9B))),
-           ],
-         ),
-        const SizedBox(height: 8),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: 1,
-          itemBuilder: (context, index) {
-            final item = _items[index];
-            final service = ServiceModel(
-              id: item['id'] as int,
-              name: item['name'] as String,
-              description: item['description'] as String,
-              location: item['location'] as String,
-              city: item['city'] as String,
-              images: List<String>.from(item['images'] as List<dynamic>),
-              mainImage: item['mainImage'] as String,
-              bookPrice: item['bookPrice'] as String,
-              fullPrice: item['fullPrice'] as String,
-              categoryId: item['categoryId'] as String,
-            );
-            return AdminServiceCardComponent(service: service);
-          },
+          children: [
+            Text(
+              'طلبات الانضمام',
+              style: Styles.textStyle18.copyWith(fontWeight: FontWeight.bold),
+            ),
+            Text(
+              'عرض الكل',
+              style: Styles.textStyle14.copyWith(
+                fontWeight: FontWeight.w600,
+                color: Color(0xff003D9B),
+              ),
+            ),
+          ],
         ),
+        const SizedBox(height: 8),
+        state is FetchNotAcceptedServicesSuccess
+            ? AdminServiceCardComponent(
+                service: (context.read<FetchNotAcceptedServicesCubit>().firstService)!,
+              )
+            : state is FetchNotAcceptedServicesLoading
+                ? const Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 24),
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                : const Text('لا توجد طلبات حالياً', textAlign: TextAlign.center),
       ],
     );
   }
