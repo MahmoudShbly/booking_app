@@ -36,15 +36,14 @@ class CustomNotificationCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    ' صالون العلي',
+                    ' صالون احمد',
                     style: Styles.textStyle16.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    'تم تحديد موعدك مع صالون العلي في تمام الساعة 11:00 AM اضغط هنا لتأكيده',
-                    maxLines: 2,
+'تم تحديد موعدك مع صالون احمد في تمام الساعة 3:10 AM اضغط هنا لتأكيده',                    maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: Styles.textStyle16,
                   ),

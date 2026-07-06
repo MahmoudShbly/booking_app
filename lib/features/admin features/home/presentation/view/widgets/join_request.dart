@@ -9,6 +9,9 @@ class JoinRequest extends StatelessWidget {
   final FetchNotAcceptedServicesState state;
   @override
   Widget build(BuildContext context) {
+    final bool hasServices = state is FetchNotAcceptedServicesSuccess &&
+        (state as FetchNotAcceptedServicesSuccess).services.isNotEmpty;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -29,7 +32,7 @@ class JoinRequest extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
-        state is FetchNotAcceptedServicesSuccess
+        hasServices
             ? AdminServiceCardComponent(
                 service: (context.read<FetchNotAcceptedServicesCubit>().firstService)!,
               )

@@ -1,22 +1,13 @@
 import 'package:booking_app/core/utils/styles.dart';
+import 'package:booking_app/features/admin%20features/shipping/data/models/topup_request_model.dart';
 import 'package:flutter/material.dart';
 
 class CoinRequestCard extends StatelessWidget {
-  final String amount;
-  final String customerName;
-  final String paymentMethod;
-  final String transactionNumber;
-  final VoidCallback? onConfirm;
-  final VoidCallback? onReject;
+  final TopupRequestModel request;
 
   const CoinRequestCard({
     super.key,
-    required this.amount,
-    required this.customerName,
-    required this.paymentMethod,
-    required this.transactionNumber,
-    this.onConfirm,
-    this.onReject,
+    required this.request,
   });
 
   @override
@@ -44,15 +35,13 @@ class CoinRequestCard extends StatelessWidget {
       child: Row(
         children: [
           _RequestDetails(
-            customerName: customerName,
-            paymentMethod: paymentMethod,
-            transactionNumber: transactionNumber,
+            customerName: request.userName,
+            transactionNumber: request.transactionNumber,
           ),
           const SizedBox(width: 16),
           _RequestActions(
-            amount: amount,
-            onConfirm: onConfirm,
-            onReject: onReject,
+            amount: request.amount,
+    
           ),
         ],
       ),
@@ -62,12 +51,10 @@ class CoinRequestCard extends StatelessWidget {
 
 class _RequestDetails extends StatelessWidget {
   final String customerName;
-  final String paymentMethod;
   final String transactionNumber;
 
   const _RequestDetails({
     required this.customerName,
-    required this.paymentMethod,
     required this.transactionNumber,
   });
 

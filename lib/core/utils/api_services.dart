@@ -49,4 +49,20 @@ class ApiServices {
 
     return response.data;
   }
+
+  Future<dynamic> put({required String endPoint, dynamic data}) async {
+    final token = await storage.getUserToken();
+    Response response = await dio.put(
+      endPoint,
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+          "Accept": "application/json",
+        },
+      ),
+      data: data,
+    );
+
+    return response.data;
+  }
 }

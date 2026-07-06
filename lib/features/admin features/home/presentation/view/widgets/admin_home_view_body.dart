@@ -5,6 +5,8 @@ import 'package:booking_app/features/admin%20features/home/presentation/view/wid
 import 'package:booking_app/features/admin%20features/home/presentation/view/widgets/coin_request_card.dart';
 import 'package:booking_app/features/admin%20features/providers/data/repos/providers_repo_impl.dart';
 import 'package:booking_app/features/admin%20features/providers/presentation/manager/fetch%20not%20accepted%20services/fetch_not_accepted_services_cubit.dart';
+import 'package:booking_app/features/admin%20features/shipping/data/repos/shipping_repo_impl.dart';
+import 'package:booking_app/features/admin%20features/shipping/presentation/manager/fetch%20topups/fetch_topups_cubit.dart';
 import 'package:booking_app/features/user%20features/home/data/repos/home_repo_impl.dart';
 import 'package:booking_app/features/user%20features/home/presentation/manager/fetch%20services/fetch_services_cubit.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,8 @@ class AdminHomeViewBody extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => FetchServicesCubit(HomeRepoImpl())..fetchServices(),
+          create: (context) =>
+              FetchServicesCubit(HomeRepoImpl())..fetchServices(),
         ),
         BlocProvider(
           create: (context) =>
@@ -29,36 +32,48 @@ class AdminHomeViewBody extends StatelessWidget {
                 ..fetchNotAcceptedServices(),
         ),
         BlocProvider(
-          create: (context) => FetchUsersCubit(AdminHomeRepoImpl())..fetchUsers(),
+          create: (context) =>
+              FetchUsersCubit(AdminHomeRepoImpl())..fetchUsers(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              FetchTopupsCubit(ShippingRepoImpl())..fetchTopups(),
         ),
       ],
       child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const AdminAppBarSection(),
-                const SizedBox(height: 24),
-                const UsersTypeCard(),
-                const SizedBox(height: 16),
-                BlocBuilder<FetchNotAcceptedServicesCubit, FetchNotAcceptedServicesState>(
-                  builder: (context, state) {
-                    return JoinRequest(state: state);
-                  },
-                ),
-                const CoinsRequest(),
-              ],
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const AdminAppBarSection(),
+              const SizedBox(height: 24),
+              const UsersTypeCard(),
+              const SizedBox(height: 16),
+              BlocBuilder<
+                FetchNotAcceptedServicesCubit,
+                FetchNotAcceptedServicesState
+              >(
+                builder: (context, state) {
+                  return JoinRequest(state: state);
+                },
+              ),
+              BlocBuilder<FetchTopupsCubit, FetchTopupsState>(
+                builder: (context, state) {
+                  return  CoinsRequest(state: state,);
+                },
+              ),
+            ],
           ),
         ),
+      ),
     );
   }
 }
 
 class CoinsRequest extends StatelessWidget {
-  const CoinsRequest({super.key});
-
+  const CoinsRequest({super.key, required this.state});
+  final FetchTopupsState state;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -81,14 +96,25 @@ class CoinsRequest extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
-        CoinRequestCard(
-          amount: '\$50.00',
-          customerName: 'أحمد محمد',
-          paymentMethod: 'تحويل بنكي - مباشر',
-          transactionNumber: '#TRX-882914xxxxxxxxxxxxx444',
-          onConfirm: () {},
-          onReject: () {},
-        ),
+        state is FetchTopupsSuccess && (context.read<FetchTopupsCubit>().firstRequests?.isNotEmpty ?? false)
+            ? ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: context.read<FetchTopupsCubit>().firstRequests?.length ?? 0,
+                itemBuilder: (context, index) {
+                  return CoinRequestCard(
+                    request: context.read<FetchTopupsCubit>().firstRequests![index],
+                  );
+                },
+              )
+            : state is FetchTopupsLoading
+                ? const Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 24),
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                : const Text('لا توجد طلبات حالياً', textAlign: TextAlign.center),
       ],
     );
   }

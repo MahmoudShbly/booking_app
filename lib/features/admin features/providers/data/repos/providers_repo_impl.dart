@@ -15,11 +15,26 @@ class ProvidersRepoImpl implements ProvidersRepo {
       );
 
       final List<ServiceModel> services = [];
-        for (final item in result['data']) {
-          services.add(ServiceModel.fromJson(item));
-        }
-     
+      for (final item in result['data']) {
+        services.add(ServiceModel.fromJson(item));
+      }
+
       return right(services);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> acceptService({required int serviceId}) async {
+    try {
+      final result = await ApiServices().post(
+        endPoint: '${ApiEndPoints.services}/$serviceId/${ApiEndPoints.approve}',
+      );
+      return right(result['message'] ?? 'تم قبول الطلب بنجاح');
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));

@@ -33,7 +33,7 @@ class ProfitsCard extends StatelessWidget {
                   SizedBox(height: 3),
                   Text.rich(
                     TextSpan(
-                      text: '1200',
+                      text: '200',
                       style: Styles.textStyle30.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

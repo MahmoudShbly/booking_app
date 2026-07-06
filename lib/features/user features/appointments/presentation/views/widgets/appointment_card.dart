@@ -199,7 +199,7 @@ class AppointmentCard extends StatelessWidget {
               style: Styles.textStyle10.copyWith(fontWeight: FontWeight.w700),
               children: [
                 TextSpan(
-                  text: '10,000  ',
+                  text: '2000 ',
                   style: Styles.textStyle16.copyWith(
                     fontWeight: FontWeight.w900,
                     color: Colors.green,
@@ -219,7 +219,7 @@ class AppointmentCard extends StatelessWidget {
               style: Styles.textStyle10.copyWith(fontWeight: FontWeight.w700),
               children: [
                 TextSpan(
-                  text: '10,000  ',
+                  text: '1000  ',
                   style: Styles.textStyle16.copyWith(
                     fontWeight: FontWeight.w900,
                     color: Colors.red,

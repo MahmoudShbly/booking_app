@@ -2,7 +2,6 @@
 import 'dart:async';
 
 import 'package:booking_app/core/utils/secure_storage_services.dart';
-import 'package:booking_app/features/admin%20features/home/presentation/view/admin_home_view.dart';
 import 'package:booking_app/features/admin%20features/main/presentation/views/main_view.dart';
 import 'package:booking_app/features/user%20features/account/presentation/views/support_view.dart';
 import 'package:booking_app/features/user%20features/appointments/data/models/review_model.dart';
@@ -37,7 +36,6 @@ abstract class AppRouter {
   static final kReviewDetailsView = '/kReviewDetailsView';
   static final kSupportView = '/kSupportView';
   static final storage = SecureStorageServices();
-
   static final router = GoRouter(
     refreshListenable: GoRouterRefreshStream(authCubit.stream),
 
@@ -64,8 +62,17 @@ abstract class AppRouter {
       ),
 
       GoRoute(
-        path: kMainView,                                         
-        builder: (context, state) => const AdminMainView(),
+        path: kMainView,
+        builder: (context, state) => FutureBuilder<String?>(
+          future: SecureStorageServices().getUserRole(),
+          builder: (context, snapshot) {
+            final isAdmin = snapshot.data == 'admin';
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Scaffold(body: Center(child: CircularProgressIndicator()));
+            }
+            return isAdmin ? const AdminMainView() : const MainView();
+          },
+        ),
       ),
 
       GoRoute(

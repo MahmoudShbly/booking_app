@@ -1,4 +1,5 @@
 import 'package:booking_app/features/admin%20features/providers/data/repos/providers_repo_impl.dart';
+import 'package:booking_app/features/admin%20features/providers/presentation/manager/accept%20service/accept_service_cubit.dart';
 import 'package:booking_app/features/admin%20features/providers/presentation/manager/fetch%20not%20accepted%20services/fetch_not_accepted_services_cubit.dart';
 import 'package:booking_app/features/admin%20features/providers/presentation/view/widgets/providers_view_body.dart';
 import 'package:flutter/material.dart';
@@ -9,13 +10,18 @@ class ProvidersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocProvider(
-        create: (context) =>
-            FetchNotAcceptedServicesCubit(ProvidersRepoImpl())
-              ..fetchNotAcceptedServices(),
-        child: const ProvidersViewBody(),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              FetchNotAcceptedServicesCubit(ProvidersRepoImpl())
+                ..fetchNotAcceptedServices(),
+        ),
+        BlocProvider(
+          create: (context) => AcceptServiceCubit(ProvidersRepoImpl()),
+        ),
+      ],
+      child: const Scaffold(body: ProvidersViewBody()),
     );
   }
 }

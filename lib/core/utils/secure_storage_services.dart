@@ -28,6 +28,10 @@ class SecureStorageServices {
     return null;
   }
 
+  Future<String?> getUserRole ()async {
+    final role = await _storage.read(key: 'role');
+    return role;
+  }
 
   Future<String?> getUserToken ()async {
     final token = await _storage.read(key: 'token');

@@ -1,5 +1,7 @@
 import 'package:booking_app/core/utils/styles.dart';
 import 'package:booking_app/core/widgets/admin_service_card_component%20.dart';
+import 'package:booking_app/features/admin%20features/providers/data/repos/providers_repo_impl.dart';
+import 'package:booking_app/features/admin%20features/providers/presentation/manager/accept%20service/accept_service_cubit.dart';
 import 'package:booking_app/features/admin%20features/providers/presentation/manager/fetch%20not%20accepted%20services/fetch_not_accepted_services_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,8 +70,11 @@ class ProvidersViewBody extends StatelessWidget {
                       return Column(
                         children: state.services
                             .map(
-                              (request) =>
-                                  AdminServiceCardComponent(service: request),
+                              (request) => BlocProvider(
+                                create: (context) =>
+                                    AcceptServiceCubit(ProvidersRepoImpl()),
+                                child: AdminServiceCardComponent(service: request),
+                              ),
                             )
                             .toList(),
                       );

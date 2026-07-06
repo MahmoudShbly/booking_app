@@ -46,7 +46,7 @@ class PointCardSection extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    '120 نقطة',
+                    '200 نقطة',
                     style: Styles.textStyle30.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -82,7 +82,7 @@ class PointCardSection extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      'رصيدك الحالي: 10 ل.س',
+                      'رصيدك الحالي: 2000 ل.س',
                       style: Styles.textStyle12.copyWith(
                         color: Colors.grey.shade200,
                       ),

@@ -24,7 +24,22 @@ class CustomCategoryCard extends StatelessWidget {
             
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16),
-                child: Image.asset(Temp.tempImage2, fit: BoxFit.cover),
+                child: category.imageUrl != null
+                    ? Image.network(
+                        category.imageUrl!,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity,
+                      )
+                    : Container(
+                        color: Colors.grey[300],
+                        child: Center(
+                          child: Text(
+                            'No Image',
+                            style: Styles.textStyle16.copyWith(color: Colors.black),
+                          ),
+                        ),
+                      ),
               ),
             ),
              Positioned(top: 50,right: 50,child: Text(category.name,style: Styles.textStyle24.copyWith(color: Colors.white),),)

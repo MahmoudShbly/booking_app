@@ -19,5 +19,7 @@ class ApiEndPoints {
   static const String requestPoints = "topups";
   static const String notAcceptedServices = "services-notaccept";
   static const String allUsers = "users";
+  static const String approve = "approve";
+
 
 }

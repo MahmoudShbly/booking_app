@@ -4,4 +4,5 @@ import 'package:dartz/dartz.dart';
 
 abstract class ProvidersRepo {
   Future<Either<Failure, List<ServiceModel>>> fetchNotAcceptedServices();
+  Future<Either<Failure, String>> acceptService({required int serviceId});
 }
